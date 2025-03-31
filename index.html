@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICH Biofarm - 专业医药中间体供应商</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-primary-600 dark:text-primary-400">ICH Biofarm</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="lang-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <span class="lang-zh">中文</span>
+                        <span class="lang-en hidden">English</span>
+                    </button>
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    <a href="#about" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.about">关于我们</a>
+                    <a href="#products" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.products">产品</a>
+                    <a href="#technology" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.technology">技术</a>
+                    <a href="#contact" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.contact">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6 fade-in" data-translate="hero.title">
+                    ICH Biofarm
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 fade-in" data-translate="hero.subtitle">
+                    专业医药中间体、水处理剂及特种化学品研发与销售
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#contact" class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" data-translate="hero.contact">
+                        联系我们
+                    </a>
+                    <a href="#products" class="border border-primary-600 text-primary-600 dark:text-primary-400 px-6 py-3 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors" data-translate="hero.viewProducts">
+                        查看产品
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12" data-translate="about.title">关于我们</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4 fade-in">
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="about.description">
+                        Hangzhou ICH Biofarm Ltd. 秉承国际、合作、诚信的价值观。作为一家充满活力的年轻公司，我们致力于在全球建立品牌并快速进步。
+                    </p>
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold" data-translate="about.strengths">我们的优势</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                                <span data-translate="about.strength1">深入的知识：对中国医药和化工制造领域的深刻理解</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                                <span data-translate="about.strength2">合作伙伴：与100多家工厂保持稳定的合作关系</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                                <span data-translate="about.strength3">快速响应：及时满足客户需求，确保供应链效率</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg fade-in">
+                    <h3 class="text-xl font-semibold mb-4" data-translate="about.commitments">我们的承诺</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-primary-600 mt-1 mr-2"></i>
+                            <span data-translate="about.commitment1">质量至上：严格遵循质量第一原则</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-flask text-primary-600 mt-1 mr-2"></i>
+                            <span data-translate="about.commitment2">研发与营销：专业团队协同工作，推动公司创新发展</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12" data-translate="products.title">主要产品</h2>
+            
+            <!-- Product Search -->
+            <div class="mb-8">
+                <div class="relative">
+                    <input type="text" id="product-search" 
+                           class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
+                           placeholder="搜索产品名称或CAS号..."
+                           data-translate="products.searchPlaceholder">
+                    <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-600">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Categories -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <h3 class="text-xl font-semibold mb-4" data-translate="products.intermediates">医药中间体</h3>
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.intermediatesDesc">高品质医药中间体供应</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <h3 class="text-xl font-semibold mb-4" data-translate="products.vitamins">维生素</h3>
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.vitaminsDesc">各类维生素产品</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <h3 class="text-xl font-semibold mb-4" data-translate="products.aminoAcids">氨基酸</h3>
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.aminoAcidsDesc">优质氨基酸产品</p>
+                </div>
+            </div>
+
+            <!-- Product Tables Container -->
+            <div id="product-tables" class="space-y-16">
+                <!-- Tables will be dynamically loaded here -->
+            </div>
+
+            <!-- Export Button -->
+            <div class="mt-8 text-center">
+                <button onclick="exportToCSV()" 
+                        class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors mr-4">
+                    <i class="fas fa-download mr-2"></i>
+                    <span data-translate="products.export">导出产品数据</span>
+                </button>
+                <button onclick="openProductCatalog()" 
+                        class="bg-white dark:bg-gray-700 border border-primary-600 text-primary-600 dark:text-primary-400 px-6 py-3 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+                    <i class="fas fa-list-ul mr-2"></i>
+                    <span data-translate="products.viewAll">查看所有产品</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12" data-translate="technology.title">技术实力</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6 fade-in">
+                    <div class="flex items-start">
+                        <i class="fas fa-graduation-cap text-primary-600 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" data-translate="technology.team">专业团队</h3>
+                            <p class="text-gray-600 dark:text-gray-300" data-translate="technology.teamDesc">拥有2名有机化学博士、3名工程硕士及其他研发人员</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-certificate text-primary-600 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" data-translate="technology.patents">专利技术</h3>
+                            <p class="text-gray-600 dark:text-gray-300" data-translate="technology.patentsDesc">拥有10多项专利，多个产品在国内首次研发并产业化</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6 fade-in">
+                    <div class="flex items-start">
+                        <i class="fas fa-flask text-primary-600 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" data-translate="technology.equipment">先进设备</h3>
+                            <p class="text-gray-600 dark:text-gray-300" data-translate="technology.equipmentDesc">配备通风橱、有机合成设备及先进分析仪器</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-handshake text-primary-600 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" data-translate="technology.cooperation">产学研合作</h3>
+                            <p class="text-gray-600 dark:text-gray-300" data-translate="technology.cooperationDesc">与浙江大学、浙江科技学院及上海有机所建立长期合作关系</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12" data-translate="contact.title">联系我们</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in">
+                    <h3 class="text-xl font-semibold mb-4" data-translate="contact.contactInfo">联系方式</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary-600 mt-1 mr-4"></i>
+                            <div>
+                                <p class="font-medium" data-translate="contact.address">地址</p>
+                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.addressValue">杭州市万塘路18号黄龙时代中心A座1306</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-primary-600 mt-1 mr-4"></i>
+                            <div>
+                                <p class="font-medium" data-translate="contact.phone">电话</p>
+                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.phoneValue">+86-571-89939480</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-primary-600 mt-1 mr-4"></i>
+                            <div>
+                                <p class="font-medium" data-translate="contact.email">邮箱</p>
+                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.emailValue">ich@ichemie.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in">
+                    <h3 class="text-xl font-semibold mb-4" data-translate="contact.inquiry">在线询价</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-translate="contact.productName">产品名称</label>
+                            <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-translate="contact.specification">规格</label>
+                            <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-translate="contact.companyName">公司名称</label>
+                            <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-translate="contact.contact">联系方式</label>
+                            <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                        </div>
+                        <button type="submit" class="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" data-translate="contact.submit">
+                            提交询价
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ICH Biofarm</h3>
+                    <p class="text-gray-400">专业医药中间体供应商</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4" data-translate="footer.quickLinks">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white" data-translate="nav.about">关于我们</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white" data-translate="nav.products">产品</a></li>
+                        <li><a href="#technology" class="text-gray-400 hover:text-white" data-translate="nav.technology">技术</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white" data-translate="nav.contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4" data-translate="footer.author">作者信息</h3>
+                    <div class="space-y-2">
+                        <p class="text-gray-400" data-translate="footer.authorName">作者：ICH Biofarm</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p data-translate="footer.copyright">&copy; 2024 ICH Biofarm. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Catalog Modal -->
+    <div id="product-catalog-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onclick="closeProductCatalog()"></div>
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-7xl w-full mx-auto max-h-[90vh] flex flex-col">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+                    <h3 class="text-2xl font-bold" data-translate="products.catalogTitle">产品目录</h3>
+                    <button onclick="closeProductCatalog()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Modal Controls -->
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700 grid md:grid-cols-3 gap-4">
+                    <!-- Search Box -->
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="catalog-search" 
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
+                            placeholder="搜索产品..." 
+                            data-translate="products.catalogSearchPlaceholder">
+                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-600">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Category Filter -->
+                    <div>
+                        <select 
+                            id="catalog-category-filter" 
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                            <option value="all" data-translate="products.allCategories">所有类别</option>
+                            <option value="intermediates" data-translate="products.intermediates">医药中间体</option>
+                            <option value="vitamins" data-translate="products.vitamins">维生素</option>
+                            <option value="aminoAcids" data-translate="products.aminoAcids">氨基酸</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Items Per Page -->
+                    <div>
+                        <select 
+                            id="catalog-items-per-page" 
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                            <option value="10">10 <span data-translate="products.itemsPerPage">条/页</span></option>
+                            <option value="20">20 <span data-translate="products.itemsPerPage">条/页</span></option>
+                            <option value="50">50 <span data-translate="products.itemsPerPage">条/页</span></option>
+                            <option value="100">100 <span data-translate="products.itemsPerPage">条/页</span></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Modal Content -->
+                <div class="overflow-y-auto p-6 flex-grow">
+                    <div id="catalog-content"></div>
+                </div>
+                
+                <!-- Modal Footer -->
+                <div class="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                    <div id="catalog-stats" class="text-gray-500 dark:text-gray-400">
+                        显示 <span id="catalog-showing">0</span> 中的 <span id="catalog-total">0</span> 个产品
+                    </div>
+                    <div id="catalog-pagination" class="flex space-x-2">
+                        <!-- Pagination will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // Fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Language translations
+        const translations = {
+            zh: {
+                nav: {
+                    about: "关于我们",
+                    products: "产品",
+                    technology: "技术",
+                    contact: "联系我们"
+                },
+                hero: {
+                    title: "ICH Biofarm",
+                    subtitle: "专业医药中间体、水处理剂及特种化学品研发与销售",
+                    contact: "联系我们",
+                    viewProducts: "查看产品"
+                },
+                about: {
+                    title: "关于我们",
+                    description: "Hangzhou ICH Biofarm Ltd. 秉承国际、合作、诚信的价值观。作为一家充满活力的年轻公司，我们致力于在全球建立品牌并快速进步。",
+                    strengths: "我们的优势",
+                    strength1: "深入的知识：对中国医药和化工制造领域的深刻理解",
+                    strength2: "合作伙伴：与100多家工厂保持稳定的合作关系",
+                    strength3: "快速响应：及时满足客户需求，确保供应链效率",
+                    commitments: "我们的承诺",
+                    commitment1: "质量至上：严格遵循质量第一原则",
+                    commitment2: "研发与营销：专业团队协同工作，推动公司创新发展"
+                },
+                products: {
+                    title: "主要产品",
+                    intermediates: "医药中间体",
+                    intermediatesDesc: "高品质医药中间体供应",
+                    vitamins: "维生素",
+                    vitaminsDesc: "各类维生素产品",
+                    aminoAcids: "氨基酸",
+                    aminoAcidsDesc: "优质氨基酸产品",
+                    searchPlaceholder: "搜索产品名称或CAS号...",
+                    export: "导出产品数据",
+                    viewAll: "查看所有产品",
+                    catalogTitle: "产品目录",
+                    catalogSearchPlaceholder: "搜索产品名称、CAS号、规格...",
+                    allCategories: "所有类别",
+                    itemsPerPage: "条/页",
+                    noProductsFound: "没有找到匹配的产品",
+                    showing: "显示",
+                    of: "中的",
+                    products: "个产品",
+                    table: {
+                        name: "产品名称",
+                        cas: "CAS号",
+                        spec: "规格",
+                        package: "包装"
+                    }
+                },
+                technology: {
+                    title: "技术实力",
+                    team: "专业团队",
+                    teamDesc: "拥有2名有机化学博士、3名工程硕士及其他研发人员",
+                    patents: "专利技术",
+                    patentsDesc: "拥有10多项专利，多个产品在国内首次研发并产业化",
+                    equipment: "先进设备",
+                    equipmentDesc: "配备通风橱、有机合成设备及先进分析仪器",
+                    cooperation: "产学研合作",
+                    cooperationDesc: "与浙江大学、浙江科技学院及上海有机所建立长期合作关系"
+                },
+                contact: {
+                    title: "联系我们",
+                    contactInfo: "联系方式",
+                    address: "地址",
+                    addressValue: "杭州市万塘路18号黄龙时代中心A座1306",
+                    phone: "电话",
+                    phoneValue: "+86-571-89939480",
+                    email: "邮箱",
+                    emailValue: "ich@ichemie.com",
+                    inquiry: "在线询价",
+                    productName: "产品名称",
+                    specification: "规格",
+                    companyName: "公司名称",
+                    contact: "联系方式",
+                    submit: "提交询价"
+                },
+                footer: {
+                    quickLinks: "快速链接",
+                    author: "作者信息",
+                    authorName: "作者：ICH Biofarm",
+                    copyright: "© 2024 ICH Biofarm. All rights reserved."
+                }
+            },
+            en: {
+                nav: {
+                    about: "About Us",
+                    products: "Products",
+                    technology: "Technology",
+                    contact: "Contact"
+                },
+                hero: {
+                    title: "ICH Biofarm",
+                    subtitle: "Professional R&D and Sales of Pharmaceutical Intermediates, Water Treatment Agents, and Special Chemicals",
+                    contact: "Contact Us",
+                    viewProducts: "View Products"
+                },
+                about: {
+                    title: "About Us",
+                    description: "Hangzhou ICH Biofarm Ltd. upholds the values of internationalization, cooperation, and integrity. As a vibrant young company, we are committed to building our brand globally and making rapid progress.",
+                    strengths: "Our Strengths",
+                    strength1: "Deep Knowledge: Profound understanding of China's pharmaceutical and chemical manufacturing sector",
+                    strength2: "Partnerships: Stable cooperation with over 100 factories",
+                    strength3: "Quick Response: Timely meeting customer needs and ensuring supply chain efficiency",
+                    commitments: "Our Commitments",
+                    commitment1: "Quality First: Strict adherence to quality-first principles",
+                    commitment2: "R&D & Marketing: Professional teams working together to drive innovation"
+                },
+                products: {
+                    title: "Main Products",
+                    intermediates: "Pharmaceutical Intermediates",
+                    intermediatesDesc: "High-quality pharmaceutical intermediates supply",
+                    vitamins: "Vitamins",
+                    vitaminsDesc: "Various vitamin products",
+                    aminoAcids: "Amino Acids",
+                    aminoAcidsDesc: "Premium amino acid products",
+                    searchPlaceholder: "Search product name or CAS number...",
+                    export: "Export Product Data",
+                    viewAll: "View All Products",
+                    catalogTitle: "Product Catalog",
+                    catalogSearchPlaceholder: "Search products by name, CAS number, specs...",
+                    allCategories: "All Categories",
+                    itemsPerPage: "items/page",
+                    noProductsFound: "No matching products found",
+                    showing: "Showing",
+                    of: "of",
+                    products: "products",
+                    table: {
+                        name: "Product Name",
+                        cas: "CAS No.",
+                        spec: "Specification",
+                        package: "Package"
+                    }
+                },
+                technology: {
+                    title: "Technical Strength",
+                    team: "Professional Team",
+                    teamDesc: "2 Ph.D. in Organic Chemistry, 3 Master of Engineering, and other R&D personnel",
+                    patents: "Patent Technology",
+                    patentsDesc: "Over 10 patents, multiple products first developed and industrialized in China",
+                    equipment: "Advanced Equipment",
+                    equipmentDesc: "Equipped with fume hoods, organic synthesis equipment, and advanced analytical instruments",
+                    cooperation: "Industry-University Cooperation",
+                    cooperationDesc: "Long-term cooperation with Zhejiang University, Zhejiang University of Science and Technology, and Shanghai Institute of Organic Chemistry"
+                },
+                contact: {
+                    title: "Contact Us",
+                    contactInfo: "Contact Information",
+                    address: "Address",
+                    addressValue: "Room 1306, Building A, Huanglong Times Center, No. 18 Wantang Road, Hangzhou",
+                    phone: "Phone",
+                    phoneValue: "+86-571-89939480",
+                    email: "Email",
+                    emailValue: "ich@ichemie.com",
+                    inquiry: "Online Inquiry",
+                    productName: "Product Name",
+                    specification: "Specification",
+                    companyName: "Company Name",
+                    contact: "Contact",
+                    submit: "Submit Inquiry"
+                },
+                footer: {
+                    quickLinks: "Quick Links",
+                    author: "Author Info",
+                    authorName: "Author: ICH Biofarm",
+                    copyright: "© 2024 ICH Biofarm. All rights reserved."
+                }
+            }
+        };
+
+        // 定义全局currentLang变量
+        let currentLang = localStorage.getItem('preferred-language') || 'zh';
+
+        // Language switching functionality
+        const langToggle = document.getElementById('lang-toggle');
+        const langZh = langToggle.querySelector('.lang-zh');
+        const langEn = langToggle.querySelector('.lang-en');
+
+        function updateLanguage(lang) {
+            // 更新当前语言变量
+            currentLang = lang;
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const keys = key.split('.');
+                let value = translations[lang];
+                
+                for (const k of keys) {
+                    if (!value || !value[k]) {
+                        console.warn(`Translation missing for key: ${key} in language: ${lang}`);
+                        return;
+                    }
+                    value = value[k];
+                }
+                
+                if (value) {
+                    element.textContent = value;
+                }
+            });
+
+            // Update input placeholders
+            document.getElementById('product-search').placeholder = 
+                translations[lang].products.searchPlaceholder || "搜索产品名称或CAS号...";
+
+            // Update language toggle button
+            if (lang === 'zh') {
+                langZh.classList.remove('hidden');
+                langEn.classList.add('hidden');
+            } else {
+                langZh.classList.add('hidden');
+                langEn.classList.remove('hidden');
+            }
+
+            // Store language preference
+            localStorage.setItem('preferred-language', lang);
+            
+            // 如果产品表格渲染函数已加载，更新表格
+            if (typeof initializeProductTables === 'function') {
+                initializeProductTables();
+            }
+        }
+
+        // Initialize language
+        updateLanguage(currentLang);
+
+        // Language toggle event listener
+        langToggle.addEventListener('click', () => {
+            const currentLang = langZh.classList.contains('hidden') ? 'en' : 'zh';
+            updateLanguage(currentLang === 'zh' ? 'en' : 'zh');
+        });
+    </script>
+    <script src="products.js"></script>
+    <script>
+        // 等待products.js加载完成
+        window.addEventListener('load', function() {
+            // Product table rendering
+            function renderProductTable(category, products, page = 1) {
+                const itemsPerPage = 10;
+                const paginatedProducts = paginateProducts(products, page, itemsPerPage);
+                const totalPages = Math.ceil(products.length / itemsPerPage);
+                
+                // 获取当前语言下的类别名称
+                const categoryTitle = translations[currentLang].products[category] || category;
+
+                return `
+                    <div class="fade-in visible" data-category="${category}">
+                        <h3 class="text-2xl font-bold mb-6" data-translate="products.${category}">${categoryTitle}</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                                <thead class="bg-gray-50 dark:bg-gray-700">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" data-translate="products.table.name">${translations[currentLang].products.table.name}</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" data-translate="products.table.cas">${translations[currentLang].products.table.cas}</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" data-translate="products.table.spec">${translations[currentLang].products.table.spec}</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" data-translate="products.table.package">${translations[currentLang].products.table.package}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    ${paginatedProducts.map(product => `
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">${product.name}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                        ${totalPages > 1 ? `
+                            <div class="mt-4 flex justify-center space-x-2">
+                                ${Array.from({length: totalPages}, (_, i) => i + 1).map(p => `
+                                    <button onclick="changePage('${category}', ${p})" 
+                                            class="px-3 py-1 rounded ${p === page ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500'}">
+                                        ${p}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+
+            // 初始化产品表格
+            window.initializeProductTables = function() {
+                console.log("初始化产品表格...");
+                const container = document.getElementById('product-tables');
+                if (!container) {
+                    console.error("无法找到产品表格容器元素");
+                    return;
+                }
+                
+                container.innerHTML = '';
+                
+                // 使用默认产品数据初始化表格
+                try {
+                    const defaultProducts = getDefaultProducts();
+                    if (!defaultProducts) {
+                        console.error("无法获取默认产品数据");
+                        return;
+                    }
+                    
+                    Object.keys(defaultProducts).forEach(category => {
+                        if (defaultProducts[category] && defaultProducts[category].length > 0) {
+                            container.innerHTML += renderProductTable(category, defaultProducts[category]);
+                        }
+                    });
+                    
+                    // 激活fade-in效果
+                    document.querySelectorAll('#product-tables .fade-in').forEach(el => {
+                        observer.observe(el);
+                        setTimeout(() => el.classList.add('visible'), 100);
+                    });
+                } catch (err) {
+                    console.error("初始化产品表格时出错:", err);
+                }
+            };
+
+            // 搜索功能
+            const searchInput = document.getElementById('product-search');
+            if (!searchInput) {
+                console.error("无法找到搜索输入框元素");
+                return;
+            }
+            
+            let searchTimeout;
+
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    try {
+                        const query = e.target.value;
+                        console.log("搜索查询:", query);
+                        
+                        const results = searchProducts(query);
+                        if (!results) {
+                            console.error("搜索结果为空");
+                            return;
+                        }
+                        
+                        const container = document.getElementById('product-tables');
+                        container.innerHTML = '';
+                        
+                        let hasResults = false;
+                        Object.keys(results).forEach(category => {
+                            if (results[category] && results[category].length > 0) {
+                                container.innerHTML += renderProductTable(category, results[category]);
+                                hasResults = true;
+                            }
+                        });
+                        
+                        if (!hasResults) {
+                            container.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">没有找到匹配的产品</p>`;
+                        }
+                        
+                        // 激活fade-in效果
+                        document.querySelectorAll('#product-tables .fade-in').forEach(el => {
+                            observer.observe(el);
+                            setTimeout(() => el.classList.add('visible'), 100);
+                        });
+                    } catch (err) {
+                        console.error("搜索产品时出错:", err);
+                    }
+                }, 300);
+            });
+
+            // 页面切换处理器
+            window.changePage = function(category, page) {
+                try {
+                    const container = document.getElementById('product-tables');
+                    const categorySection = container.querySelector(`[data-category="${category}"]`);
+                    if (categorySection) {
+                        const currentQuery = searchInput.value;
+                        const results = searchProducts(currentQuery);
+                        categorySection.outerHTML = renderProductTable(category, results[category], page);
+                        
+                        // 激活新添加的元素的fade-in效果
+                        const newSection = container.querySelector(`[data-category="${category}"]`);
+                        if (newSection) {
+                            observer.observe(newSection);
+                            setTimeout(() => newSection.classList.add('visible'), 100);
+                        }
+                    }
+                } catch (err) {
+                    console.error("切换页面时出错:", err);
+                }
+            };
+
+            // 初始化表格
+            initializeProductTables();
+        });
+    </script>
+    <script>
+        // Product Catalog Modal Functions
+        function openProductCatalog() {
+            const modal = document.getElementById('product-catalog-modal');
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            
+            // Initialize catalog content
+            initCatalogContent();
+        }
+        
+        function closeProductCatalog() {
+            const modal = document.getElementById('product-catalog-modal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+        
+        function initCatalogContent() {
+            const contentContainer = document.getElementById('catalog-content');
+            const searchInput = document.getElementById('catalog-search');
+            const categoryFilter = document.getElementById('catalog-category-filter');
+            const itemsPerPageSelect = document.getElementById('catalog-items-per-page');
+            
+            let currentPage = 1;
+            let filteredProducts = getAllProducts();
+            let itemsPerPage = parseInt(itemsPerPageSelect.value);
+            
+            // Initial render
+            renderCatalogContent(filteredProducts, currentPage, itemsPerPage);
+            
+            // Event listeners
+            searchInput.addEventListener('input', filterAndRenderProducts);
+            categoryFilter.addEventListener('change', filterAndRenderProducts);
+            itemsPerPageSelect.addEventListener('change', () => {
+                itemsPerPage = parseInt(itemsPerPageSelect.value);
+                currentPage = 1; // Reset to first page on items per page change
+                filterAndRenderProducts();
+            });
+            
+            function filterAndRenderProducts() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const categoryValue = categoryFilter.value;
+                
+                // Get all products
+                let allProducts = getAllProducts();
+                
+                // Filter by category if not "all"
+                if (categoryValue !== 'all') {
+                    allProducts = {
+                        [categoryValue]: allProducts[categoryValue]
+                    };
+                }
+                
+                // Filter by search term if not empty
+                if (searchTerm) {
+                    filteredProducts = {};
+                    
+                    Object.keys(allProducts).forEach(category => {
+                        filteredProducts[category] = allProducts[category].filter(product => 
+                            product.name.toLowerCase().includes(searchTerm) ||
+                            product.cas.toLowerCase().includes(searchTerm) ||
+                            product.spec.toLowerCase().includes(searchTerm) ||
+                            product.package.toLowerCase().includes(searchTerm)
+                        );
+                    });
+                } else {
+                    filteredProducts = allProducts;
+                }
+                
+                // Reset to first page on filter change
+                currentPage = 1;
+                
+                // Render filtered products
+                renderCatalogContent(filteredProducts, currentPage, itemsPerPage);
+            }
+        }
+        
+        function renderCatalogContent(productsData, page, itemsPerPage) {
+            const contentContainer = document.getElementById('catalog-content');
+            const paginationContainer = document.getElementById('catalog-pagination');
+            const catalogShowing = document.getElementById('catalog-showing');
+            const catalogTotal = document.getElementById('catalog-total');
+            
+            // Flatten all products into a single array for pagination
+            let allProducts = [];
+            Object.keys(productsData).forEach(category => {
+                productsData[category].forEach(product => {
+                    allProducts.push({
+                        ...product,
+                        category
+                    });
+                });
+            });
+            
+            // Calculate pagination
+            const totalProducts = allProducts.length;
+            const totalPages = Math.ceil(totalProducts / itemsPerPage);
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, totalProducts);
+            const currentProducts = allProducts.slice(startIndex, endIndex);
+            
+            // Update stats
+            catalogShowing.textContent = currentProducts.length;
+            catalogTotal.textContent = totalProducts;
+            
+            // Render content
+            if (currentProducts.length === 0) {
+                contentContainer.innerHTML = `
+                    <div class="text-center py-10">
+                        <p class="text-gray-500 dark:text-gray-400">${translations[currentLang].products.noProductsFound}</p>
+                    </div>
+                `;
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            // Group products by category for display
+            const productsByCategory = {};
+            currentProducts.forEach(product => {
+                if (!productsByCategory[product.category]) {
+                    productsByCategory[product.category] = [];
+                }
+                productsByCategory[product.category].push(product);
+            });
+            
+            // Render products by category
+            let html = '';
+            Object.keys(productsByCategory).forEach(category => {
+                const products = productsByCategory[category];
+                const categoryTitle = translations[currentLang].products[category] || category;
+                
+                html += `
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4">${categoryTitle}</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                                <thead class="bg-gray-50 dark:bg-gray-700">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.name}</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.cas}</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.spec}</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.package}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    ${products.map(product => `
+                                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">${product.name}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            contentContainer.innerHTML = html;
+            
+            // Render pagination
+            if (totalPages > 1) {
+                let paginationHtml = '';
+                
+                // Previous button
+                paginationHtml += `
+                    <button 
+                        onclick="changeCatalogPage(${page - 1}, ${itemsPerPage})" 
+                        class="${page === 1 ? 'opacity-50 cursor-not-allowed ' : ''}px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500"
+                        ${page === 1 ? 'disabled' : ''}>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                `;
+                
+                // Page numbers
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, page - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+                
+                if (startPage > 1) {
+                    paginationHtml += `
+                        <button 
+                            onclick="changeCatalogPage(1, ${itemsPerPage})" 
+                            class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500">
+                            1
+                        </button>
+                    `;
+                    
+                    if (startPage > 2) {
+                        paginationHtml += `
+                            <span class="px-3 py-1">...</span>
+                        `;
+                    }
+                }
+                
+                for (let i = startPage; i <= endPage; i++) {
+                    paginationHtml += `
+                        <button 
+                            onclick="changeCatalogPage(${i}, ${itemsPerPage})" 
+                            class="px-3 py-1 rounded ${i === page ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500'}">
+                            ${i}
+                        </button>
+                    `;
+                }
+                
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        paginationHtml += `
+                            <span class="px-3 py-1">...</span>
+                        `;
+                    }
+                    
+                    paginationHtml += `
+                        <button 
+                            onclick="changeCatalogPage(${totalPages}, ${itemsPerPage})" 
+                            class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500">
+                            ${totalPages}
+                        </button>
+                    `;
+                }
+                
+                // Next button
+                paginationHtml += `
+                    <button 
+                        onclick="changeCatalogPage(${page + 1}, ${itemsPerPage})" 
+                        class="${page === totalPages ? 'opacity-50 cursor-not-allowed ' : ''}px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500"
+                        ${page === totalPages ? 'disabled' : ''}>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                `;
+                
+                paginationContainer.innerHTML = paginationHtml;
+            } else {
+                paginationContainer.innerHTML = '';
+            }
+        }
+        
+        // Change catalog page
+        window.changeCatalogPage = function(page, itemsPerPage) {
+            const searchInput = document.getElementById('catalog-search');
+            const categoryFilter = document.getElementById('catalog-category-filter');
+            
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const categoryValue = categoryFilter.value;
+            
+            // Get all products
+            let allProducts = getAllProducts();
+            
+            // Filter by category if not "all"
+            if (categoryValue !== 'all') {
+                allProducts = {
+                    [categoryValue]: allProducts[categoryValue]
+                };
+            }
+            
+            // Filter by search term if not empty
+            let filteredProducts = allProducts;
+            if (searchTerm) {
+                filteredProducts = {};
+                
+                Object.keys(allProducts).forEach(category => {
+                    filteredProducts[category] = allProducts[category].filter(product => 
+                        product.name.toLowerCase().includes(searchTerm) ||
+                        product.cas.toLowerCase().includes(searchTerm) ||
+                        product.spec.toLowerCase().includes(searchTerm) ||
+                        product.package.toLowerCase().includes(searchTerm)
+                    );
+                });
+            }
+            
+            // Render filtered products with new page
+            renderCatalogContent(filteredProducts, page, itemsPerPage);
+        };
+        
+        // Get all products from all categories
+        function getAllProducts() {
+            const allProducts = {};
+            
+            Object.keys(products).forEach(category => {
+                allProducts[category] = products[category];
+            });
+            
+            return allProducts;
+        }
+    </script>
+</body>
+</html> 
