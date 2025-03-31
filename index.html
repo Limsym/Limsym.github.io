@@ -148,7 +148,7 @@
                 <div class="relative">
                     <input type="text" id="product-search" 
                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
-                           placeholder="搜索产品名称或CAS号..."
+                           placeholder="搜索产品名称、CAS号、规格、标准..."
                            data-translate="products.searchPlaceholder">
                     <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-600">
                         <i class="fas fa-search"></i>
@@ -159,16 +159,16 @@
             <!-- Product Categories -->
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="products.intermediates">医药中间体</h3>
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.intermediatesDesc">高品质医药中间体供应</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="products.API">医药中间体</h3>
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.APIDesc">高品质医药中间体供应</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="products.vitamins">维生素</h3>
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.vitaminsDesc">各类维生素产品</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="products.VIT">维生素</h3>
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.VITDesc">各类维生素产品</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="products.aminoAcids">氨基酸</h3>
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.aminoAcidsDesc">优质氨基酸产品</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="products.AA">氨基酸</h3>
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.AADesc">优质氨基酸产品</p>
                 </div>
             </div>
 
@@ -342,9 +342,9 @@
                 </div>
                 
                 <!-- Modal Controls -->
-                <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 grid grid-cols-1 md:grid-cols-3 gap-4 sticky top-[68px] bg-white dark:bg-gray-800 z-10">
+                <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sticky top-[68px] bg-white dark:bg-gray-800 z-10">
                     <!-- Search Box -->
-                    <div class="relative">
+                    <div class="relative md:col-span-2">
                         <input 
                             type="text" 
                             id="catalog-search" 
@@ -356,28 +356,78 @@
                         </button>
                     </div>
                     
+                    <!-- Main Type Filter -->
+                    <div>
+                        <select 
+                            id="catalog-main-type-filter" 
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                            <option value="all" data-translate="products.allMainTypes">所有主要类型</option>
+                            <option value="API" data-translate="products.API">医药中间体</option>
+                            <option value="VIT" data-translate="products.VIT">维生素</option>
+                            <option value="AA" data-translate="products.AA">氨基酸</option>
+                        </select>
+                    </div>
+                    
                     <!-- Category Filter -->
                     <div>
                         <select 
                             id="catalog-category-filter" 
                             class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
                             <option value="all" data-translate="products.allCategories">所有类别</option>
-                            <option value="intermediates" data-translate="products.intermediates">医药中间体</option>
-                            <option value="vitamins" data-translate="products.vitamins">维生素</option>
-                            <option value="aminoAcids" data-translate="products.aminoAcids">氨基酸</option>
+                            <!-- 子类别将通过JavaScript动态加载 -->
                         </select>
                     </div>
                     
-                    <!-- Items Per Page -->
-                    <div>
-                        <select 
-                            id="catalog-items-per-page" 
-                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                            <option value="10">10 <span data-translate="products.itemsPerPage">条/页</span></option>
-                            <option value="20">20 <span data-translate="products.itemsPerPage">条/页</span></option>
-                            <option value="50">50 <span data-translate="products.itemsPerPage">条/页</span></option>
-                            <option value="100">100 <span data-translate="products.itemsPerPage">条/页</span></option>
-                        </select>
+                    <!-- Advanced Filters Toggle -->
+                    <div class="md:col-span-2 lg:col-span-4">
+                        <button 
+                            id="toggle-advanced-filters"
+                            class="flex items-center text-gray-600 dark:text-gray-300 text-sm">
+                            <span id="advanced-filters-label" data-translate="products.advancedFilters">高级筛选</span>
+                            <i id="advanced-filters-icon" class="fas fa-chevron-down ml-1 transition-transform"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Advanced Filters (hidden by default) -->
+                    <div id="advanced-filters" class="hidden md:col-span-2 lg:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Qualification Filter -->
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-translate="products.table.qualification">资质</label>
+                            <select 
+                                id="catalog-qualification-filter" 
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                                <option value="all" data-translate="products.allQualification">所有资质</option>
+                                <option value="Pharmaceutical Grade">Pharmaceutical Grade</option>
+                                <option value="Food Grade">Food Grade</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Standard Filter -->
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-translate="products.table.standard">标准</label>
+                            <select 
+                                id="catalog-standard-filter" 
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                                <option value="all" data-translate="products.allStandard">所有标准</option>
+                                <option value="USP/EP/JP">USP/EP/JP</option>
+                                <option value="USP/EP">USP/EP</option>
+                                <option value="USP">USP</option>
+                                <option value="In-house">In-house</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Items Per Page -->
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-translate="products.itemsPerPage">每页显示</label>
+                            <select 
+                                id="catalog-items-per-page" 
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 
@@ -467,28 +517,36 @@
                 },
                 products: {
                     title: "主要产品",
-                    intermediates: "医药中间体",
-                    intermediatesDesc: "高品质医药中间体供应",
-                    vitamins: "维生素",
-                    vitaminsDesc: "各类维生素产品",
-                    aminoAcids: "氨基酸",
-                    aminoAcidsDesc: "优质氨基酸产品",
-                    searchPlaceholder: "搜索产品名称或CAS号...",
+                    API: "医药中间体",
+                    APIDesc: "高品质医药中间体供应",
+                    VIT: "维生素",
+                    VITDesc: "各类维生素产品",
+                    AA: "氨基酸",
+                    AADesc: "优质氨基酸产品",
+                    searchPlaceholder: "搜索产品名称、CAS号、规格、标准...",
                     export: "导出产品数据",
                     viewAll: "查看所有产品",
                     catalogTitle: "产品目录",
-                    catalogSearchPlaceholder: "搜索产品名称、CAS号、规格...",
+                    catalogSearchPlaceholder: "搜索产品名称、CAS号、规格、分类...",
                     allCategories: "所有类别",
+                    allMainTypes: "所有主要类型",
                     itemsPerPage: "条/页",
                     noProductsFound: "没有找到匹配的产品",
                     showing: "显示",
                     of: "中的",
                     products: "个产品",
+                    advancedFilters: "高级筛选",
+                    hideFilters: "收起筛选",
+                    allQualification: "所有资质",
+                    allStandard: "所有标准",
                     table: {
                         name: "产品名称",
                         cas: "CAS号",
                         spec: "规格",
-                        package: "包装"
+                        package: "包装",
+                        category: "分类",
+                        qualification: "资质",
+                        standard: "标准"
                     }
                 },
                 technology: {
@@ -551,28 +609,36 @@
                 },
                 products: {
                     title: "Main Products",
-                    intermediates: "Pharmaceutical Intermediates",
-                    intermediatesDesc: "High-quality pharmaceutical intermediates supply",
-                    vitamins: "Vitamins",
-                    vitaminsDesc: "Various vitamin products",
-                    aminoAcids: "Amino Acids",
-                    aminoAcidsDesc: "Premium amino acid products",
-                    searchPlaceholder: "Search product name or CAS number...",
+                    API: "Pharmaceutical Intermediates",
+                    APIDesc: "High-quality pharmaceutical intermediates supply",
+                    VIT: "Vitamins",
+                    VITDesc: "Various vitamin products",
+                    AA: "Amino Acids",
+                    AADesc: "Premium amino acid products",
+                    searchPlaceholder: "Search by name, CAS number, spec, standard...",
                     export: "Export Product Data",
                     viewAll: "View All Products",
                     catalogTitle: "Product Catalog",
-                    catalogSearchPlaceholder: "Search products by name, CAS number, specs...",
+                    catalogSearchPlaceholder: "Search by name, CAS, specification, category...",
                     allCategories: "All Categories",
+                    allMainTypes: "All Main Types",
                     itemsPerPage: "items/page",
                     noProductsFound: "No matching products found",
                     showing: "Showing",
                     of: "of",
                     products: "products",
+                    advancedFilters: "Advanced Filters",
+                    hideFilters: "Hide Filters",
+                    allQualification: "All Qualifications",
+                    allStandard: "All Standards",
                     table: {
                         name: "Product Name",
                         cas: "CAS No.",
                         spec: "Specification",
-                        package: "Package"
+                        package: "Package",
+                        category: "Category",
+                        qualification: "Qualification",
+                        standard: "Standard"
                     }
                 },
                 technology: {
@@ -647,7 +713,7 @@
 
             // Update input placeholders
             document.getElementById('product-search').placeholder = 
-                translations[lang].products.searchPlaceholder || "搜索产品名称或CAS号...";
+                translations[lang].products.searchPlaceholder || "搜索产品名称、CAS号、规格、标准...";
 
             // Update language toggle button
             if (lang === 'zh') {
@@ -678,166 +744,6 @@
     </script>
     <script src="products.js"></script>
     <script>
-        // 等待products.js加载完成
-        window.addEventListener('load', function() {
-            // Product table rendering
-            function renderProductTable(category, products, page = 1) {
-                const itemsPerPage = 10;
-                const paginatedProducts = paginateProducts(products, page, itemsPerPage);
-                const totalPages = Math.ceil(products.length / itemsPerPage);
-                
-                // 获取当前语言下的类别名称
-                const categoryTitle = translations[currentLang].products[category] || category;
-
-                return `
-                    <div class="fade-in visible" data-category="${category}">
-                        <h3 class="text-2xl font-bold mb-6" data-translate="products.${category}">${categoryTitle}</h3>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-                                <thead class="bg-gray-50 dark:bg-gray-700">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" data-translate="products.table.name">${translations[currentLang].products.table.name}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" data-translate="products.table.cas">${translations[currentLang].products.table.cas}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" data-translate="products.table.spec">${translations[currentLang].products.table.spec}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" data-translate="products.table.package">${translations[currentLang].products.table.package}</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    ${paginatedProducts.map(product => `
-                                        <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">${product.name}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
-                        </div>
-                        ${totalPages > 1 ? `
-                            <div class="mt-4 flex justify-center space-x-2">
-                                ${Array.from({length: totalPages}, (_, i) => i + 1).map(p => `
-                                    <button onclick="changePage('${category}', ${p})" 
-                                            class="px-3 py-1 rounded ${p === page ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500'}">
-                                        ${p}
-                                    </button>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-            }
-
-            // 初始化产品表格
-            window.initializeProductTables = function() {
-                console.log("初始化产品表格...");
-                const container = document.getElementById('product-tables');
-                if (!container) {
-                    console.error("无法找到产品表格容器元素");
-                    return;
-                }
-                
-                container.innerHTML = '';
-                
-                // 使用默认产品数据初始化表格
-                try {
-                    const defaultProducts = getDefaultProducts();
-                    if (!defaultProducts) {
-                        console.error("无法获取默认产品数据");
-                        return;
-                    }
-                    
-                    Object.keys(defaultProducts).forEach(category => {
-                        if (defaultProducts[category] && defaultProducts[category].length > 0) {
-                            container.innerHTML += renderProductTable(category, defaultProducts[category]);
-                        }
-                    });
-                    
-                    // 激活fade-in效果
-                    document.querySelectorAll('#product-tables .fade-in').forEach(el => {
-                        observer.observe(el);
-                        setTimeout(() => el.classList.add('visible'), 100);
-                    });
-                } catch (err) {
-                    console.error("初始化产品表格时出错:", err);
-                }
-            };
-
-            // 搜索功能
-            const searchInput = document.getElementById('product-search');
-            if (!searchInput) {
-                console.error("无法找到搜索输入框元素");
-                return;
-            }
-            
-            let searchTimeout;
-
-            searchInput.addEventListener('input', (e) => {
-                clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(() => {
-                    try {
-                        const query = e.target.value;
-                        console.log("搜索查询:", query);
-                        
-                        const results = searchProducts(query);
-                        if (!results) {
-                            console.error("搜索结果为空");
-                            return;
-                        }
-                        
-                        const container = document.getElementById('product-tables');
-                        container.innerHTML = '';
-                        
-                        let hasResults = false;
-                        Object.keys(results).forEach(category => {
-                            if (results[category] && results[category].length > 0) {
-                                container.innerHTML += renderProductTable(category, results[category]);
-                                hasResults = true;
-                            }
-                        });
-                        
-                        if (!hasResults) {
-                            container.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">没有找到匹配的产品</p>`;
-                        }
-                        
-                        // 激活fade-in效果
-                        document.querySelectorAll('#product-tables .fade-in').forEach(el => {
-                            observer.observe(el);
-                            setTimeout(() => el.classList.add('visible'), 100);
-                        });
-                    } catch (err) {
-                        console.error("搜索产品时出错:", err);
-                    }
-                }, 300);
-            });
-
-            // 页面切换处理器
-            window.changePage = function(category, page) {
-                try {
-                    const container = document.getElementById('product-tables');
-                    const categorySection = container.querySelector(`[data-category="${category}"]`);
-                    if (categorySection) {
-                        const currentQuery = searchInput.value;
-                        const results = searchProducts(currentQuery);
-                        categorySection.outerHTML = renderProductTable(category, results[category], page);
-                        
-                        // 激活新添加的元素的fade-in效果
-                        const newSection = container.querySelector(`[data-category="${category}"]`);
-                        if (newSection) {
-                            observer.observe(newSection);
-                            setTimeout(() => newSection.classList.add('visible'), 100);
-                        }
-                    }
-                } catch (err) {
-                    console.error("切换页面时出错:", err);
-                }
-            };
-
-            // 初始化表格
-            initializeProductTables();
-        });
-    </script>
-    <script>
         // Product Catalog Modal Functions
         function openProductCatalog() {
             const modal = document.getElementById('product-catalog-modal');
@@ -862,19 +768,76 @@
         function initCatalogContent() {
             const contentContainer = document.getElementById('catalog-content');
             const searchInput = document.getElementById('catalog-search');
+            const mainTypeFilter = document.getElementById('catalog-main-type-filter');
             const categoryFilter = document.getElementById('catalog-category-filter');
+            const qualificationFilter = document.getElementById('catalog-qualification-filter');
+            const standardFilter = document.getElementById('catalog-standard-filter');
             const itemsPerPageSelect = document.getElementById('catalog-items-per-page');
+            const toggleAdvancedFilters = document.getElementById('toggle-advanced-filters');
+            const advancedFilters = document.getElementById('advanced-filters');
+            const advancedFiltersIcon = document.getElementById('advanced-filters-icon');
             
             let currentPage = 1;
-            let filteredProducts = getAllProducts();
+            let allProducts = getAllProducts();
+            let filteredProducts = allProducts;
             let itemsPerPage = parseInt(itemsPerPageSelect.value);
+            
+            // Toggle advanced filters
+            toggleAdvancedFilters.addEventListener('click', () => {
+                advancedFilters.classList.toggle('hidden');
+                advancedFiltersIcon.classList.toggle('rotate-180');
+                toggleAdvancedFilters.querySelector('span').textContent = 
+                    advancedFilters.classList.contains('hidden') ? 
+                        translations[currentLang].products.advancedFilters : 
+                        translations[currentLang].products.hideFilters;
+            });
+            
+            // Populate category filter based on main type selection
+            populateCategoryFilter();
+            
+            function populateCategoryFilter() {
+                // Clear existing options except the first one
+                while (categoryFilter.options.length > 1) {
+                    categoryFilter.remove(1);
+                }
+                
+                const selectedMainType = mainTypeFilter.value;
+                if (selectedMainType === 'all') {
+                    // Add all categories from all main types
+                    Object.keys(products).forEach(mainType => {
+                        Object.keys(products[mainType].categories).forEach(category => {
+                            const option = document.createElement('option');
+                            option.value = category;
+                            option.textContent = category;
+                            categoryFilter.appendChild(option);
+                        });
+                    });
+                } else if (products[selectedMainType]) {
+                    // Add categories from selected main type
+                    Object.keys(products[selectedMainType].categories).forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category;
+                        option.textContent = category;
+                        categoryFilter.appendChild(option);
+                    });
+                }
+            }
             
             // Initial render
             renderCatalogContent(filteredProducts, currentPage, itemsPerPage);
             
             // Event listeners
             searchInput.addEventListener('input', filterAndRenderProducts);
+            
+            mainTypeFilter.addEventListener('change', () => {
+                populateCategoryFilter();
+                filterAndRenderProducts();
+            });
+            
             categoryFilter.addEventListener('change', filterAndRenderProducts);
+            qualificationFilter.addEventListener('change', filterAndRenderProducts);
+            standardFilter.addEventListener('change', filterAndRenderProducts);
+            
             itemsPerPageSelect.addEventListener('change', () => {
                 itemsPerPage = parseInt(itemsPerPageSelect.value);
                 currentPage = 1; // Reset to first page on items per page change
@@ -883,32 +846,62 @@
             
             function filterAndRenderProducts() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
+                const mainTypeValue = mainTypeFilter.value;
                 const categoryValue = categoryFilter.value;
+                const qualificationValue = qualificationFilter.value;
+                const standardValue = standardFilter.value;
                 
-                // Get all products
-                let allProducts = getAllProducts();
+                // First get all products
+                allProducts = getAllProducts();
                 
-                // Filter by category if not "all"
-                if (categoryValue !== 'all') {
-                    allProducts = {
-                        [categoryValue]: allProducts[categoryValue]
-                    };
+                // Step 1: Filter by main type
+                if (mainTypeValue !== 'all') {
+                    filteredProducts = {};
+                    filteredProducts[mainTypeValue] = allProducts[mainTypeValue];
+                } else {
+                    filteredProducts = allProducts;
                 }
                 
-                // Filter by search term if not empty
+                // Step 2: Filter by category
+                if (categoryValue !== 'all') {
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                            product.category === categoryValue
+                        );
+                    });
+                }
+                
+                // Step 3: Filter by qualification
+                if (qualificationValue !== 'all') {
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                            product.qualification === qualificationValue
+                        );
+                    });
+                }
+                
+                // Step 4: Filter by standard
+                if (standardValue !== 'all') {
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                            product.standard.includes(standardValue)
+                        );
+                    });
+                }
+                
+                // Step 5: Filter by search term
                 if (searchTerm) {
-                    filteredProducts = {};
-                    
-                    Object.keys(allProducts).forEach(category => {
-                        filteredProducts[category] = allProducts[category].filter(product => 
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
                             product.name.toLowerCase().includes(searchTerm) ||
                             product.cas.toLowerCase().includes(searchTerm) ||
                             product.spec.toLowerCase().includes(searchTerm) ||
-                            product.package.toLowerCase().includes(searchTerm)
+                            product.package.toLowerCase().includes(searchTerm) ||
+                            product.qualification.toLowerCase().includes(searchTerm) ||
+                            product.standard.toLowerCase().includes(searchTerm) ||
+                            product.category.toLowerCase().includes(searchTerm)
                         );
                     });
-                } else {
-                    filteredProducts = allProducts;
                 }
                 
                 // Reset to first page on filter change
@@ -930,11 +923,11 @@
             
             // Flatten all products into a single array for pagination
             let allProducts = [];
-            Object.keys(productsData).forEach(category => {
-                productsData[category].forEach(product => {
+            Object.keys(productsData).forEach(mainType => {
+                productsData[mainType].forEach(product => {
                     allProducts.push({
                         ...product,
-                        category
+                        mainType
                     });
                 });
             });
@@ -961,50 +954,71 @@
                 return;
             }
             
-            // Group products by category for display
-            const productsByCategory = {};
+            // Group products by main type and category for display
+            const productsByType = {};
             currentProducts.forEach(product => {
-                if (!productsByCategory[product.category]) {
-                    productsByCategory[product.category] = [];
+                const mainType = product.mainType;
+                const category = product.category;
+                
+                if (!productsByType[mainType]) {
+                    productsByType[mainType] = {};
                 }
-                productsByCategory[product.category].push(product);
+                
+                if (!productsByType[mainType][category]) {
+                    productsByType[mainType][category] = [];
+                }
+                
+                productsByType[mainType][category].push(product);
             });
             
-            // Render products by category
+            // Render products
             let html = '';
-            Object.keys(productsByCategory).forEach(category => {
-                const products = productsByCategory[category];
-                const categoryTitle = translations[currentLang].products[category] || category;
+            
+            Object.keys(productsByType).forEach(mainType => {
+                const mainTypeTitle = translations[currentLang].products[mainType] || productTypeNames[mainType]?.[currentLang] || mainType;
                 
-                html += `
-                    <div class="mb-8">
-                        <h3 class="text-xl font-semibold mb-4">${categoryTitle}</h3>
-                        <div class="overflow-x-auto -mx-4 sm:mx-0">
-                            <div class="inline-block min-w-full align-middle">
-                                <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-                                    <thead class="bg-gray-50 dark:bg-gray-700">
-                                        <tr>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.name}</th>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.cas}</th>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.spec}</th>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.package}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                        ${products.map(product => `
-                                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                                <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">${product.name}</td>
-                                                <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
-                                                <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
-                                                <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
+                html += `<div class="mb-10">
+                    <h2 class="text-2xl font-bold mb-6 text-primary-600 dark:text-primary-400">${mainTypeTitle}</h2>`;
+                
+                Object.keys(productsByType[mainType]).forEach(category => {
+                    const products = productsByType[mainType][category];
+                    
+                    html += `
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold mb-4 ml-2 border-l-4 border-primary-500 pl-3">${category}</h3>
+                            <div class="overflow-x-auto -mx-4 sm:mx-0">
+                                <div class="inline-block min-w-full align-middle">
+                                    <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                                        <thead class="bg-gray-50 dark:bg-gray-700">
+                                            <tr>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.name}</th>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.cas}</th>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.qualification}</th>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.standard}</th>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.spec}</th>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.package}</th>
                                             </tr>
-                                        `).join('')}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                            ${products.map(product => `
+                                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                                    <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">${product.name}</td>
+                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
+                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.qualification}</td>
+                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.standard}</td>
+                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
+                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
+                                                </tr>
+                                            `).join('')}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
+                    `;
+                });
+                
+                html += `</div>`;
             });
             
             contentContainer.innerHTML = html;
@@ -1137,32 +1151,67 @@
         // Change catalog page
         window.changeCatalogPage = function(page, itemsPerPage) {
             const searchInput = document.getElementById('catalog-search');
+            const mainTypeFilter = document.getElementById('catalog-main-type-filter');
             const categoryFilter = document.getElementById('catalog-category-filter');
+            const qualificationFilter = document.getElementById('catalog-qualification-filter');
+            const standardFilter = document.getElementById('catalog-standard-filter');
             
             const searchTerm = searchInput.value.toLowerCase().trim();
+            const mainTypeValue = mainTypeFilter.value;
             const categoryValue = categoryFilter.value;
+            const qualificationValue = qualificationFilter.value;
+            const standardValue = standardFilter.value;
             
             // Get all products
             let allProducts = getAllProducts();
             
-            // Filter by category if not "all"
-            if (categoryValue !== 'all') {
-                allProducts = {
-                    [categoryValue]: allProducts[categoryValue]
-                };
+            // Apply filters
+            let filteredProducts = allProducts;
+            
+            // Filter by main type
+            if (mainTypeValue !== 'all') {
+                filteredProducts = {};
+                filteredProducts[mainTypeValue] = allProducts[mainTypeValue];
             }
             
-            // Filter by search term if not empty
-            let filteredProducts = allProducts;
+            // Filter by category
+            if (categoryValue !== 'all') {
+                Object.keys(filteredProducts).forEach(mainType => {
+                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                        product.category === categoryValue
+                    );
+                });
+            }
+            
+            // Filter by qualification
+            if (qualificationValue !== 'all') {
+                Object.keys(filteredProducts).forEach(mainType => {
+                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                        product.qualification === qualificationValue
+                    );
+                });
+            }
+            
+            // Filter by standard
+            if (standardValue !== 'all') {
+                Object.keys(filteredProducts).forEach(mainType => {
+                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                        product.standard.includes(standardValue)
+                    );
+                });
+            }
+            
+            // Filter by search term
             if (searchTerm) {
-                filteredProducts = {};
-                
-                Object.keys(allProducts).forEach(category => {
-                    filteredProducts[category] = allProducts[category].filter(product => 
+                Object.keys(filteredProducts).forEach(mainType => {
+                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
                         product.name.toLowerCase().includes(searchTerm) ||
                         product.cas.toLowerCase().includes(searchTerm) ||
                         product.spec.toLowerCase().includes(searchTerm) ||
-                        product.package.toLowerCase().includes(searchTerm)
+                        product.package.toLowerCase().includes(searchTerm) ||
+                        product.qualification.toLowerCase().includes(searchTerm) ||
+                        product.standard.toLowerCase().includes(searchTerm) ||
+                        product.category.toLowerCase().includes(searchTerm)
                     );
                 });
             }
@@ -1174,48 +1223,75 @@
             document.querySelector('#product-catalog-modal .overflow-y-auto').scrollTop = 0;
         };
         
-        // Get all products from all categories
-        function getAllProducts() {
-            const allProducts = {};
-            
-            Object.keys(products).forEach(category => {
-                allProducts[category] = products[category];
-            });
-            
-            return allProducts;
-        }
-        
         // Handle window resize for responsive pagination
         window.addEventListener('resize', () => {
             const modal = document.getElementById('product-catalog-modal');
             if (!modal.classList.contains('hidden')) {
                 const searchInput = document.getElementById('catalog-search');
+                const mainTypeFilter = document.getElementById('catalog-main-type-filter');
                 const categoryFilter = document.getElementById('catalog-category-filter');
+                const qualificationFilter = document.getElementById('catalog-qualification-filter');
+                const standardFilter = document.getElementById('catalog-standard-filter');
                 const itemsPerPageSelect = document.getElementById('catalog-items-per-page');
                 
                 const searchTerm = searchInput.value.toLowerCase().trim();
+                const mainTypeValue = mainTypeFilter.value;
                 const categoryValue = categoryFilter.value;
+                const qualificationValue = qualificationFilter.value;
+                const standardValue = standardFilter.value;
                 const itemsPerPage = parseInt(itemsPerPageSelect.value);
                 const currentPage = parseInt(document.querySelector('#catalog-pagination .bg-primary-600')?.textContent) || 1;
                 
+                // Get all products
                 let allProducts = getAllProducts();
                 
-                if (categoryValue !== 'all') {
-                    allProducts = {
-                        [categoryValue]: allProducts[categoryValue]
-                    };
+                // Apply filters
+                let filteredProducts = allProducts;
+                
+                // Filter by main type
+                if (mainTypeValue !== 'all') {
+                    filteredProducts = {};
+                    filteredProducts[mainTypeValue] = allProducts[mainTypeValue];
                 }
                 
-                let filteredProducts = allProducts;
+                // Filter by category
+                if (categoryValue !== 'all') {
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                            product.category === categoryValue
+                        );
+                    });
+                }
+                
+                // Filter by qualification
+                if (qualificationValue !== 'all') {
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                            product.qualification === qualificationValue
+                        );
+                    });
+                }
+                
+                // Filter by standard
+                if (standardValue !== 'all') {
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                            product.standard.includes(standardValue)
+                        );
+                    });
+                }
+                
+                // Filter by search term
                 if (searchTerm) {
-                    filteredProducts = {};
-                    
-                    Object.keys(allProducts).forEach(category => {
-                        filteredProducts[category] = allProducts[category].filter(product => 
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
                             product.name.toLowerCase().includes(searchTerm) ||
                             product.cas.toLowerCase().includes(searchTerm) ||
                             product.spec.toLowerCase().includes(searchTerm) ||
-                            product.package.toLowerCase().includes(searchTerm)
+                            product.package.toLowerCase().includes(searchTerm) ||
+                            product.qualification.toLowerCase().includes(searchTerm) ||
+                            product.standard.toLowerCase().includes(searchTerm) ||
+                            product.category.toLowerCase().includes(searchTerm)
                         );
                     });
                 }
@@ -1225,4 +1301,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
