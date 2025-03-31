@@ -331,18 +331,18 @@
     <!-- Product Catalog Modal -->
     <div id="product-catalog-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
         <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onclick="closeProductCatalog()"></div>
-        <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="flex items-center justify-center min-h-screen p-2 sm:p-4">
             <div class="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-7xl w-full mx-auto max-h-[90vh] flex flex-col">
                 <!-- Modal Header -->
-                <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
-                    <h3 class="text-2xl font-bold" data-translate="products.catalogTitle">产品目录</h3>
-                    <button onclick="closeProductCatalog()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
+                <div class="flex justify-between items-center p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 z-10">
+                    <h3 class="text-xl sm:text-2xl font-bold" data-translate="products.catalogTitle">产品目录</h3>
+                    <button onclick="closeProductCatalog()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none p-2">
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
                 
                 <!-- Modal Controls -->
-                <div class="p-6 border-b border-gray-200 dark:border-gray-700 grid md:grid-cols-3 gap-4">
+                <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 grid grid-cols-1 md:grid-cols-3 gap-4 sticky top-[68px] bg-white dark:bg-gray-800 z-10">
                     <!-- Search Box -->
                     <div class="relative">
                         <input 
@@ -382,16 +382,16 @@
                 </div>
                 
                 <!-- Modal Content -->
-                <div class="overflow-y-auto p-6 flex-grow">
+                <div class="overflow-y-auto p-4 sm:p-6 flex-grow">
                     <div id="catalog-content"></div>
                 </div>
                 
                 <!-- Modal Footer -->
-                <div class="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
-                    <div id="catalog-stats" class="text-gray-500 dark:text-gray-400">
-                        显示 <span id="catalog-showing">0</span> 中的 <span id="catalog-total">0</span> 个产品
+                <div class="p-4 sm:p-6 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-center sticky bottom-0 bg-white dark:bg-gray-800 z-10">
+                    <div id="catalog-stats" class="text-gray-500 dark:text-gray-400 mb-4 sm:mb-0 text-center sm:text-left">
+                        <span data-translate="products.showing">显示</span> <span id="catalog-showing">0</span> <span data-translate="products.of">中的</span> <span id="catalog-total">0</span> <span data-translate="products.products">个产品</span>
                     </div>
-                    <div id="catalog-pagination" class="flex space-x-2">
+                    <div id="catalog-pagination" class="flex flex-wrap justify-center gap-2">
                         <!-- Pagination will be added here dynamically -->
                     </div>
                 </div>
@@ -612,7 +612,7 @@
         };
 
         // 定义全局currentLang变量
-        let currentLang = localStorage.getItem('preferred-language') || 'zh';
+        let currentLang = localStorage.getItem('preferred-language') || 'en';
 
         // Language switching functionality
         const langToggle = document.getElementById('lang-toggle');
@@ -846,6 +846,11 @@
             
             // Initialize catalog content
             initCatalogContent();
+            
+            // Set focus on search input for better mobile experience
+            setTimeout(() => {
+                document.getElementById('catalog-search').focus();
+            }, 100);
         }
         
         function closeProductCatalog() {
@@ -911,6 +916,9 @@
                 
                 // Render filtered products
                 renderCatalogContent(filteredProducts, currentPage, itemsPerPage);
+                
+                // Scroll to top after filtering for better mobile experience
+                document.querySelector('#product-catalog-modal .overflow-y-auto').scrollTop = 0;
             }
         }
         
@@ -971,27 +979,29 @@
                 html += `
                     <div class="mb-8">
                         <h3 class="text-xl font-semibold mb-4">${categoryTitle}</h3>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-                                <thead class="bg-gray-50 dark:bg-gray-700">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.name}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.cas}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.spec}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.package}</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    ${products.map(product => `
-                                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">${product.name}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
+                        <div class="overflow-x-auto -mx-4 sm:mx-0">
+                            <div class="inline-block min-w-full align-middle">
+                                <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                                    <thead class="bg-gray-50 dark:bg-gray-700">
+                                        <tr>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.name}</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.cas}</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.spec}</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.package}</th>
                                         </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                        ${products.map(product => `
+                                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                                <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">${product.name}</td>
+                                                <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
+                                                <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
+                                                <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -1007,14 +1017,15 @@
                 paginationHtml += `
                     <button 
                         onclick="changeCatalogPage(${page - 1}, ${itemsPerPage})" 
-                        class="${page === 1 ? 'opacity-50 cursor-not-allowed ' : ''}px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500"
+                        class="${page === 1 ? 'opacity-50 cursor-not-allowed ' : ''}w-10 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500 flex items-center justify-center"
                         ${page === 1 ? 'disabled' : ''}>
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 `;
                 
-                // Page numbers
-                const maxVisiblePages = 5;
+                // Page numbers - mobile responsive pagination
+                const isMobile = window.innerWidth < 640;
+                const maxVisiblePages = isMobile ? 3 : 5;
                 let startPage = Math.max(1, page - Math.floor(maxVisiblePages / 2));
                 let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
                 
@@ -1026,14 +1037,14 @@
                     paginationHtml += `
                         <button 
                             onclick="changeCatalogPage(1, ${itemsPerPage})" 
-                            class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500">
+                            class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500 flex items-center justify-center">
                             1
                         </button>
                     `;
                     
                     if (startPage > 2) {
                         paginationHtml += `
-                            <span class="px-3 py-1">...</span>
+                            <span class="w-10 h-10 flex items-center justify-center">...</span>
                         `;
                     }
                 }
@@ -1042,7 +1053,7 @@
                     paginationHtml += `
                         <button 
                             onclick="changeCatalogPage(${i}, ${itemsPerPage})" 
-                            class="px-3 py-1 rounded ${i === page ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500'}">
+                            class="w-10 h-10 rounded ${i === page ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500'} flex items-center justify-center">
                             ${i}
                         </button>
                     `;
@@ -1051,14 +1062,14 @@
                 if (endPage < totalPages) {
                     if (endPage < totalPages - 1) {
                         paginationHtml += `
-                            <span class="px-3 py-1">...</span>
+                            <span class="w-10 h-10 flex items-center justify-center">...</span>
                         `;
                     }
                     
                     paginationHtml += `
                         <button 
                             onclick="changeCatalogPage(${totalPages}, ${itemsPerPage})" 
-                            class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500">
+                            class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500 flex items-center justify-center">
                             ${totalPages}
                         </button>
                     `;
@@ -1068,15 +1079,58 @@
                 paginationHtml += `
                     <button 
                         onclick="changeCatalogPage(${page + 1}, ${itemsPerPage})" 
-                        class="${page === totalPages ? 'opacity-50 cursor-not-allowed ' : ''}px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500"
+                        class="${page === totalPages ? 'opacity-50 cursor-not-allowed ' : ''}w-10 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500 flex items-center justify-center"
                         ${page === totalPages ? 'disabled' : ''}>
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 `;
                 
                 paginationContainer.innerHTML = paginationHtml;
+                
+                // Add swipe support for mobile
+                addSwipeSupport();
             } else {
                 paginationContainer.innerHTML = '';
+            }
+        }
+        
+        // Add swipe support for mobile pagination
+        function addSwipeSupport() {
+            const contentArea = document.querySelector('#product-catalog-modal .overflow-y-auto');
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            contentArea.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+            
+            contentArea.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, {passive: true});
+            
+            function handleSwipe() {
+                const swipeThreshold = 100;
+                const itemsPerPage = parseInt(document.getElementById('catalog-items-per-page').value);
+                
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left - go to next page
+                    const buttons = document.querySelectorAll('#catalog-pagination button');
+                    const nextButton = buttons[buttons.length - 1];
+                    if (!nextButton.disabled) {
+                        const currentPage = parseInt(document.querySelector('#catalog-pagination .bg-primary-600').textContent);
+                        changeCatalogPage(currentPage + 1, itemsPerPage);
+                    }
+                }
+                
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right - go to previous page
+                    const prevButton = document.querySelector('#catalog-pagination button');
+                    if (!prevButton.disabled) {
+                        const currentPage = parseInt(document.querySelector('#catalog-pagination .bg-primary-600').textContent);
+                        changeCatalogPage(currentPage - 1, itemsPerPage);
+                    }
+                }
             }
         }
         
@@ -1115,6 +1169,9 @@
             
             // Render filtered products with new page
             renderCatalogContent(filteredProducts, page, itemsPerPage);
+            
+            // Scroll to top after page change for better mobile experience
+            document.querySelector('#product-catalog-modal .overflow-y-auto').scrollTop = 0;
         };
         
         // Get all products from all categories
@@ -1127,6 +1184,45 @@
             
             return allProducts;
         }
+        
+        // Handle window resize for responsive pagination
+        window.addEventListener('resize', () => {
+            const modal = document.getElementById('product-catalog-modal');
+            if (!modal.classList.contains('hidden')) {
+                const searchInput = document.getElementById('catalog-search');
+                const categoryFilter = document.getElementById('catalog-category-filter');
+                const itemsPerPageSelect = document.getElementById('catalog-items-per-page');
+                
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const categoryValue = categoryFilter.value;
+                const itemsPerPage = parseInt(itemsPerPageSelect.value);
+                const currentPage = parseInt(document.querySelector('#catalog-pagination .bg-primary-600')?.textContent) || 1;
+                
+                let allProducts = getAllProducts();
+                
+                if (categoryValue !== 'all') {
+                    allProducts = {
+                        [categoryValue]: allProducts[categoryValue]
+                    };
+                }
+                
+                let filteredProducts = allProducts;
+                if (searchTerm) {
+                    filteredProducts = {};
+                    
+                    Object.keys(allProducts).forEach(category => {
+                        filteredProducts[category] = allProducts[category].filter(product => 
+                            product.name.toLowerCase().includes(searchTerm) ||
+                            product.cas.toLowerCase().includes(searchTerm) ||
+                            product.spec.toLowerCase().includes(searchTerm) ||
+                            product.package.toLowerCase().includes(searchTerm)
+                        );
+                    });
+                }
+                
+                renderCatalogContent(filteredProducts, currentPage, itemsPerPage);
+            }
+        });
     </script>
 </body>
 </html> 
