@@ -1,20 +1,34 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICH Biofarm - 专业医药中间体供应商</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>ICH Biofarm - Pharmaceutical Solutions</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="styles.css" rel="stylesheet">
+    <script>
+        // 检查并设置初始主题
+        function setInitialTheme() {
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        setInitialTheme();
+    </script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
+            important: true,
             theme: {
+                container: {
+                    center: true,
+                    padding: '1rem'
+                },
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
                         primary: {
                             50: '#f0f9ff',
@@ -28,1276 +42,503 @@
                             800: '#075985',
                             900: '#0c4a6e',
                         }
+                    },
+                    fontSize: {
+                        'base': '1rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                        '3xl': '1.875rem'
                     }
                 }
             }
         }
     </script>
     <style>
-        [x-cloak] { display: none !important; }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        /* 重置和基础样式 */
+        * {
+            box-sizing: border-box;
         }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        /* 确保容器宽度正确 */
+        .container {
+            width: 100%;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+
+        /* 修复最大宽度样式 */
+        .max-w-6xl {
+            max-width: 72rem !important;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 16px; /* 确保移动端字体合适 */
+            }
+            
+            /* 保证移动端内容也居中 */
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        /* 确保基本布局在JS加载前正确显示 */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        /* 防止FOUC (Flash of Unstyled Content) */
+        .hidden {
+            display: none !important;
+        }
+        
+        /* 确保头部导航在顶部固定 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+        }
+        
+        /* 确保内容不被头部遮挡 */
+        main {
+            padding-top: 4rem;
+        }
+
+        /* 添加到<style>标签或styles.css中 */
+        .flex-items-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .flex-shrink-0 {
+            flex-shrink: 0;
+        }
+
+        .icon-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        /* 确保svg图标尺寸固定 */
+        svg.icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card button {
+            margin-top: auto;
+        }
+
+        /* 确保按钮内部图标和文本对齐 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn i {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            min-width: 24px; /* 确保不缩小 */
+            flex-shrink: 0;
         }
     </style>
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+<body class="bg-white dark:bg-gray-900">
+    <!-- 在body开始处添加 -->
+    <div id="loadingIndicator" style="position: fixed; top: 0; left: 0; right: 0; background: #2563eb; color: white; text-align: center; padding: 5px; z-index: 9999;">
+        加载中...请稍候
+    </div>
+
+    <!-- 导航栏 -->
+    <header class="fixed w-full bg-white dark:bg-gray-900 shadow-md z-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <nav class="flex justify-between items-center py-4">
+                <!-- Logo -->
                 <div class="flex items-center">
-                    <a href="#" class="text-xl font-bold text-primary-600 dark:text-primary-400">ICH Biofarm</a>
+                    <span class="text-2xl font-bold text-primary-600 dark:text-primary-400">ICH Biofarm</span>
                 </div>
+                
+                <!-- 导航链接 -->
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#" class="nav-link" data-translate="nav.home">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-translate="nav.about">About Us</a></li>
+                    <li><a href="#products" class="nav-link" data-translate="nav.products">Products</a></li>
+                    <li><a href="#contact" class="nav-link" data-translate="nav.contact">Contact Us</a></li>
+                </ul>
+                
+                <!-- 操作按钮 -->
                 <div class="flex items-center space-x-4">
-                    <button id="lang-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
-                        <span class="lang-zh">中文</span>
-                        <span class="lang-en hidden">English</span>
-                    </button>
-                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <!-- 深色模式开关 -->
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
                         <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:block"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
                     </button>
-                    <a href="#about" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.about">关于我们</a>
-                    <a href="#products" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.products">产品</a>
-                    <a href="#technology" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.technology">技术</a>
-                    <a href="#contact" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.contact">联系我们</a>
+                    
+                    <!-- 语言切换 -->
+                    <button id="langToggle" class="btn btn-outline">中文</button>
                 </div>
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center">
-                <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6 fade-in" data-translate="hero.title">
-                    ICH Biofarm
-                </h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 fade-in" data-translate="hero.subtitle">
-                    专业医药中间体、水处理剂及特种化学品研发与销售
-                </p>
-                <div class="flex justify-center space-x-4">
-                    <a href="#contact" class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" data-translate="hero.contact">
-                        联系我们
-                    </a>
-                    <a href="#products" class="border border-primary-600 text-primary-600 dark:text-primary-400 px-6 py-3 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors" data-translate="hero.viewProducts">
-                        查看产品
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12" data-translate="about.title">关于我们</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="space-y-4 fade-in">
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="about.description">
-                        Hangzhou ICH Biofarm Ltd. 秉承国际、合作、诚信的价值观。作为一家充满活力的年轻公司，我们致力于在全球建立品牌并快速进步。
-                    </p>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold" data-translate="about.strengths">我们的优势</h3>
+    <!-- 主要内容 -->
+    <main class="pt-16">
+        <!-- 关于我们部分 -->
+        <section id="about" class="py-16 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <h2 class="text-3xl font-bold text-center mb-8" data-translate="nav.about">About Us</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4">ICH Biofarm</h3>
+                        <p class="mb-4">Hangzhou ICH Biofarm Ltd. embodies the values of International, Cooperative, and Honest. As a dynamic young company, we are dedicated to establishing our brand globally and making rapid progress.</p>
+                        <p>Our action-oriented and professional approach is key to satisfying the needs of our clients both domestically and internationally.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4">Our Strengths</h3>
                         <ul class="space-y-2">
                             <li class="flex items-start">
-                                <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
-                                <span data-translate="about.strength1">深入的知识：对中国医药和化工制造领域的深刻理解</span>
+                                <i class="fas fa-check text-primary-600 mr-2" style="width: 24px; height: 24px; flex-shrink: 0;"></i>
+                                <span>In-depth Knowledge of Chinese pharmaceutical and chemical manufacturing sectors</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
-                                <span data-translate="about.strength2">合作伙伴：与100多家工厂保持稳定的合作关系</span>
+                                <i class="fas fa-check text-primary-600 mr-2" style="width: 24px; height: 24px; flex-shrink: 0;"></i>
+                                <span>Partnerships with over 100 factories for stable supply and cost-effectiveness</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
-                                <span data-translate="about.strength3">快速响应：及时满足客户需求，确保供应链效率</span>
+                                <i class="fas fa-check text-primary-600 mr-2" style="width: 24px; height: 24px; flex-shrink: 0;"></i>
+                                <span>Rapid Response to meet client needs promptly and ensure supply chain efficiency</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="about.commitments">我们的承诺</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-star text-primary-600 mt-1 mr-2"></i>
-                            <span data-translate="about.commitment1">质量至上：严格遵循质量第一原则</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-flask text-primary-600 mt-1 mr-2"></i>
-                            <span data-translate="about.commitment2">研发与营销：专业团队协同工作，推动公司创新发展</span>
-                        </li>
-                    </ul>
-                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="py-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12" data-translate="products.title">主要产品</h2>
-            
-            <!-- Product Search -->
-            <div class="mb-8">
-                <div class="relative">
-                    <input type="text" id="product-search" 
-                           class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
-                           placeholder="搜索产品名称、CAS号、规格、标准..."
+        </section>
+        
+        <!-- 产品部分 -->
+        <section id="products" class="py-16">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <h2 class="text-3xl font-bold text-center mb-8" data-translate="products.title">Main Products</h2>
+                
+                <!-- 产品类别 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- API -->
+                    <div class="product-card bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-2" data-translate="products.API">Pharmaceutical Intermediates</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="products.APIDesc">High-quality pharmaceutical intermediates supply</p>
+                        <button data-action="openProductCatalog" class="btn btn-primary w-full">
+                            <i class="fas fa-search mr-2"></i>
+                            <span data-translate="products.viewAll">View All Products</span>
+                        </button>
+                    </div>
+                    
+                    <!-- VIT -->
+                    <div class="product-card bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-2" data-translate="products.VIT">Vitamins</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="products.VITDesc">Various vitamin products</p>
+                        <button data-action="openProductCatalog" class="btn btn-primary w-full">
+                            <i class="fas fa-search mr-2"></i>
+                            <span data-translate="products.viewAll">View All Products</span>
+                        </button>
+                    </div>
+                    
+                    <!-- AA -->
+                    <div class="product-card bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-2" data-translate="products.AA">Amino Acids</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4" data-translate="products.AADesc">Premium amino acid products</p>
+                        <button data-action="openProductCatalog" class="btn btn-primary w-full">
+                            <i class="fas fa-search mr-2"></i>
+                            <span data-translate="products.viewAll">View All Products</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 产品搜索 -->
+                <div class="max-w-2xl mx-auto mb-8">
+                    <input type="text" 
+                           id="productSearch" 
+                           class="search-input" 
+                           placeholder="Search products..."
                            data-translate="products.searchPlaceholder">
-                    <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-600">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product Categories -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="products.API">医药中间体</h3>
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.APIDesc">高品质医药中间体供应</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="products.VIT">维生素</h3>
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.VITDesc">各类维生素产品</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="products.AA">氨基酸</h3>
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.AADesc">优质氨基酸产品</p>
-                </div>
-            </div>
-
-            <!-- Product Tables Container -->
-            <div id="product-tables" class="space-y-16">
-                <!-- Tables will be dynamically loaded here -->
-            </div>
-
-            <!-- Export Button -->
-            <div class="mt-8 text-center">
-                <button onclick="exportToCSV()" 
-                        class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors mr-4">
-                    <i class="fas fa-download mr-2"></i>
-                    <span data-translate="products.export">导出产品数据</span>
-                </button>
-                <button onclick="openProductCatalog()" 
-                        class="bg-white dark:bg-gray-700 border border-primary-600 text-primary-600 dark:text-primary-400 px-6 py-3 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
-                    <i class="fas fa-list-ul mr-2"></i>
-                    <span data-translate="products.viewAll">查看所有产品</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technology Section -->
-    <section id="technology" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12" data-translate="technology.title">技术实力</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="space-y-6 fade-in">
-                    <div class="flex items-start">
-                        <i class="fas fa-graduation-cap text-primary-600 text-2xl mt-1 mr-4"></i>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2" data-translate="technology.team">专业团队</h3>
-                            <p class="text-gray-600 dark:text-gray-300" data-translate="technology.teamDesc">拥有2名有机化学博士、3名工程硕士及其他研发人员</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <i class="fas fa-certificate text-primary-600 text-2xl mt-1 mr-4"></i>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2" data-translate="technology.patents">专利技术</h3>
-                            <p class="text-gray-600 dark:text-gray-300" data-translate="technology.patentsDesc">拥有10多项专利，多个产品在国内首次研发并产业化</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="space-y-6 fade-in">
-                    <div class="flex items-start">
-                        <i class="fas fa-flask text-primary-600 text-2xl mt-1 mr-4"></i>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2" data-translate="technology.equipment">先进设备</h3>
-                            <p class="text-gray-600 dark:text-gray-300" data-translate="technology.equipmentDesc">配备通风橱、有机合成设备及先进分析仪器</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <i class="fas fa-handshake text-primary-600 text-2xl mt-1 mr-4"></i>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2" data-translate="technology.cooperation">产学研合作</h3>
-                            <p class="text-gray-600 dark:text-gray-300" data-translate="technology.cooperationDesc">与浙江大学、浙江科技学院及上海有机所建立长期合作关系</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12" data-translate="contact.title">联系我们</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="contact.contactInfo">联系方式</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-primary-600 mt-1 mr-4"></i>
-                            <div>
-                                <p class="font-medium" data-translate="contact.address">地址</p>
-                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.addressValue">杭州市万塘路18号黄龙时代中心A座1306</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-phone text-primary-600 mt-1 mr-4"></i>
-                            <div>
-                                <p class="font-medium" data-translate="contact.phone">电话</p>
-                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.phoneValue">+86-571-89939480</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-envelope text-primary-600 mt-1 mr-4"></i>
-                            <div>
-                                <p class="font-medium" data-translate="contact.email">邮箱</p>
-                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.emailValue">ich@ichemie.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="contact.inquiry">在线询价</h3>
-                    <form class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium mb-1" data-translate="contact.productName">产品名称</label>
-                            <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1" data-translate="contact.specification">规格</label>
-                            <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1" data-translate="contact.companyName">公司名称</label>
-                            <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1" data-translate="contact.contact">联系方式</label>
-                            <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                        </div>
-                        <button type="submit" class="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors" data-translate="contact.submit">
-                            提交询价
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">ICH Biofarm</h3>
-                    <p class="text-gray-400">专业医药中间体供应商</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4" data-translate="footer.quickLinks">快速链接</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-white" data-translate="nav.about">关于我们</a></li>
-                        <li><a href="#products" class="text-gray-400 hover:text-white" data-translate="nav.products">产品</a></li>
-                        <li><a href="#technology" class="text-gray-400 hover:text-white" data-translate="nav.technology">技术</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white" data-translate="nav.contact">联系我们</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4" data-translate="footer.author">作者信息</h3>
-                    <div class="space-y-2">
-                        <p class="text-gray-400" data-translate="footer.authorName">作者：ICH Biofarm</p>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-white">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-                <p data-translate="footer.copyright">&copy; 2024 ICH Biofarm. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Product Catalog Modal -->
-    <div id="product-catalog-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
-        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onclick="closeProductCatalog()"></div>
-        <div class="flex items-center justify-center min-h-screen p-2 sm:p-4">
-            <div class="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-7xl w-full mx-auto max-h-[90vh] flex flex-col">
-                <!-- Modal Header -->
-                <div class="flex justify-between items-center p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 z-10">
-                    <h3 class="text-xl sm:text-2xl font-bold" data-translate="products.catalogTitle">产品目录</h3>
-                    <button onclick="closeProductCatalog()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none p-2">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
                 </div>
                 
-                <!-- Modal Controls -->
-                <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sticky top-[68px] bg-white dark:bg-gray-800 z-10">
-                    <!-- Search Box -->
-                    <div class="relative md:col-span-2">
-                        <input 
-                            type="text" 
-                            id="catalog-search" 
-                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
-                            placeholder="搜索产品..." 
-                            data-translate="products.catalogSearchPlaceholder">
-                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-600">
-                            <i class="fas fa-search"></i>
-                        </button>
+                <!-- 产品表格容器 -->
+                <div id="productTableContainer" class="table-container">
+                    <!-- 产品表格将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- 联系我们部分 -->
+        <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <h2 class="text-3xl font-bold text-center mb-8" data-translate="nav.contact">Contact Us</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-primary-600 mr-2" style="width: 24px; height: 24px; flex-shrink: 0;"></i>
+                                <div>
+                                    <p class="font-medium">Address</p>
+                                    <p class="text-gray-600 dark:text-gray-300">1306, A Block, Dragon Times Center, 18 WanTang Road, Hangzhou, China</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone text-primary-600 mr-2" style="width: 24px; height: 24px; flex-shrink: 0;"></i>
+                                <div>
+                                    <p class="font-medium">Phone</p>
+                                    <p class="text-gray-600 dark:text-gray-300">+86-571-89939480</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-primary-600 mr-2" style="width: 24px; height: 24px; flex-shrink: 0;"></i>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <p class="text-gray-600 dark:text-gray-300">ich@ichemie.com</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- Main Type Filter -->
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4">Send Inquiry</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Product Name</label>
+                                <input type="text" class="search-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Your Name</label>
+                                <input type="text" class="search-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Email</label>
+                                <input type="email" class="search-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Message</label>
+                                <textarea rows="3" class="search-input"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 产品目录模态框 -->
+    <div id="productCatalogModal" class="modal hidden">
+        <div class="modal-content max-w-4xl mx-auto p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold" data-translate="products.catalogTitle">Product Catalog</h2>
+                <button data-action="closeProductCatalog" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- 筛选器 -->
+            <div class="mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <select 
-                            id="catalog-main-type-filter" 
-                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                            <option value="all" data-translate="products.allMainTypes">所有主要类型</option>
-                            <option value="API" data-translate="products.API">医药中间体</option>
-                            <option value="VIT" data-translate="products.VIT">维生素</option>
-                            <option value="AA" data-translate="products.AA">氨基酸</option>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            <span data-translate="products.allMainTypes">All Main Types</span>
+                        </label>
+                        <select id="mainTypeFilter" class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                            <!-- 选项将通过JavaScript动态加载 -->
                         </select>
                     </div>
-                    
-                    <!-- Category Filter -->
                     <div>
-                        <select 
-                            id="catalog-category-filter" 
-                            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                            <option value="all" data-translate="products.allCategories">所有类别</option>
-                            <!-- 子类别将通过JavaScript动态加载 -->
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            <span data-translate="products.allCategories">All Categories</span>
+                        </label>
+                        <select id="categoryFilter" class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                            <!-- 选项将通过JavaScript动态加载 -->
                         </select>
                     </div>
-                    
-                    <!-- Advanced Filters Toggle -->
-                    <div class="md:col-span-2 lg:col-span-4">
-                        <button 
-                            id="toggle-advanced-filters"
-                            class="flex items-center text-gray-600 dark:text-gray-300 text-sm">
-                            <span id="advanced-filters-label" data-translate="products.advancedFilters">高级筛选</span>
-                            <i id="advanced-filters-icon" class="fas fa-chevron-down ml-1 transition-transform"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Advanced Filters (hidden by default) -->
-                    <div id="advanced-filters" class="hidden md:col-span-2 lg:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <!-- Qualification Filter -->
+                </div>
+                
+                <div class="mt-4">
+                    <input type="text" 
+                           id="catalogSearch" 
+                           class="search-input" 
+                           placeholder="Search products..."
+                           data-translate="products.catalogSearchPlaceholder">
+                </div>
+                
+                <!-- 高级筛选 -->
+                <div class="mt-4">
+                    <button id="toggleFiltersBtn" class="text-sm text-primary-600 hover:text-primary-700">
+                        <span data-translate="products.advancedFilters">Advanced Filters</span>
+                    </button>
+                    <div id="advancedFilters" class="hidden mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium mb-1" data-translate="products.table.qualification">资质</label>
-                            <select 
-                                id="catalog-qualification-filter" 
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                                <option value="all" data-translate="products.allQualification">所有资质</option>
-                                <option value="Pharmaceutical Grade">Pharmaceutical Grade</option>
-                                <option value="Food Grade">Food Grade</option>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <span data-translate="products.table.qualification">Qualification</span>
+                            </label>
+                            <select id="qualificationFilter" class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                                <option value="all" data-translate="products.allQualification">All Qualifications</option>
+                                <option value="GMP">GMP</option>
+                                <option value="ISO">ISO</option>
+                                <option value="CE">CE</option>
                             </select>
                         </div>
-                        
-                        <!-- Standard Filter -->
                         <div>
-                            <label class="block text-sm font-medium mb-1" data-translate="products.table.standard">标准</label>
-                            <select 
-                                id="catalog-standard-filter" 
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                                <option value="all" data-translate="products.allStandard">所有标准</option>
-                                <option value="USP/EP/JP">USP/EP/JP</option>
-                                <option value="USP/EP">USP/EP</option>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <span data-translate="products.table.standard">Standard</span>
+                            </label>
+                            <select id="standardFilter" class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                                <option value="all" data-translate="products.allStandard">All Standards</option>
                                 <option value="USP">USP</option>
-                                <option value="In-house">In-house</option>
-                            </select>
-                        </div>
-                        
-                        <!-- Items Per Page -->
-                        <div>
-                            <label class="block text-sm font-medium mb-1" data-translate="products.itemsPerPage">每页显示</label>
-                            <select 
-                                id="catalog-items-per-page" 
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
+                                <option value="EP">EP</option>
+                                <option value="JP">JP</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Modal Content -->
-                <div class="overflow-y-auto p-4 sm:p-6 flex-grow">
-                    <div id="catalog-content"></div>
+            </div>
+            
+            <!-- 产品表格 -->
+            <div class="table-container">
+                <table id="productCatalogTable" class="product-table">
+                    <thead>
+                        <tr>
+                            <th data-translate="products.table.name">Product Name</th>
+                            <th data-translate="products.table.cas">CAS No.</th>
+                            <th data-translate="products.table.spec">Specification</th>
+                            <th data-translate="products.table.package">Package</th>
+                            <th data-translate="products.table.category">Category</th>
+                            <th data-translate="products.table.qualification">Qualification</th>
+                            <th data-translate="products.table.standard">Standard</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 产品数据将通过JavaScript动态加载 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 分页 -->
+            <div class="mt-6 flex justify-between items-center">
+                <div id="paginationInfo" class="text-sm text-gray-600 dark:text-gray-400">
+                    <!-- 分页信息将通过JavaScript动态更新 -->
                 </div>
-                
-                <!-- Modal Footer -->
-                <div class="p-4 sm:p-6 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-center sticky bottom-0 bg-white dark:bg-gray-800 z-10">
-                    <div id="catalog-stats" class="text-gray-500 dark:text-gray-400 mb-4 sm:mb-0 text-center sm:text-left">
-                        <span data-translate="products.showing">显示</span> <span id="catalog-showing">0</span> <span data-translate="products.of">中的</span> <span id="catalog-total">0</span> <span data-translate="products.products">个产品</span>
-                    </div>
-                    <div id="catalog-pagination" class="flex flex-wrap justify-center gap-2">
-                        <!-- Pagination will be added here dynamically -->
-                    </div>
+                <div class="flex space-x-2">
+                    <button id="prevPage" class="btn btn-primary">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="nextPage" class="btn btn-primary">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="mt-6 flex justify-end space-x-4">
+                <button data-action="closeProductCatalog" class="btn">
+                    <span data-translate="products.detail.close">Close</span>
+                </button>
+                <button data-action="exportProductData" class="btn btn-primary">
+                    <i class="fas fa-download mr-2"></i>
+                    <span data-translate="products.export">Export Product Data</span>
+                </button>
             </div>
         </div>
     </div>
 
-    <script>
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-        });
-
-        // Fade-in animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
-
-        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Language translations
-        const translations = {
-            zh: {
-                nav: {
-                    about: "关于我们",
-                    products: "产品",
-                    technology: "技术",
-                    contact: "联系我们"
-                },
-                hero: {
-                    title: "ICH Biofarm",
-                    subtitle: "专业医药中间体、水处理剂及特种化学品研发与销售",
-                    contact: "联系我们",
-                    viewProducts: "查看产品"
-                },
-                about: {
-                    title: "关于我们",
-                    description: "Hangzhou ICH Biofarm Ltd. 秉承国际、合作、诚信的价值观。作为一家充满活力的年轻公司，我们致力于在全球建立品牌并快速进步。",
-                    strengths: "我们的优势",
-                    strength1: "深入的知识：对中国医药和化工制造领域的深刻理解",
-                    strength2: "合作伙伴：与100多家工厂保持稳定的合作关系",
-                    strength3: "快速响应：及时满足客户需求，确保供应链效率",
-                    commitments: "我们的承诺",
-                    commitment1: "质量至上：严格遵循质量第一原则",
-                    commitment2: "研发与营销：专业团队协同工作，推动公司创新发展"
-                },
-                products: {
-                    title: "主要产品",
-                    API: "医药中间体",
-                    APIDesc: "高品质医药中间体供应",
-                    VIT: "维生素",
-                    VITDesc: "各类维生素产品",
-                    AA: "氨基酸",
-                    AADesc: "优质氨基酸产品",
-                    searchPlaceholder: "搜索产品名称、CAS号、规格、标准...",
-                    export: "导出产品数据",
-                    viewAll: "查看所有产品",
-                    catalogTitle: "产品目录",
-                    catalogSearchPlaceholder: "搜索产品名称、CAS号、规格、分类...",
-                    allCategories: "所有类别",
-                    allMainTypes: "所有主要类型",
-                    itemsPerPage: "条/页",
-                    noProductsFound: "没有找到匹配的产品",
-                    showing: "显示",
-                    of: "中的",
-                    products: "个产品",
-                    advancedFilters: "高级筛选",
-                    hideFilters: "收起筛选",
-                    allQualification: "所有资质",
-                    allStandard: "所有标准",
-                    table: {
-                        name: "产品名称",
-                        cas: "CAS号",
-                        spec: "规格",
-                        package: "包装",
-                        category: "分类",
-                        qualification: "资质",
-                        standard: "标准"
-                    }
-                },
-                technology: {
-                    title: "技术实力",
-                    team: "专业团队",
-                    teamDesc: "拥有2名有机化学博士、3名工程硕士及其他研发人员",
-                    patents: "专利技术",
-                    patentsDesc: "拥有10多项专利，多个产品在国内首次研发并产业化",
-                    equipment: "先进设备",
-                    equipmentDesc: "配备通风橱、有机合成设备及先进分析仪器",
-                    cooperation: "产学研合作",
-                    cooperationDesc: "与浙江大学、浙江科技学院及上海有机所建立长期合作关系"
-                },
-                contact: {
-                    title: "联系我们",
-                    contactInfo: "联系方式",
-                    address: "地址",
-                    addressValue: "杭州市万塘路18号黄龙时代中心A座1306",
-                    phone: "电话",
-                    phoneValue: "+86-571-89939480",
-                    email: "邮箱",
-                    emailValue: "ich@ichemie.com",
-                    inquiry: "在线询价",
-                    productName: "产品名称",
-                    specification: "规格",
-                    companyName: "公司名称",
-                    contact: "联系方式",
-                    submit: "提交询价"
-                },
-                footer: {
-                    quickLinks: "快速链接",
-                    author: "作者信息",
-                    authorName: "作者：ICH Biofarm",
-                    copyright: "© 2024 ICH Biofarm. All rights reserved."
-                }
-            },
-            en: {
-                nav: {
-                    about: "About Us",
-                    products: "Products",
-                    technology: "Technology",
-                    contact: "Contact"
-                },
-                hero: {
-                    title: "ICH Biofarm",
-                    subtitle: "Professional R&D and Sales of Pharmaceutical Intermediates, Water Treatment Agents, and Special Chemicals",
-                    contact: "Contact Us",
-                    viewProducts: "View Products"
-                },
-                about: {
-                    title: "About Us",
-                    description: "Hangzhou ICH Biofarm Ltd. upholds the values of internationalization, cooperation, and integrity. As a vibrant young company, we are committed to building our brand globally and making rapid progress.",
-                    strengths: "Our Strengths",
-                    strength1: "Deep Knowledge: Profound understanding of China's pharmaceutical and chemical manufacturing sector",
-                    strength2: "Partnerships: Stable cooperation with over 100 factories",
-                    strength3: "Quick Response: Timely meeting customer needs and ensuring supply chain efficiency",
-                    commitments: "Our Commitments",
-                    commitment1: "Quality First: Strict adherence to quality-first principles",
-                    commitment2: "R&D & Marketing: Professional teams working together to drive innovation"
-                },
-                products: {
-                    title: "Main Products",
-                    API: "Pharmaceutical Intermediates",
-                    APIDesc: "High-quality pharmaceutical intermediates supply",
-                    VIT: "Vitamins",
-                    VITDesc: "Various vitamin products",
-                    AA: "Amino Acids",
-                    AADesc: "Premium amino acid products",
-                    searchPlaceholder: "Search by name, CAS number, spec, standard...",
-                    export: "Export Product Data",
-                    viewAll: "View All Products",
-                    catalogTitle: "Product Catalog",
-                    catalogSearchPlaceholder: "Search by name, CAS, specification, category...",
-                    allCategories: "All Categories",
-                    allMainTypes: "All Main Types",
-                    itemsPerPage: "items/page",
-                    noProductsFound: "No matching products found",
-                    showing: "Showing",
-                    of: "of",
-                    products: "products",
-                    advancedFilters: "Advanced Filters",
-                    hideFilters: "Hide Filters",
-                    allQualification: "All Qualifications",
-                    allStandard: "All Standards",
-                    table: {
-                        name: "Product Name",
-                        cas: "CAS No.",
-                        spec: "Specification",
-                        package: "Package",
-                        category: "Category",
-                        qualification: "Qualification",
-                        standard: "Standard"
-                    }
-                },
-                technology: {
-                    title: "Technical Strength",
-                    team: "Professional Team",
-                    teamDesc: "2 Ph.D. in Organic Chemistry, 3 Master of Engineering, and other R&D personnel",
-                    patents: "Patent Technology",
-                    patentsDesc: "Over 10 patents, multiple products first developed and industrialized in China",
-                    equipment: "Advanced Equipment",
-                    equipmentDesc: "Equipped with fume hoods, organic synthesis equipment, and advanced analytical instruments",
-                    cooperation: "Industry-University Cooperation",
-                    cooperationDesc: "Long-term cooperation with Zhejiang University, Zhejiang University of Science and Technology, and Shanghai Institute of Organic Chemistry"
-                },
-                contact: {
-                    title: "Contact Us",
-                    contactInfo: "Contact Information",
-                    address: "Address",
-                    addressValue: "Room 1306, Building A, Huanglong Times Center, No. 18 Wantang Road, Hangzhou",
-                    phone: "Phone",
-                    phoneValue: "+86-571-89939480",
-                    email: "Email",
-                    emailValue: "ich@ichemie.com",
-                    inquiry: "Online Inquiry",
-                    productName: "Product Name",
-                    specification: "Specification",
-                    companyName: "Company Name",
-                    contact: "Contact",
-                    submit: "Submit Inquiry"
-                },
-                footer: {
-                    quickLinks: "Quick Links",
-                    author: "Author Info",
-                    authorName: "Author: ICH Biofarm",
-                    copyright: "© 2024 ICH Biofarm. All rights reserved."
-                }
-            }
-        };
-
-        // 定义全局currentLang变量
-        let currentLang = localStorage.getItem('preferred-language') || 'en';
-
-        // Language switching functionality
-        const langToggle = document.getElementById('lang-toggle');
-        const langZh = langToggle.querySelector('.lang-zh');
-        const langEn = langToggle.querySelector('.lang-en');
-
-        function updateLanguage(lang) {
-            // 更新当前语言变量
-            currentLang = lang;
+    <!-- 产品详情模态框 -->
+    <div id="productDetailModal" class="modal hidden">
+        <div class="modal-content max-w-2xl mx-auto p-6">
+            <div class="flex justify-between items-start mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white" id="detail-product-name"></h2>
+                <button data-action="closeProductDetail" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
             
-            // Update HTML lang attribute
-            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-
-            // Update all translatable elements
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                const keys = key.split('.');
-                let value = translations[lang];
-                
-                for (const k of keys) {
-                    if (!value || !value[k]) {
-                        console.warn(`Translation missing for key: ${key} in language: ${lang}`);
-                        return;
-                    }
-                    value = value[k];
-                }
-                
-                if (value) {
-                    element.textContent = value;
-                }
-            });
-
-            // Update input placeholders
-            document.getElementById('product-search').placeholder = 
-                translations[lang].products.searchPlaceholder || "搜索产品名称、CAS号、规格、标准...";
-
-            // Update language toggle button
-            if (lang === 'zh') {
-                langZh.classList.remove('hidden');
-                langEn.classList.add('hidden');
-            } else {
-                langZh.classList.add('hidden');
-                langEn.classList.remove('hidden');
-            }
-
-            // Store language preference
-            localStorage.setItem('preferred-language', lang);
-            
-            // 如果产品表格渲染函数已加载，更新表格
-            if (typeof initializeProductTables === 'function') {
-                initializeProductTables();
-            }
-        }
-
-        // Initialize language
-        updateLanguage(currentLang);
-
-        // Language toggle event listener
-        langToggle.addEventListener('click', () => {
-            const currentLang = langZh.classList.contains('hidden') ? 'en' : 'zh';
-            updateLanguage(currentLang === 'zh' ? 'en' : 'zh');
-        });
-    </script>
-    <script src="products.js"></script>
-    <script>
-        // Product Catalog Modal Functions
-        function openProductCatalog() {
-            const modal = document.getElementById('product-catalog-modal');
-            modal.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
-            
-            // Initialize catalog content
-            initCatalogContent();
-            
-            // Set focus on search input for better mobile experience
-            setTimeout(() => {
-                document.getElementById('catalog-search').focus();
-            }, 100);
-        }
-        
-        function closeProductCatalog() {
-            const modal = document.getElementById('product-catalog-modal');
-            modal.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-        }
-        
-        function initCatalogContent() {
-            const contentContainer = document.getElementById('catalog-content');
-            const searchInput = document.getElementById('catalog-search');
-            const mainTypeFilter = document.getElementById('catalog-main-type-filter');
-            const categoryFilter = document.getElementById('catalog-category-filter');
-            const qualificationFilter = document.getElementById('catalog-qualification-filter');
-            const standardFilter = document.getElementById('catalog-standard-filter');
-            const itemsPerPageSelect = document.getElementById('catalog-items-per-page');
-            const toggleAdvancedFilters = document.getElementById('toggle-advanced-filters');
-            const advancedFilters = document.getElementById('advanced-filters');
-            const advancedFiltersIcon = document.getElementById('advanced-filters-icon');
-            
-            let currentPage = 1;
-            let allProducts = getAllProducts();
-            let filteredProducts = allProducts;
-            let itemsPerPage = parseInt(itemsPerPageSelect.value);
-            
-            // Toggle advanced filters
-            toggleAdvancedFilters.addEventListener('click', () => {
-                advancedFilters.classList.toggle('hidden');
-                advancedFiltersIcon.classList.toggle('rotate-180');
-                toggleAdvancedFilters.querySelector('span').textContent = 
-                    advancedFilters.classList.contains('hidden') ? 
-                        translations[currentLang].products.advancedFilters : 
-                        translations[currentLang].products.hideFilters;
-            });
-            
-            // Populate category filter based on main type selection
-            populateCategoryFilter();
-            
-            function populateCategoryFilter() {
-                // Clear existing options except the first one
-                while (categoryFilter.options.length > 1) {
-                    categoryFilter.remove(1);
-                }
-                
-                const selectedMainType = mainTypeFilter.value;
-                if (selectedMainType === 'all') {
-                    // Add all categories from all main types
-                    Object.keys(products).forEach(mainType => {
-                        Object.keys(products[mainType].categories).forEach(category => {
-                            const option = document.createElement('option');
-                            option.value = category;
-                            option.textContent = category;
-                            categoryFilter.appendChild(option);
-                        });
-                    });
-                } else if (products[selectedMainType]) {
-                    // Add categories from selected main type
-                    Object.keys(products[selectedMainType].categories).forEach(category => {
-                        const option = document.createElement('option');
-                        option.value = category;
-                        option.textContent = category;
-                        categoryFilter.appendChild(option);
-                    });
-                }
-            }
-            
-            // Initial render
-            renderCatalogContent(filteredProducts, currentPage, itemsPerPage);
-            
-            // Event listeners
-            searchInput.addEventListener('input', filterAndRenderProducts);
-            
-            mainTypeFilter.addEventListener('change', () => {
-                populateCategoryFilter();
-                filterAndRenderProducts();
-            });
-            
-            categoryFilter.addEventListener('change', filterAndRenderProducts);
-            qualificationFilter.addEventListener('change', filterAndRenderProducts);
-            standardFilter.addEventListener('change', filterAndRenderProducts);
-            
-            itemsPerPageSelect.addEventListener('change', () => {
-                itemsPerPage = parseInt(itemsPerPageSelect.value);
-                currentPage = 1; // Reset to first page on items per page change
-                filterAndRenderProducts();
-            });
-            
-            function filterAndRenderProducts() {
-                const searchTerm = searchInput.value.toLowerCase().trim();
-                const mainTypeValue = mainTypeFilter.value;
-                const categoryValue = categoryFilter.value;
-                const qualificationValue = qualificationFilter.value;
-                const standardValue = standardFilter.value;
-                
-                // First get all products
-                allProducts = getAllProducts();
-                
-                // Step 1: Filter by main type
-                if (mainTypeValue !== 'all') {
-                    filteredProducts = {};
-                    filteredProducts[mainTypeValue] = allProducts[mainTypeValue];
-                } else {
-                    filteredProducts = allProducts;
-                }
-                
-                // Step 2: Filter by category
-                if (categoryValue !== 'all') {
-                    Object.keys(filteredProducts).forEach(mainType => {
-                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.category === categoryValue
-                        );
-                    });
-                }
-                
-                // Step 3: Filter by qualification
-                if (qualificationValue !== 'all') {
-                    Object.keys(filteredProducts).forEach(mainType => {
-                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.qualification === qualificationValue
-                        );
-                    });
-                }
-                
-                // Step 4: Filter by standard
-                if (standardValue !== 'all') {
-                    Object.keys(filteredProducts).forEach(mainType => {
-                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.standard.includes(standardValue)
-                        );
-                    });
-                }
-                
-                // Step 5: Filter by search term
-                if (searchTerm) {
-                    Object.keys(filteredProducts).forEach(mainType => {
-                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.name.toLowerCase().includes(searchTerm) ||
-                            product.cas.toLowerCase().includes(searchTerm) ||
-                            product.spec.toLowerCase().includes(searchTerm) ||
-                            product.package.toLowerCase().includes(searchTerm) ||
-                            product.qualification.toLowerCase().includes(searchTerm) ||
-                            product.standard.toLowerCase().includes(searchTerm) ||
-                            product.category.toLowerCase().includes(searchTerm)
-                        );
-                    });
-                }
-                
-                // Reset to first page on filter change
-                currentPage = 1;
-                
-                // Render filtered products
-                renderCatalogContent(filteredProducts, currentPage, itemsPerPage);
-                
-                // Scroll to top after filtering for better mobile experience
-                document.querySelector('#product-catalog-modal .overflow-y-auto').scrollTop = 0;
-            }
-        }
-        
-        function renderCatalogContent(productsData, page, itemsPerPage) {
-            const contentContainer = document.getElementById('catalog-content');
-            const paginationContainer = document.getElementById('catalog-pagination');
-            const catalogShowing = document.getElementById('catalog-showing');
-            const catalogTotal = document.getElementById('catalog-total');
-            
-            // Flatten all products into a single array for pagination
-            let allProducts = [];
-            Object.keys(productsData).forEach(mainType => {
-                productsData[mainType].forEach(product => {
-                    allProducts.push({
-                        ...product,
-                        mainType
-                    });
-                });
-            });
-            
-            // Calculate pagination
-            const totalProducts = allProducts.length;
-            const totalPages = Math.ceil(totalProducts / itemsPerPage);
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = Math.min(startIndex + itemsPerPage, totalProducts);
-            const currentProducts = allProducts.slice(startIndex, endIndex);
-            
-            // Update stats
-            catalogShowing.textContent = currentProducts.length;
-            catalogTotal.textContent = totalProducts;
-            
-            // Render content
-            if (currentProducts.length === 0) {
-                contentContainer.innerHTML = `
-                    <div class="text-center py-10">
-                        <p class="text-gray-500 dark:text-gray-400">${translations[currentLang].products.noProductsFound}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 dark:text-gray-400" data-translate="products.detail.labels.cas">CAS No.</label>
+                        <p class="mt-1 text-gray-900 dark:text-white" id="detail-cas"></p>
                     </div>
-                `;
-                paginationContainer.innerHTML = '';
-                return;
-            }
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 dark:text-gray-400" data-translate="products.detail.labels.spec">Specification</label>
+                        <p class="mt-1 text-gray-900 dark:text-white" id="detail-spec"></p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 dark:text-gray-400" data-translate="products.detail.labels.package">Package</label>
+                        <p class="mt-1 text-gray-900 dark:text-white" id="detail-package"></p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 dark:text-gray-400" data-translate="products.detail.labels.category">Category</label>
+                        <p class="mt-1 text-gray-900 dark:text-white" id="detail-category"></p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 dark:text-gray-400" data-translate="products.detail.labels.qualification">Qualification</label>
+                        <p class="mt-1 text-gray-900 dark:text-white" id="detail-qualification"></p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 dark:text-gray-400" data-translate="products.detail.labels.standard">Standard</label>
+                        <p class="mt-1 text-gray-900 dark:text-white" id="detail-standard"></p>
+                    </div>
+                </div>
+            </div>
             
-            // Group products by main type and category for display
-            const productsByType = {};
-            currentProducts.forEach(product => {
-                const mainType = product.mainType;
-                const category = product.category;
-                
-                if (!productsByType[mainType]) {
-                    productsByType[mainType] = {};
-                }
-                
-                if (!productsByType[mainType][category]) {
-                    productsByType[mainType][category] = [];
-                }
-                
-                productsByType[mainType][category].push(product);
-            });
+            <div class="mt-6 flex justify-end space-x-4">
+                <button data-action="closeProductDetail" class="btn" data-translate="products.detail.close">Close</button>
+                <button data-action="exportProductDetail" class="btn btn-primary" data-translate="products.detail.export">Export Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 引用 -->
+    <script src="js/main.js" type="module"></script>
+    <script>
+        // 替代onclick的更好方式是使用事件委托
+        document.addEventListener('click', (e) => {
+            const target = e.target.closest('[data-action]');
+            if (!target) return;
             
-            // Render products
-            let html = '';
-            
-            Object.keys(productsByType).forEach(mainType => {
-                const mainTypeTitle = translations[currentLang].products[mainType] || productTypeNames[mainType]?.[currentLang] || mainType;
-                
-                html += `<div class="mb-10">
-                    <h2 class="text-2xl font-bold mb-6 text-primary-600 dark:text-primary-400">${mainTypeTitle}</h2>`;
-                
-                Object.keys(productsByType[mainType]).forEach(category => {
-                    const products = productsByType[mainType][category];
-                    
-                    html += `
-                        <div class="mb-8">
-                            <h3 class="text-xl font-semibold mb-4 ml-2 border-l-4 border-primary-500 pl-3">${category}</h3>
-                            <div class="overflow-x-auto -mx-4 sm:mx-0">
-                                <div class="inline-block min-w-full align-middle">
-                                    <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-                                        <thead class="bg-gray-50 dark:bg-gray-700">
-                                            <tr>
-                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.name}</th>
-                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.cas}</th>
-                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.qualification}</th>
-                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.standard}</th>
-                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.spec}</th>
-                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.package}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                            ${products.map(product => `
-                                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                                    <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">${product.name}</td>
-                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
-                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.qualification}</td>
-                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.standard}</td>
-                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
-                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
-                                                </tr>
-                                            `).join('')}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                html += `</div>`;
-            });
-            
-            contentContainer.innerHTML = html;
-            
-            // Render pagination
-            if (totalPages > 1) {
-                let paginationHtml = '';
-                
-                // Previous button
-                paginationHtml += `
-                    <button 
-                        onclick="changeCatalogPage(${page - 1}, ${itemsPerPage})" 
-                        class="${page === 1 ? 'opacity-50 cursor-not-allowed ' : ''}w-10 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500 flex items-center justify-center"
-                        ${page === 1 ? 'disabled' : ''}>
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                `;
-                
-                // Page numbers - mobile responsive pagination
-                const isMobile = window.innerWidth < 640;
-                const maxVisiblePages = isMobile ? 3 : 5;
-                let startPage = Math.max(1, page - Math.floor(maxVisiblePages / 2));
-                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-                
-                if (endPage - startPage + 1 < maxVisiblePages) {
-                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                }
-                
-                if (startPage > 1) {
-                    paginationHtml += `
-                        <button 
-                            onclick="changeCatalogPage(1, ${itemsPerPage})" 
-                            class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500 flex items-center justify-center">
-                            1
-                        </button>
-                    `;
-                    
-                    if (startPage > 2) {
-                        paginationHtml += `
-                            <span class="w-10 h-10 flex items-center justify-center">...</span>
-                        `;
-                    }
-                }
-                
-                for (let i = startPage; i <= endPage; i++) {
-                    paginationHtml += `
-                        <button 
-                            onclick="changeCatalogPage(${i}, ${itemsPerPage})" 
-                            class="w-10 h-10 rounded ${i === page ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500'} flex items-center justify-center">
-                            ${i}
-                        </button>
-                    `;
-                }
-                
-                if (endPage < totalPages) {
-                    if (endPage < totalPages - 1) {
-                        paginationHtml += `
-                            <span class="w-10 h-10 flex items-center justify-center">...</span>
-                        `;
-                    }
-                    
-                    paginationHtml += `
-                        <button 
-                            onclick="changeCatalogPage(${totalPages}, ${itemsPerPage})" 
-                            class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500 flex items-center justify-center">
-                            ${totalPages}
-                        </button>
-                    `;
-                }
-                
-                // Next button
-                paginationHtml += `
-                    <button 
-                        onclick="changeCatalogPage(${page + 1}, ${itemsPerPage})" 
-                        class="${page === totalPages ? 'opacity-50 cursor-not-allowed ' : ''}w-10 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-500 flex items-center justify-center"
-                        ${page === totalPages ? 'disabled' : ''}>
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                `;
-                
-                paginationContainer.innerHTML = paginationHtml;
-                
-                // Add swipe support for mobile
-                addSwipeSupport();
-            } else {
-                paginationContainer.innerHTML = '';
-            }
-        }
-        
-        // Add swipe support for mobile pagination
-        function addSwipeSupport() {
-            const contentArea = document.querySelector('#product-catalog-modal .overflow-y-auto');
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            contentArea.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, {passive: true});
-            
-            contentArea.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, {passive: true});
-            
-            function handleSwipe() {
-                const swipeThreshold = 100;
-                const itemsPerPage = parseInt(document.getElementById('catalog-items-per-page').value);
-                
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    // Swipe left - go to next page
-                    const buttons = document.querySelectorAll('#catalog-pagination button');
-                    const nextButton = buttons[buttons.length - 1];
-                    if (!nextButton.disabled) {
-                        const currentPage = parseInt(document.querySelector('#catalog-pagination .bg-primary-600').textContent);
-                        changeCatalogPage(currentPage + 1, itemsPerPage);
-                    }
-                }
-                
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    // Swipe right - go to previous page
-                    const prevButton = document.querySelector('#catalog-pagination button');
-                    if (!prevButton.disabled) {
-                        const currentPage = parseInt(document.querySelector('#catalog-pagination .bg-primary-600').textContent);
-                        changeCatalogPage(currentPage - 1, itemsPerPage);
-                    }
-                }
-            }
-        }
-        
-        // Change catalog page
-        window.changeCatalogPage = function(page, itemsPerPage) {
-            const searchInput = document.getElementById('catalog-search');
-            const mainTypeFilter = document.getElementById('catalog-main-type-filter');
-            const categoryFilter = document.getElementById('catalog-category-filter');
-            const qualificationFilter = document.getElementById('catalog-qualification-filter');
-            const standardFilter = document.getElementById('catalog-standard-filter');
-            
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const mainTypeValue = mainTypeFilter.value;
-            const categoryValue = categoryFilter.value;
-            const qualificationValue = qualificationFilter.value;
-            const standardValue = standardFilter.value;
-            
-            // Get all products
-            let allProducts = getAllProducts();
-            
-            // Apply filters
-            let filteredProducts = allProducts;
-            
-            // Filter by main type
-            if (mainTypeValue !== 'all') {
-                filteredProducts = {};
-                filteredProducts[mainTypeValue] = allProducts[mainTypeValue];
-            }
-            
-            // Filter by category
-            if (categoryValue !== 'all') {
-                Object.keys(filteredProducts).forEach(mainType => {
-                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                        product.category === categoryValue
-                    );
-                });
-            }
-            
-            // Filter by qualification
-            if (qualificationValue !== 'all') {
-                Object.keys(filteredProducts).forEach(mainType => {
-                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                        product.qualification === qualificationValue
-                    );
-                });
-            }
-            
-            // Filter by standard
-            if (standardValue !== 'all') {
-                Object.keys(filteredProducts).forEach(mainType => {
-                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                        product.standard.includes(standardValue)
-                    );
-                });
-            }
-            
-            // Filter by search term
-            if (searchTerm) {
-                Object.keys(filteredProducts).forEach(mainType => {
-                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                        product.name.toLowerCase().includes(searchTerm) ||
-                        product.cas.toLowerCase().includes(searchTerm) ||
-                        product.spec.toLowerCase().includes(searchTerm) ||
-                        product.package.toLowerCase().includes(searchTerm) ||
-                        product.qualification.toLowerCase().includes(searchTerm) ||
-                        product.standard.toLowerCase().includes(searchTerm) ||
-                        product.category.toLowerCase().includes(searchTerm)
-                    );
-                });
-            }
-            
-            // Render filtered products with new page
-            renderCatalogContent(filteredProducts, page, itemsPerPage);
-            
-            // Scroll to top after page change for better mobile experience
-            document.querySelector('#product-catalog-modal .overflow-y-auto').scrollTop = 0;
-        };
-        
-        // Handle window resize for responsive pagination
-        window.addEventListener('resize', () => {
-            const modal = document.getElementById('product-catalog-modal');
-            if (!modal.classList.contains('hidden')) {
-                const searchInput = document.getElementById('catalog-search');
-                const mainTypeFilter = document.getElementById('catalog-main-type-filter');
-                const categoryFilter = document.getElementById('catalog-category-filter');
-                const qualificationFilter = document.getElementById('catalog-qualification-filter');
-                const standardFilter = document.getElementById('catalog-standard-filter');
-                const itemsPerPageSelect = document.getElementById('catalog-items-per-page');
-                
-                const searchTerm = searchInput.value.toLowerCase().trim();
-                const mainTypeValue = mainTypeFilter.value;
-                const categoryValue = categoryFilter.value;
-                const qualificationValue = qualificationFilter.value;
-                const standardValue = standardFilter.value;
-                const itemsPerPage = parseInt(itemsPerPageSelect.value);
-                const currentPage = parseInt(document.querySelector('#catalog-pagination .bg-primary-600')?.textContent) || 1;
-                
-                // Get all products
-                let allProducts = getAllProducts();
-                
-                // Apply filters
-                let filteredProducts = allProducts;
-                
-                // Filter by main type
-                if (mainTypeValue !== 'all') {
-                    filteredProducts = {};
-                    filteredProducts[mainTypeValue] = allProducts[mainTypeValue];
-                }
-                
-                // Filter by category
-                if (categoryValue !== 'all') {
-                    Object.keys(filteredProducts).forEach(mainType => {
-                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.category === categoryValue
-                        );
-                    });
-                }
-                
-                // Filter by qualification
-                if (qualificationValue !== 'all') {
-                    Object.keys(filteredProducts).forEach(mainType => {
-                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.qualification === qualificationValue
-                        );
-                    });
-                }
-                
-                // Filter by standard
-                if (standardValue !== 'all') {
-                    Object.keys(filteredProducts).forEach(mainType => {
-                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.standard.includes(standardValue)
-                        );
-                    });
-                }
-                
-                // Filter by search term
-                if (searchTerm) {
-                    Object.keys(filteredProducts).forEach(mainType => {
-                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.name.toLowerCase().includes(searchTerm) ||
-                            product.cas.toLowerCase().includes(searchTerm) ||
-                            product.spec.toLowerCase().includes(searchTerm) ||
-                            product.package.toLowerCase().includes(searchTerm) ||
-                            product.qualification.toLowerCase().includes(searchTerm) ||
-                            product.standard.toLowerCase().includes(searchTerm) ||
-                            product.category.toLowerCase().includes(searchTerm)
-                        );
-                    });
-                }
-                
-                renderCatalogContent(filteredProducts, currentPage, itemsPerPage);
-            }
+            const action = target.dataset.action;
+            if (action === 'openProductCatalog') openProductCatalog();
+            if (action === 'closeProductCatalog') closeProductCatalog();
+            // 更多动作...
         });
     </script>
 </body>

@@ -1,0 +1,456 @@
+/* 全局样式 */
+:root {
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+    --primary-200: #bfdbfe;
+    --primary-300: #93c5fd;
+    --primary-400: #60a5fa;
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    --primary-700: #1d4ed8;
+    --primary-800: #1e40af;
+    --primary-900: #1e3a8a;
+    --primary-950: #172554;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f3f4f6;
+    --border-color: #e5e7eb;
+}
+
+/* 深色模式变量 */
+[data-theme="dark"] {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --bg-primary: #1f2937;
+    --bg-secondary: #111827;
+    --border-color: #374151;
+    --primary-50: #172554;
+    --primary-100: #1e3a8a;
+    --primary-200: #1e40af;
+    --primary-300: #1d4ed8;
+    --primary-400: #2563eb;
+    --primary-500: #3b82f6;
+    --primary-600: #60a5fa;
+    --primary-700: #93c5fd;
+    --primary-800: #bfdbfe;
+    --primary-900: #dbeafe;
+    --primary-950: #eff6ff;
+}
+
+/* 基础样式 */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 0;
+}
+
+/* 容器样式 */
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.max-w-6xl {
+    max-width: 72rem; /* 1152px */
+}
+
+.max-w-5xl {
+    max-width: 64rem;
+}
+
+.max-w-4xl {
+    max-width: 56rem; /* 896px */
+}
+
+.max-w-3xl {
+    max-width: 48rem;
+}
+
+.max-w-2xl {
+    max-width: 42rem; /* 672px */
+}
+
+/* 导航栏样式 */
+.navbar {
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+}
+
+/* 产品卡片样式 */
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* 模态框样式 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    transition: opacity 0.3s;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--bg-primary);
+    border-radius: 0.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(0);
+    transition: transform 0.3s;
+}
+
+.modal.hidden .modal-content {
+    transform: scale(0.95);
+}
+
+.dark .modal-content {
+    background-color: #1f2937;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .modal-header {
+    border-bottom-color: #4b5563;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.dark .modal-footer {
+    border-top-color: #4b5563;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #9ca3af;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #4b5563;
+}
+
+.dark .close-modal {
+    color: #9ca3af;
+}
+
+.dark .close-modal:hover {
+    color: #d1d5db;
+}
+
+/* 表格样式 */
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th,
+.product-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+}
+
+.dark th {
+    background-color: #374151;
+    border-bottom-color: #4b5563;
+}
+
+.product-table tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+.dark td {
+    border-bottom-color: #4b5563;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-600);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-700);
+}
+
+.dark .btn-primary {
+    background-color: var(--primary-500);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-outline {
+    border: 1px solid var(--primary-600);
+    color: var(--primary-600);
+    background-color: transparent;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-600);
+    color: white;
+}
+
+.dark .btn-outline {
+    border-color: var(--primary-400);
+    color: var(--primary-400);
+}
+
+.dark .btn-outline:hover {
+    background-color: var(--primary-400);
+    color: #1f2937;
+}
+
+/* 搜索框样式 */
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.dark .search-input {
+    background-color: #1f2937;
+    border-color: #4b5563;
+    color: #e5e7eb;
+}
+
+.dark .search-input:focus {
+    border-color: var(--primary-400);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease-in-out;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .product-table {
+        font-size: 0.875rem;
+    }
+    
+    .btn {
+        padding: 0.375rem 0.75rem;
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .modal-content {
+        max-width: 90%;
+    }
+}
+
+/* 暗黑模式支持 */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+        --bg-primary: #1f2937;
+        --bg-secondary: #111827;
+        --border-color: #374151;
+    }
+}
+
+/* 通用辅助类 */
+.text-primary-600 {
+    color: var(--primary-600);
+}
+
+.text-gray-500 {
+    color: var(--text-secondary);
+}
+
+.text-gray-700 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .dark\:text-gray-300 {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .dark\:text-white {
+    color: white;
+}
+
+[data-theme="dark"] .dark\:bg-gray-800 {
+    background-color: var(--bg-secondary);
+}
+
+/* 图标样式 */
+.dark-icon, .light-icon {
+    font-size: 1.25rem;
+}
+
+select {
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    width: 100%;
+}
+
+/* 导航链接样式 */
+.nav-link {
+    color: #4b5563;
+    transition: color 0.3s;
+    font-weight: 500;
+    padding: 0.5rem;
+}
+
+.dark .nav-link {
+    color: #d1d5db;
+}
+
+.nav-link:hover {
+    color: var(--primary-600);
+}
+
+.dark .nav-link:hover {
+    color: var(--primary-400);
+}
+
+/* 产品详情样式 */
+.product-detail {
+    margin-bottom: 1.5rem;
+}
+
+.product-detail-label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #4b5563;
+}
+
+.dark .product-detail-label {
+    color: #d1d5db;
+}
+
+.product-detail-value {
+    color: #6b7280;
+}
+
+.dark .product-detail-value {
+    color: #9ca3af;
+}
+
+/* 关于我们和联系我们部分样式 */
+#about, #contact {
+    position: relative;
+}
+
+#about::before, #contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--primary-300), transparent);
+}
+
+/* 联系表单样式 */
+form .search-input {
+    margin-bottom: 1rem;
+} 
