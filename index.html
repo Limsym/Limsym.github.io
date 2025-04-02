@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICH Biofarm - 专业医药中间体供应商</title>
+    <title>ICH Biofarm - <span data-translate="site.description">专业医药中间体供应商</span></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -48,25 +48,47 @@
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
+    <nav class="fixed w-full z-50 transition-all duration-300" id="main-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="#" class="text-xl font-bold text-primary-600 dark:text-primary-400">ICH Biofarm</a>
+                    <a href="#" class="text-xl font-bold text-primary-600 dark:text-primary-400 hover:opacity-80 transition-opacity">ICH Biofarm</a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button id="lang-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="lang-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                         <span class="lang-zh">中文</span>
                         <span class="lang-en hidden">English</span>
                     </button>
-                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:block"></i>
                     </button>
-                    <a href="#about" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.about">关于我们</a>
-                    <a href="#products" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.products">产品</a>
-                    <a href="#technology" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.technology">技术</a>
-                    <a href="#contact" class="hover:text-primary-600 dark:hover:text-primary-400" data-translate="nav.contact">联系我们</a>
+                    <a href="#about" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.about">关于我们</a>
+                    <a href="#products" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.products">产品</a>
+                    <a href="#technology" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.technology">技术</a>
+                    <a href="#contact" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.contact">联系我们</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden py-2 space-y-2">
+                <a href="#about" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.about">关于我们</a>
+                <a href="#products" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.products">产品</a>
+                <a href="#technology" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.technology">技术</a>
+                <a href="#contact" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.contact">联系我们</a>
+                <div class="flex items-center space-x-4 px-4 py-2">
+                    <button id="mobile-lang-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <span class="lang-zh">中文</span>
+                        <span class="lang-en hidden">English</span>
+                    </button>
+                    <button id="mobile-theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
                 </div>
             </div>
         </div>
@@ -101,7 +123,7 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="space-y-4 fade-in">
                     <p class="text-gray-600 dark:text-gray-300" data-translate="about.description">
-                        Hangzhou ICH Biofarm Ltd. 秉承国际、合作、诚信的价值观。作为一家充满活力的年轻公司，我们致力于在全球建立品牌并快速进步。
+                        杭州安凯生物医药有限公司秉承国际、合作、诚信的价值观。作为一家充满活力的专业公司，我们致力于在全球建立品牌并快速进步。
                     </p>
                     <div class="space-y-4">
                         <h3 class="text-xl font-semibold" data-translate="about.strengths">我们的优势</h3>
@@ -234,11 +256,98 @@
         </div>
     </section>
 
+    <!-- Exhibition Section -->
+    <section id="exhibitions" class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 fade-in" data-translate="exhibitions.title">线下展会</h2>
+            <div class="grid md:grid-cols-2 gap-8 relative">
+                <!-- Japan Exhibition -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1920px-Flag_of_Japan.svg.png" alt="Japan Flag" class="w-8 h-6 mr-3 object-cover rounded">
+                        <h3 class="text-xl font-semibold" data-translate="exhibitions.japan.country">日本</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-medium" data-translate="exhibitions.japan.name">CPHI Japan 2025</p>
+                            <span class="text-primary-600 dark:text-primary-400 font-medium ml-2" data-translate="exhibitions.japan.booth">展位号：4X16</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span data-translate="exhibitions.japan.venue">日本东京有明国际会展中心</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 block mt-1" data-translate="exhibitions.japan.address">3-21-1 Ariake, Koto-ku, Tokyo 135-0063, Japan</span>
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span data-translate="exhibitions.japan.date">2025年04月09日 - 04月11日</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Middle East Exhibition -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/1920px-Flag_of_Saudi_Arabia.svg.png" alt="Saudi Arabia Flag" class="w-8 h-6 mr-3 object-cover rounded">
+                        <h3 class="text-xl font-semibold" data-translate="exhibitions.middleEast.country">中东和非洲</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-medium" data-translate="exhibitions.middleEast.name">CPHI Middle East 2024</p>
+                            <span class="text-primary-600 dark:text-primary-400 font-medium ml-2" data-translate="exhibitions.middleEast.booth">展位号：4C59</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span data-translate="exhibitions.middleEast.venue">沙特阿拉伯利雅得前线展览与会议中心</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 block mt-1" data-translate="exhibitions.middleEast.address">略</span>
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span data-translate="exhibitions.middleEast.date">2024年12月10日 - 12月12日</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Russia Exhibition -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/1920px-Flag_of_Russia.svg.png" alt="Russia Flag" class="w-8 h-6 mr-3 object-cover rounded">
+                        <h3 class="text-xl font-semibold" data-translate="exhibitions.russia.country">俄罗斯</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-medium" data-translate="exhibitions.russia.name">Pharmtech & Ingredients 2024</p>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span data-translate="exhibitions.russia.venue">克洛库斯国际会展中心</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 block mt-1" data-translate="exhibitions.russia.address">Krasnogorsk, 65-66 km Moscow Ring Road, Russia</span>
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span data-translate="exhibitions.russia.date">2024年11月19日 - 11月22日</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- India Partnership -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <div class="flex items-center mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1920px-Flag_of_India.svg.png" alt="India Flag" class="w-8 h-6 mr-3 object-cover rounded">
+                        <h3 class="text-xl font-semibold" data-translate="exhibitions.india.country">印度</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <p class="text-gray-600 dark:text-gray-300" data-translate="exhibitions.india.description">与印度建立了多个合作伙伴关系</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12" data-translate="contact.title">联系我们</h2>
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in">
                     <h3 class="text-xl font-semibold mb-4" data-translate="contact.contactInfo">联系方式</h3>
                     <div class="space-y-4">
@@ -253,18 +362,52 @@
                             <i class="fas fa-phone text-primary-600 mt-1 mr-4"></i>
                             <div>
                                 <p class="font-medium" data-translate="contact.phone">电话</p>
-                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.phoneValue">+86-571-89939480</p>
+                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.phoneValue"><a href="tel:+86-571-89939480" class="hover:text-primary-600 dark:hover:text-primary-400">+86-571-89939480</a></p>
                             </div>
                         </div>
                         <div class="flex items-start">
                             <i class="fas fa-envelope text-primary-600 mt-1 mr-4"></i>
                             <div>
                                 <p class="font-medium" data-translate="contact.email">邮箱</p>
-                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.emailValue">ich@ichemie.com</p>
+                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.emailValue"><a href="mailto:ich@ichemie.com" class="hover:text-primary-600 dark:hover:text-primary-400">ich@ichemie.com</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Google Map Container -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in mt-6">
+                    <h3 class="text-xl font-semibold mb-4" data-translate="contact.location">我们的位置</h3>
+                    <div class="w-full h-64 rounded-lg overflow-hidden shadow-inner">
+                        <iframe id="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.743066281198!2d120.12505230000001!3d30.2729011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x344b62f752377ba9%3A0x791427eed1714276!2sDragon%20Times%20Center%20Building%20A%2C%20%E9%BB%84%E9%BE%99%20Xi%20Hu%20Qu%2C%20Hang%20Zhou%20Shi%2C%20Zhe%20Jiang%20Sheng%2C%20China%2C%20310058!5e0!3m2!1sen!2shk!4v1743556757324!5m2!1sen!2shk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<script>
+    function updateMapTheme() {
+        const mapIframe = document.getElementById('map-iframe');
+        const isDark = document.documentElement.classList.contains('dark');
+        const currentSrc = mapIframe.src;
+        
+        // Remove existing theme parameter if present
+        let newSrc = currentSrc.replace(/&theme=[^&]*/, '');
+        
+        // Add appropriate theme parameter
+        newSrc += (newSrc.includes('?') ? '&' : '?') + 'theme=' + (isDark ? 'dark' : 'light');
+        
+        // Only update if changed to prevent unnecessary reloads
+        if (newSrc !== currentSrc) {
+            mapIframe.src = newSrc;
+        }
+    }
+    
+    // Initial theme setup
+    updateMapTheme();
+    
+    // Listen for theme changes
+    document.addEventListener('themeChanged', updateMapTheme);
+</script>
+                    </div>
+                </div>
+            </div>
+            <!-- Online Inquiry Card (Centered) -->
+            <div class="max-w-md mx-auto">
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in">
                     <h3 class="text-xl font-semibold mb-4" data-translate="contact.inquiry">在线询价</h3>
                     <form class="space-y-4">
@@ -299,7 +442,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">ICH Biofarm</h3>
-                    <p class="text-gray-400">专业医药中间体供应商</p>
+                    <p class="text-gray-400" data-translate="site.description">专业医药中间体供应商</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4" data-translate="footer.quickLinks">快速链接</h3>
@@ -315,15 +458,15 @@
                     <div class="space-y-2">
                         <p class="text-gray-400" data-translate="footer.authorName">作者：ICH Biofarm</p>
                         <div class="flex space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-white">
-                                <i class="fab fa-twitter"></i>
+                            <a href="https://www.linkedin.com/company/31955962/" target="_blank" class="text-gray-400 hover:text-white">
+                                <i class="fab fa-linkedin"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-                <p data-translate="footer.copyright">&copy; 2024 ICH Biofarm. All rights reserved.</p>
+                <p data-translate="footer.copyright">&copy; 2025 ICH Biofarm. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -450,15 +593,49 @@
     </div>
 
     <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('main-nav');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                nav.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm');
+                nav.classList.add('border-b', 'border-gray-200', 'dark:border-gray-800');
+            } else {
+                nav.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm');
+                nav.classList.remove('border-b', 'border-gray-200', 'dark:border-gray-800');
+            }
+        });
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
         // Theme toggle
         const themeToggle = document.getElementById('theme-toggle');
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
 
-        themeToggle.addEventListener('click', () => {
+        function toggleTheme() {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
                 localStorage.theme = 'light';
@@ -466,7 +643,16 @@
                 document.documentElement.classList.add('dark');
                 localStorage.theme = 'dark';
             }
-        });
+        }
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
 
         // Fade-in animation
         const observer = new IntersectionObserver((entries) => {
@@ -492,6 +678,39 @@
         // Language translations
         const translations = {
             zh: {
+                site: {
+                    description: "专业医药中间体供应商"
+                },
+                exhibitions: {
+                    title: "线下展会",
+                    japan: {
+                        country: "日本",
+                        name: "CPHI Japan 2025",
+                        venue: "东京有明国际会展中心",
+                        address: "日本东京都江东区有明3-21-1，邮编：135-0063",
+                        date: "2025年04月09日 - 04月11日",
+                        booth: "展位号：4X16"
+                    },
+                    middleEast: {
+                        country: "中东和非洲",
+                        name: "CPHI Middle East 2024",
+                        venue: "利雅得前线展览与会议中心",
+                        address: "沙特阿拉伯利雅得省利雅得市，哈立德国王国际机场，邮编：13413",
+                        date: "2024年12月10日 - 12月12日",
+                        booth: "展位号：4C59"
+                    },
+                    russia: {
+                        country: "俄罗斯",
+                        name: "Pharmtech & Ingredients 2024",
+                        venue: "克洛库斯国际会展中心",
+                        address: "俄罗斯莫斯科州克拉斯诺戈尔斯克市，Mezhdunarodnaya街16、18、20号",
+                        date: "2024年11月19日 - 11月22日"
+                    },
+                    india: {
+                        country: "印度",
+                        description: "与印度建立了多个合作伙伴关系"
+                    }
+                },
                 nav: {
                     about: "关于我们",
                     products: "产品",
@@ -506,7 +725,7 @@
                 },
                 about: {
                     title: "关于我们",
-                    description: "Hangzhou ICH Biofarm Ltd. 秉承国际、合作、诚信的价值观。作为一家充满活力的年轻公司，我们致力于在全球建立品牌并快速进步。",
+                    description: "杭州安凯生物医药有限公司秉承国际、合作、诚信的价值观。作为一家充满活力的专业公司，我们致力于在全球建立品牌并快速进步。",
                     strengths: "我们的优势",
                     strength1: "深入的知识：对中国医药和化工制造领域的深刻理解",
                     strength2: "合作伙伴：与100多家工厂保持稳定的合作关系",
@@ -569,6 +788,7 @@
                     phoneValue: "+86-571-89939480",
                     email: "邮箱",
                     emailValue: "ich@ichemie.com",
+                    location: "我们的位置",
                     inquiry: "在线询价",
                     productName: "产品名称",
                     specification: "规格",
@@ -580,10 +800,44 @@
                     quickLinks: "快速链接",
                     author: "作者信息",
                     authorName: "作者：ICH Biofarm",
-                    copyright: "© 2024 ICH Biofarm. All rights reserved."
+                    copyright: "© 2025 ICH Biofarm. All rights reserved."
                 }
             },
             en: {
+                site: {
+                    title: "ICH Biofarm - Professional Pharmaceutical Intermediates Supplier",
+                    description: "Professional Pharmaceutical Intermediates Supplier"
+                },
+                exhibitions: {
+                    title: "Exhibitions",
+                    japan: {
+                        country: "Japan",
+                        name: "CPHI Japan 2025",
+                        venue: "Tokyo Big Sight",
+                        address: "Tokyo Big Sight, 3-21-1 Ariake, Koto-ku, Tokyo 135-0063, Japan",
+                        date: "April 09-11, 2025",
+                        booth: "Booth: 4X16"
+                    },
+                    middleEast: {
+                        country: "Middle East & Africa",
+                        name: "CPHI Middle East 2024",
+                        venue: "Front Exhibition & Conference Center, Riyadh, Saudi Arabia",
+                        address: "King Khalid International Airport, Riyadh 13413, Saudi Arabia",
+                        date: "December 10-12, 2024",
+                        booth: "Booth: 4C59"
+                    },
+                    russia: {
+                        country: "Russia",
+                        name: "Pharmtech & Ingredients 2024",
+                        venue: "Crocus Expo IEC",
+                        address: "Crocus Expo IEC, 16, 18, 20 Mezhdunarodnaya Street, Krasnogorsk, Moscow Oblast, Russia",
+                        date: "November 19-22, 2024"
+                    },
+                    india: {
+                        country: "India",
+                        description: "Established many partnerships with India"
+                    }
+                },
                 nav: {
                     about: "About Us",
                     products: "Products",
@@ -598,7 +852,7 @@
                 },
                 about: {
                     title: "About Us",
-                    description: "Hangzhou ICH Biofarm Ltd. upholds the values of internationalization, cooperation, and integrity. As a vibrant young company, we are committed to building our brand globally and making rapid progress.",
+                    description: "Hangzhou ICH Biofarm Co. Ltd. upholds the values of internationalization, cooperation, and integrity. As a vibrant young company, we are committed to building our brand globally and making rapid progress.",
                     strengths: "Our Strengths",
                     strength1: "Deep Knowledge: Profound understanding of China's pharmaceutical and chemical manufacturing sector",
                     strength2: "Partnerships: Stable cooperation with over 100 factories",
@@ -661,6 +915,7 @@
                     phoneValue: "+86-571-89939480",
                     email: "Email",
                     emailValue: "ich@ichemie.com",
+                    location: "Our Location",
                     inquiry: "Online Inquiry",
                     productName: "Product Name",
                     specification: "Specification",
@@ -672,7 +927,7 @@
                     quickLinks: "Quick Links",
                     author: "Author Info",
                     authorName: "Author: ICH Biofarm",
-                    copyright: "© 2024 ICH Biofarm. All rights reserved."
+                    copyright: "© 2025 ICH Biofarm. All rights reserved."
                 }
             }
         };
