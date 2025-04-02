@@ -1,3 +1,11 @@
 # ICH_Biofarm
+
 A Web for Hangzhou ICH Biofarm Co. Ltd..
-Development by: **Shicong Leng**.
+
+Developed by: **Shicong Leng**.
+
+Features:
+
+- Product management.
+- Order send.
+- Map display.

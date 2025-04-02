@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICH Biofarm - <span data-translate="site.description">专业医药中间体供应商</span></title>
+    <title>ICH Biofarm - Professional Pharmaceutical Ingredients Supplier</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -44,15 +44,25 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .logo-container img {
+            transition: all 0.3s ease;
+        }
+        .dark .logo-container img {
+            filter: brightness(1.2);
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
+    <body id="top" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased"></body>
     <!-- Navigation -->
     <nav class="fixed w-full z-50 transition-all duration-300" id="main-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="#" class="text-xl font-bold text-primary-600 dark:text-primary-400 hover:opacity-80 transition-opacity">ICH Biofarm</a>
+                    <a href="#top" class="flex items-center logo-container">
+                        <img src="./images/logo.svg" alt="ICH Biofarm Logo" class="h-10 w-auto mr-2" />
+                        <span class="text-xl font-bold text-primary-600 dark:text-primary-400 hover:opacity-80 transition-opacity">ICH Biofarm</span>
+                    </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <button id="lang-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
@@ -64,8 +74,8 @@
                         <i class="fas fa-sun hidden dark:block"></i>
                     </button>
                     <a href="#about" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.about">关于我们</a>
-                    <a href="#products" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.products">产品</a>
-                    <a href="#technology" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.technology">技术</a>
+                    <a href="#products" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.products">主要产品</a>
+                    <a href="#technology" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.technology">技术实力</a>
                     <a href="#contact" class="nav-link hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-translate="nav.contact">联系我们</a>
                 </div>
                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
@@ -74,6 +84,10 @@
             </div>
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="md:hidden hidden py-2 space-y-2">
+                <div class="flex items-center px-4 py-2 mb-2 logo-container">
+                    <img src="./images/logo.svg" alt="ICH Biofarm Logo" class="h-8 w-auto mr-2" />
+                    <span class="text-lg font-bold text-primary-600 dark:text-primary-400">ICH Biofarm</span>
+                </div>
                 <a href="#about" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.about">关于我们</a>
                 <a href="#products" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.products">产品</a>
                 <a href="#technology" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.technology">技术</a>
@@ -143,7 +157,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg fade-in">
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
                     <h3 class="text-xl font-semibold mb-4" data-translate="about.commitments">我们的承诺</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
@@ -348,67 +362,67 @@
         <div class="max-w-7xl mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12" data-translate="contact.title">联系我们</h2>
             <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="contact.contactInfo">联系方式</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-primary-600 mt-1 mr-4"></i>
-                            <div>
-                                <p class="font-medium" data-translate="contact.address">地址</p>
-                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.addressValue">杭州市万塘路18号黄龙时代中心A座1306</p>
+                <!-- Contact Information Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4" data-translate="contact.contactInfo">联系方式</h3>
+                        <div class="grid md:grid-cols-1 gap-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-primary-600 mt-1 mr-4"></i>
+                                <div>
+                                    <p class="font-medium" data-translate="contact.address">地址</p>
+                                    <p class="text-gray-600 dark:text-gray-300" data-translate="contact.addressValue">杭州市万塘路18号黄龙时代中心A座1306</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-phone text-primary-600 mt-1 mr-4"></i>
-                            <div>
-                                <p class="font-medium" data-translate="contact.phone">电话</p>
-                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.phoneValue"><a href="tel:+86-571-89939480" class="hover:text-primary-600 dark:hover:text-primary-400">+86-571-89939480</a></p>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone text-primary-600 mt-1 mr-4"></i>
+                                <div>
+                                    <p class="font-medium" data-translate="contact.phone">电话</p>
+                                    <p class="text-gray-600 dark:text-gray-300" data-translate="contact.phoneValue"><a href="tel:+86-571-89939480" class="hover:text-primary-600 dark:hover:text-primary-400">+86-571-89939480</a></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-envelope text-primary-600 mt-1 mr-4"></i>
-                            <div>
-                                <p class="font-medium" data-translate="contact.email">邮箱</p>
-                                <p class="text-gray-600 dark:text-gray-300" data-translate="contact.emailValue"><a href="mailto:ich@ichemie.com" class="hover:text-primary-600 dark:hover:text-primary-400">ich@ichemie.com</a></p>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-primary-600 mt-1 mr-4"></i>
+                                <div>
+                                    <p class="font-medium" data-translate="contact.email">邮箱</p>
+                                    <p class="text-gray-600 dark:text-gray-300" data-translate="contact.emailValue"><a href="mailto:ich@ichemie.com" class="hover:text-primary-600 dark:hover:text-primary-400">ich@ichemie.com</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Google Map Container -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in mt-6">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="contact.location">我们的位置</h3>
-                    <div class="w-full h-64 rounded-lg overflow-hidden shadow-inner">
-                        <iframe id="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.743066281198!2d120.12505230000001!3d30.2729011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x344b62f752377ba9%3A0x791427eed1714276!2sDragon%20Times%20Center%20Building%20A%2C%20%E9%BB%84%E9%BE%99%20Xi%20Hu%20Qu%2C%20Hang%20Zhou%20Shi%2C%20Zhe%20Jiang%20Sheng%2C%20China%2C%20310058!5e0!3m2!1sen!2shk!4v1743556757324!5m2!1sen!2shk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-<script>
-    function updateMapTheme() {
-        const mapIframe = document.getElementById('map-iframe');
-        const isDark = document.documentElement.classList.contains('dark');
-        const currentSrc = mapIframe.src;
-        
-        // Remove existing theme parameter if present
-        let newSrc = currentSrc.replace(/&theme=[^&]*/, '');
-        
-        // Add appropriate theme parameter
-        newSrc += (newSrc.includes('?') ? '&' : '?') + 'theme=' + (isDark ? 'dark' : 'light');
-        
-        // Only update if changed to prevent unnecessary reloads
-        if (newSrc !== currentSrc) {
-            mapIframe.src = newSrc;
-        }
-    }
-    
-    // Initial theme setup
-    updateMapTheme();
-    
-    // Listen for theme changes
-    document.addEventListener('themeChanged', updateMapTheme);
-</script>
+                <!-- Location Map Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow fade-in">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4" data-translate="contact.location">我们的位置</h3>
+                        <div class="w-full h-64 rounded-lg overflow-hidden shadow-inner">
+                            <iframe id="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.743066281198!2d120.12505230000001!3d30.2729011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x344b62f752377ba9%3A0x791427eed1714276!2sDragon%20Times%20Center%20Building%20A%2C%20%E9%BB%84%E9%BE%99%20Xi%20Hu%20Qu%2C%20Hang%20Zhou%20Shi%2C%20Zhe%20Jiang%20Sheng%2C%20China%2C%20310058!5e0!3m2!1sen!2shk!4v1743556757324!5m2!1sen!2shk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <script>
+                                function updateMapTheme() {
+                                    const mapIframe = document.getElementById('map-iframe');
+                                    const isDark = document.documentElement.classList.contains('dark');
+                                    const currentSrc = mapIframe.src;
+                                    // Remove existing theme parameter if present
+                                    let newSrc = currentSrc.replace(/&theme=[^&]*/, '');
+                                    // Add appropriate theme parameter
+                                    newSrc += (newSrc.includes('?') ? '&' : '?') + 'theme=' + (isDark ? 'dark' : 'light');
+                                    // Only update if changed to prevent unnecessary reloads
+                                    if (newSrc !== currentSrc) {
+                                        mapIframe.src = newSrc;
+                                    }
+                                }
+                                // Initial theme setup
+                                updateMapTheme();
+                                // Listen for theme changes
+                                document.addEventListener('themeChanged', updateMapTheme);
+                            </script>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Online Inquiry Card (Centered) -->
-            <div class="max-w-md mx-auto">
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg fade-in">
+            <!-- Online Inquiry Card -->
+            <div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
                     <h3 class="text-xl font-semibold mb-4" data-translate="contact.inquiry">在线询价</h3>
                     <form class="space-y-4">
                         <div>
@@ -533,6 +547,19 @@
                     
                     <!-- Advanced Filters (hidden by default) -->
                     <div id="advanced-filters" class="hidden md:col-span-2 lg:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Grade Filter -->
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-translate="products.table.grade">等级</label>
+                            <select 
+                                id="catalog-grade-filter" 
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                                <option value="all" data-translate="products.allGrade">所有等级</option>
+                                <option value="Pharm">Pharm</option>
+                                <option value="Pharm/Food">Pharm/Food</option>
+                                <option value="Food">Food</option>
+                            </select>
+                        </div>
+                        
                         <!-- Qualification Filter -->
                         <div>
                             <label class="block text-sm font-medium mb-1" data-translate="products.table.qualification">资质</label>
@@ -540,8 +567,13 @@
                                 id="catalog-qualification-filter" 
                                 class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
                                 <option value="all" data-translate="products.allQualification">所有资质</option>
-                                <option value="Pharmaceutical Grade">Pharmaceutical Grade</option>
-                                <option value="Food Grade">Food Grade</option>
+                                <option value="GMP">GMP</option>
+                                <option value="DMF">DMF</option>
+                                <option value="CEP">CEP</option>
+                                <option value="US DMF">US DMF</option>
+                                <option value="Chinese GMP">Chinese GMP</option>
+                                <option value="cGMP">cGMP</option>
+                                <option value="EU-GMP">EU-GMP</option>
                             </select>
                         </div>
                         
@@ -552,10 +584,14 @@
                                 id="catalog-standard-filter" 
                                 class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
                                 <option value="all" data-translate="products.allStandard">所有标准</option>
-                                <option value="USP/EP/JP">USP/EP/JP</option>
-                                <option value="USP/EP">USP/EP</option>
+                                <option value="EP">EP</option>
                                 <option value="USP">USP</option>
-                                <option value="In-house">In-house</option>
+                                <option value="BP">BP</option>
+                                <option value="CP">CP</option>
+                                <option value="JP">JP</option>
+                                <option value="AJI">AJI</option>
+                                <option value="IP">IP</option>
+                                <option value="FCC">FCC</option>
                             </select>
                         </div>
                         
@@ -643,6 +679,8 @@
                 document.documentElement.classList.add('dark');
                 localStorage.theme = 'dark';
             }
+            // Dispatch themeChanged event to update map and other theme-dependent elements
+            document.dispatchEvent(new Event('themeChanged'));
         }
 
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -713,12 +751,12 @@
                 },
                 nav: {
                     about: "关于我们",
-                    products: "产品",
-                    technology: "技术",
+                    products: "主要产品",
+                    technology: "技术实力",
                     contact: "联系我们"
                 },
                 hero: {
-                    title: "ICH Biofarm",
+                    title: "杭州安凯生物医药",
                     subtitle: "专业医药中间体、水处理剂及特种化学品研发与销售",
                     contact: "联系我们",
                     viewProducts: "查看产品"
@@ -765,7 +803,8 @@
                         package: "包装",
                         category: "分类",
                         qualification: "资质",
-                        standard: "标准"
+                        standard: "标准",
+                        grade: "等级"
                     }
                 },
                 technology: {
@@ -799,7 +838,7 @@
                 footer: {
                     quickLinks: "快速链接",
                     author: "作者信息",
-                    authorName: "作者：ICH Biofarm",
+                    authorName: "作者：安凯生物",
                     copyright: "© 2025 ICH Biofarm. All rights reserved."
                 }
             },
@@ -845,7 +884,7 @@
                     contact: "Contact"
                 },
                 hero: {
-                    title: "ICH Biofarm",
+                    title: "Hangzhou ICH Biofarm",
                     subtitle: "Professional R&D and Sales of Pharmaceutical Intermediates, Water Treatment Agents, and Special Chemicals",
                     contact: "Contact Us",
                     viewProducts: "View Products"
@@ -883,6 +922,7 @@
                     products: "products",
                     advancedFilters: "Advanced Filters",
                     hideFilters: "Hide Filters",
+                    allGrade: "All Grades",
                     allQualification: "All Qualifications",
                     allStandard: "All Standards",
                     table: {
@@ -892,7 +932,8 @@
                         package: "Package",
                         category: "Category",
                         qualification: "Qualification",
-                        standard: "Standard"
+                        standard: "Standard",
+                        grade: "Grade"
                     }
                 },
                 technology: {
@@ -910,7 +951,7 @@
                     title: "Contact Us",
                     contactInfo: "Contact Information",
                     address: "Address",
-                    addressValue: "Room 1306, Building A, Huanglong Times Center, No. 18 Wantang Road, Hangzhou",
+                    addressValue: "Room 1306, Building A, Dragon Times Center, No. 18 Wantang Road, Hangzhou",
                     phone: "Phone",
                     phoneValue: "+86-571-89939480",
                     email: "Email",
@@ -1025,6 +1066,7 @@
             const searchInput = document.getElementById('catalog-search');
             const mainTypeFilter = document.getElementById('catalog-main-type-filter');
             const categoryFilter = document.getElementById('catalog-category-filter');
+            const gradeFilter = document.getElementById('catalog-grade-filter');
             const qualificationFilter = document.getElementById('catalog-qualification-filter');
             const standardFilter = document.getElementById('catalog-standard-filter');
             const itemsPerPageSelect = document.getElementById('catalog-items-per-page');
@@ -1090,6 +1132,7 @@
             });
             
             categoryFilter.addEventListener('change', filterAndRenderProducts);
+            document.getElementById('catalog-grade-filter').addEventListener('change', filterAndRenderProducts);
             qualificationFilter.addEventListener('change', filterAndRenderProducts);
             standardFilter.addEventListener('change', filterAndRenderProducts);
             
@@ -1103,6 +1146,7 @@
                 const searchTerm = searchInput.value.toLowerCase().trim();
                 const mainTypeValue = mainTypeFilter.value;
                 const categoryValue = categoryFilter.value;
+                const gradeValue = document.getElementById('catalog-grade-filter').value;
                 const qualificationValue = qualificationFilter.value;
                 const standardValue = standardFilter.value;
                 
@@ -1126,16 +1170,25 @@
                     });
                 }
                 
-                // Step 3: Filter by qualification
-                if (qualificationValue !== 'all') {
+                // Step 3: Filter by grade
+                if (gradeValue !== 'all') {
                     Object.keys(filteredProducts).forEach(mainType => {
                         filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.qualification === qualificationValue
+                            product.grade === gradeValue
                         );
                     });
                 }
                 
-                // Step 4: Filter by standard
+                // Step 4: Filter by qualification
+                if (qualificationValue !== 'all') {
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                            product.qualification && product.qualification.includes(qualificationValue)
+                        );
+                    });
+                }
+                
+                // Step 5: Filter by standard
                 if (standardValue !== 'all') {
                     Object.keys(filteredProducts).forEach(mainType => {
                         filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
@@ -1144,17 +1197,17 @@
                     });
                 }
                 
-                // Step 5: Filter by search term
+                // Step 6: Filter by search term
                 if (searchTerm) {
                     Object.keys(filteredProducts).forEach(mainType => {
                         filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
                             product.name.toLowerCase().includes(searchTerm) ||
                             product.cas.toLowerCase().includes(searchTerm) ||
-                            product.spec.toLowerCase().includes(searchTerm) ||
-                            product.package.toLowerCase().includes(searchTerm) ||
-                            product.qualification.toLowerCase().includes(searchTerm) ||
-                            product.standard.toLowerCase().includes(searchTerm) ||
-                            product.category.toLowerCase().includes(searchTerm)
+                            product.spec && product.spec.toLowerCase().includes(searchTerm) ||
+                            product.grade && product.grade.toLowerCase().includes(searchTerm) ||
+                            product.qualification && product.qualification.toLowerCase().includes(searchTerm) ||
+                            product.standard && product.standard.toLowerCase().includes(searchTerm) ||
+                            product.category && product.category.toLowerCase().includes(searchTerm)
                         );
                     });
                 }
@@ -1248,10 +1301,10 @@
                                             <tr>
                                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.name}</th>
                                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.cas}</th>
+                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.grade}</th>
                                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.qualification}</th>
                                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.standard}</th>
                                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.spec}</th>
-                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.package}</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -1259,10 +1312,10 @@
                                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                                     <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">${product.name}</td>
                                                     <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.cas}</td>
+                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.grade}</td>
                                                     <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.qualification}</td>
                                                     <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.standard}</td>
                                                     <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
-                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.package}</td>
                                                 </tr>
                                             `).join('')}
                                         </tbody>
@@ -1408,12 +1461,14 @@
             const searchInput = document.getElementById('catalog-search');
             const mainTypeFilter = document.getElementById('catalog-main-type-filter');
             const categoryFilter = document.getElementById('catalog-category-filter');
+            const gradeFilter = document.getElementById('catalog-grade-filter');
             const qualificationFilter = document.getElementById('catalog-qualification-filter');
             const standardFilter = document.getElementById('catalog-standard-filter');
             
             const searchTerm = searchInput.value.toLowerCase().trim();
             const mainTypeValue = mainTypeFilter.value;
             const categoryValue = categoryFilter.value;
+            const gradeValue = gradeFilter.value;
             const qualificationValue = qualificationFilter.value;
             const standardValue = standardFilter.value;
             
@@ -1438,11 +1493,20 @@
                 });
             }
             
+            // Filter by grade
+            if (gradeValue !== 'all') {
+                Object.keys(filteredProducts).forEach(mainType => {
+                    filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                        product.grade === gradeValue
+                    );
+                });
+            }
+            
             // Filter by qualification
             if (qualificationValue !== 'all') {
                 Object.keys(filteredProducts).forEach(mainType => {
                     filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                        product.qualification === qualificationValue
+                        product.qualification && product.qualification.includes(qualificationValue)
                     );
                 });
             }
@@ -1462,11 +1526,11 @@
                     filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
                         product.name.toLowerCase().includes(searchTerm) ||
                         product.cas.toLowerCase().includes(searchTerm) ||
-                        product.spec.toLowerCase().includes(searchTerm) ||
-                        product.package.toLowerCase().includes(searchTerm) ||
-                        product.qualification.toLowerCase().includes(searchTerm) ||
-                        product.standard.toLowerCase().includes(searchTerm) ||
-                        product.category.toLowerCase().includes(searchTerm)
+                        product.spec && product.spec.toLowerCase().includes(searchTerm) ||
+                        product.grade && product.grade.toLowerCase().includes(searchTerm) ||
+                        product.qualification && product.qualification.toLowerCase().includes(searchTerm) ||
+                        product.standard && product.standard.toLowerCase().includes(searchTerm) ||
+                        product.category && product.category.toLowerCase().includes(searchTerm)
                     );
                 });
             }
@@ -1518,11 +1582,22 @@
                     });
                 }
                 
+                // Filter by grade
+                const gradeFilter = document.getElementById('catalog-grade-filter');
+                const gradeValue = gradeFilter.value;
+                if (gradeValue !== 'all') {
+                    Object.keys(filteredProducts).forEach(mainType => {
+                        filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
+                            product.grade === gradeValue
+                        );
+                    });
+                }
+                
                 // Filter by qualification
                 if (qualificationValue !== 'all') {
                     Object.keys(filteredProducts).forEach(mainType => {
                         filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
-                            product.qualification === qualificationValue
+                            product.qualification && product.qualification.includes(qualificationValue)
                         );
                     });
                 }
@@ -1542,11 +1617,11 @@
                         filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
                             product.name.toLowerCase().includes(searchTerm) ||
                             product.cas.toLowerCase().includes(searchTerm) ||
-                            product.spec.toLowerCase().includes(searchTerm) ||
-                            product.package.toLowerCase().includes(searchTerm) ||
-                            product.qualification.toLowerCase().includes(searchTerm) ||
-                            product.standard.toLowerCase().includes(searchTerm) ||
-                            product.category.toLowerCase().includes(searchTerm)
+                            product.spec && product.spec.toLowerCase().includes(searchTerm) ||
+                            product.grade && product.grade.toLowerCase().includes(searchTerm) ||
+                            product.qualification && product.qualification.toLowerCase().includes(searchTerm) ||
+                            product.standard && product.standard.toLowerCase().includes(searchTerm) ||
+                            product.category && product.category.toLowerCase().includes(searchTerm)
                         );
                     });
                 }
