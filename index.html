@@ -83,16 +83,13 @@
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden hidden py-2 space-y-2">
-                <div class="flex items-center px-4 py-2 mb-2 logo-container">
-                    <img src="./images/logo.svg" alt="ICH Biofarm Logo" class="h-8 w-auto mr-2" />
-                    <span class="text-lg font-bold text-primary-600 dark:text-primary-400">ICH Biofarm</span>
-                </div>
-                <a href="#about" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.about">关于我们</a>
-                <a href="#products" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.products">产品</a>
-                <a href="#technology" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.technology">技术</a>
-                <a href="#contact" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.contact">联系我们</a>
-                <div class="flex items-center space-x-4 px-4 py-2">
+            <div id="mobile-menu" class="md:hidden hidden py-2 space-y-2 bg-white dark:bg-gray-900">
+                <div class="flex flex-col items-end space-y-2">
+                <a href="#about" class="block px-4 py-2 w-full text-right hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.about">关于我们</a>
+                <a href="#products" class="block px-4 py-2 w-full text-right hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.products">产品</a>
+                <a href="#technology" class="block px-4 py-2 w-full text-right hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.technology">技术</a>
+                <a href="#contact" class="block px-4 py-2 w-full text-right hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" data-translate="nav.contact">联系我们</a>
+                <div class="flex items-center justify-end space-x-4 px-4 py-2 w-full">
                     <button id="mobile-lang-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                         <span class="lang-zh">中文</span>
                         <span class="lang-en hidden">English</span>
@@ -144,7 +141,7 @@
                         <ul class="space-y-2">
                             <li class="flex items-start">
                                 <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
-                                <span data-translate="about.strength1">深入的知识：对中国医药和化工制造领域的深刻理解</span>
+                                <span data-translate="about.strength1">深入知识：对中国医药和化工制造领域的深刻理解</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
@@ -195,12 +192,12 @@
             <!-- Product Categories -->
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
-                    <h3 class="text-xl font-semibold mb-4" data-translate="products.API">医药中间体</h3>
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.APIDesc">高品质医药中间体供应</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="products.API">药物活性成分</h3>
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.APIDesc">高品质医药原料药和中间体</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
                     <h3 class="text-xl font-semibold mb-4" data-translate="products.VIT">维生素</h3>
-                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.VITDesc">各类维生素产品</p>
+                    <p class="text-gray-600 dark:text-gray-300" data-translate="products.VITDesc">药品和食品级维生素</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow fade-in">
                     <h3 class="text-xl font-semibold mb-4" data-translate="products.AA">氨基酸</h3>
@@ -519,7 +516,7 @@
                             id="catalog-main-type-filter" 
                             class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
                             <option value="all" data-translate="products.allMainTypes">所有主要类型</option>
-                            <option value="API" data-translate="products.API">医药中间体</option>
+                            <option value="API" data-translate="products.API">药物活性成分</option>
                             <option value="VIT" data-translate="products.VIT">维生素</option>
                             <option value="AA" data-translate="products.AA">氨基酸</option>
                         </select>
@@ -595,18 +592,7 @@
                             </select>
                         </div>
                         
-                        <!-- Items Per Page -->
-                        <div>
-                            <label class="block text-sm font-medium mb-1" data-translate="products.itemsPerPage">每页显示</label>
-                            <select 
-                                id="catalog-items-per-page" 
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
-                        </div>
+                        <!-- Items Per Page 已移至分页控件左侧 -->
                     </div>
                 </div>
                 
@@ -620,8 +606,22 @@
                     <div id="catalog-stats" class="text-gray-500 dark:text-gray-400 mb-4 sm:mb-0 text-center sm:text-left">
                         <span data-translate="products.showing">显示</span> <span id="catalog-showing">0</span> <span data-translate="products.of">中的</span> <span id="catalog-total">0</span> <span data-translate="products.products">个产品</span>
                     </div>
-                    <div id="catalog-pagination" class="flex flex-wrap justify-center gap-2">
-                        <!-- Pagination will be added here dynamically -->
+                    <div class="flex flex-wrap items-center justify-center gap-2">
+                        <!-- Items Per Page Selector (移至此处) -->
+                        <div class="flex items-center mr-2">
+                            <span class="text-sm text-gray-500 dark:text-gray-400 mr-2" data-translate="products.itemsPerPage">每页</span>
+                            <select 
+                                id="catalog-items-per-page" 
+                                class="w-16 h-10 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 text-center">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <div id="catalog-pagination" class="flex flex-wrap justify-center gap-2">
+                            <!-- Pagination will be added here dynamically -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -643,6 +643,11 @@
                 nav.classList.remove('border-b', 'border-gray-200', 'dark:border-gray-800');
             }
         });
+        
+        // Ensure mobile nav always has background when displayed
+        if (window.innerWidth < 768) {
+            nav.classList.add('bg-white', 'dark:bg-gray-900');
+        }
 
         // Mobile menu toggle
         mobileMenuButton.addEventListener('click', () => {
@@ -774,10 +779,10 @@
                 },
                 products: {
                     title: "主要产品",
-                    API: "医药中间体",
-                    APIDesc: "高品质医药中间体供应",
+                    API: "药物活性成分",
+                    APIDesc: "高品质原料药和中间体",
                     VIT: "维生素",
-                    VITDesc: "各类维生素产品",
+                    VITDesc: "药品和食品级维生素",
                     AA: "氨基酸",
                     AADesc: "优质氨基酸产品",
                     searchPlaceholder: "搜索产品名称、CAS号、规格、标准...",
@@ -797,14 +802,14 @@
                     allQualification: "所有资质",
                     allStandard: "所有标准",
                     table: {
+                        category: "分类",
                         name: "产品名称",
                         cas: "CAS号",
-                        spec: "规格",
-                        package: "包装",
-                        category: "分类",
+                        grade: "等级",
                         qualification: "资质",
                         standard: "标准",
-                        grade: "等级"
+                        spec: "规格",
+                        package: "包装",
                     }
                 },
                 technology: {
@@ -902,7 +907,7 @@
                 },
                 products: {
                     title: "Main Products",
-                    API: "Pharmaceutical Intermediates",
+                    API: "Active Pharmaceutical Ingredients",
                     APIDesc: "High-quality pharmaceutical intermediates supply",
                     VIT: "Vitamins",
                     VITDesc: "Various vitamin products",
@@ -1203,7 +1208,6 @@
                         filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
                             product.name.toLowerCase().includes(searchTerm) ||
                             product.cas.toLowerCase().includes(searchTerm) ||
-                            product.spec && product.spec.toLowerCase().includes(searchTerm) ||
                             product.grade && product.grade.toLowerCase().includes(searchTerm) ||
                             product.qualification && product.qualification.toLowerCase().includes(searchTerm) ||
                             product.standard && product.standard.toLowerCase().includes(searchTerm) ||
@@ -1304,7 +1308,6 @@
                                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.grade}</th>
                                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.qualification}</th>
                                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.standard}</th>
-                                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">${translations[currentLang].products.table.spec}</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -1315,7 +1318,6 @@
                                                     <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.grade}</td>
                                                     <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.qualification}</td>
                                                     <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.standard}</td>
-                                                    <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">${product.spec}</td>
                                                 </tr>
                                             `).join('')}
                                         </tbody>
@@ -1617,7 +1619,6 @@
                         filteredProducts[mainType] = filteredProducts[mainType].filter(product => 
                             product.name.toLowerCase().includes(searchTerm) ||
                             product.cas.toLowerCase().includes(searchTerm) ||
-                            product.spec && product.spec.toLowerCase().includes(searchTerm) ||
                             product.grade && product.grade.toLowerCase().includes(searchTerm) ||
                             product.qualification && product.qualification.toLowerCase().includes(searchTerm) ||
                             product.standard && product.standard.toLowerCase().includes(searchTerm) ||
