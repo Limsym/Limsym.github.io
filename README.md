@@ -1,11 +1,4 @@
-# ICH_Biofarm
+# About me 关于我
+View resume, please visit <https://limsym.github.io/Resume_CV/>
 
-A Web for Hangzhou ICH Biofarm Co. Ltd..
-
-Developed by: **Shicong Leng**.
-
-Features:
-
-- Product management.
-- Order send.
-- Map display.
+查看简历，请访问 <https://limsym.github.io/Resume_CV/>
