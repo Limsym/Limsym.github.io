@@ -18,6 +18,7 @@ const translations = {
     nav_campus: "校园经历",
     nav_skills: "专业技能",
     nav_certificates: "证书与奖项",
+    nav_ai_assistant: "AI 助手",
     nav_contact: "联系方式",
     nav_dark_mode: "切换暗色模式",
     nav_light_mode: "切换亮色模式",
@@ -185,6 +186,10 @@ const translations = {
     form_email_error: "请输入有效的邮箱地址",
     form_message_error: "请输入您的消息内容",
     
+    // AI 助手 - AI Assistant
+    ai_assistant: "AI 助手",
+    ai_assistant_tip: "提示：1. 这是一个基于现代人工智能技术的对话模型，可以助您在背景、技能、性格等细节问题上了解冷世聪。\n2. 您可以直接在下方对话框中输入问题，AI 助手会实时为您解答。\n3. 所有对话内容都是私密的，不会被记录。流量高峰期间，AI 助手可能需要30秒才能工作。",
+    
     // 页脚 - Footer
     footer_tagline: "生物科学 | 交叉学科",
     copyright: "© 2025 冷世聪. 保留所有权利.",
@@ -204,6 +209,7 @@ const translations = {
     nav_campus: "Campus Experience",
     nav_skills: "Skills",
     nav_certificates: "Certificates",
+    nav_ai_assistant: "AI Assistant",
     nav_contact: "Contact",
     nav_dark_mode: "Switch to Dark Mode",
     nav_light_mode: "Switch to Light Mode",
@@ -371,6 +377,10 @@ const translations = {
     form_email_error: "Please enter a valid email address",
     form_message_error: "Please enter your message",
     
+    // AI 助手 - AI Assistant
+    ai_assistant: "AI Assistant",
+    ai_assistant_tip: "Tips: 1. This is a dialogue model based on modern artificial intelligence technology that can help you understand Leng Shicong in terms of background, skills, personality, and other details.\n2. You can directly input questions in the dialogue box below, and the AI Assistant will answer in real-time.\n3. All conversation content is private and will not be recorded. During peak traffic periods, the AI Assistant may take up to 30 seconds to work.",
+    
     // 页脚 - Footer
     footer_tagline: "Biological Science | Interdisciplinary",
     copyright: "© 2025 Leng Shicong. All rights reserved.",
@@ -391,6 +401,8 @@ function switchLanguage(lang) {
   if (translations[lang]) {
     currentLanguage = lang;
     updatePageLanguage();
+    // 更新语言切换按钮文本
+    updateCurrentLanguageDisplay();
     // 保存语言偏好到本地存储
     localStorage.setItem('language', lang);
   }
@@ -415,6 +427,7 @@ function updatePageLanguage() {
   updateElementText('#nav-campus', 'nav_campus');
   updateElementText('#nav-skills', 'nav_skills');
   updateElementText('#nav-certificates', 'nav_certificates');
+  updateElementText('#nav-ai-assistant', 'nav_ai_assistant');
   updateElementText('#nav-contact', 'nav_contact');
   
   // 更新移动端导航
@@ -426,6 +439,7 @@ function updatePageLanguage() {
     if (href === '#campus-experience') updateElementContent(link, 'nav_campus');
     if (href === '#skills') updateElementContent(link, 'nav_skills');
     if (href === '#certificates') updateElementContent(link, 'nav_certificates');
+    if (href === '#ai-assistant') updateElementContent(link, 'nav_ai_assistant');
     if (href === '#contact') updateElementContent(link, 'nav_contact');
   });
   
@@ -434,6 +448,8 @@ function updatePageLanguage() {
   if (mobileLanguageText) {
     mobileLanguageText.textContent = getText('nav_language');
   }
+  
+  // 移动端语言切换按钮文本已在updateCurrentLanguageDisplay函数中更新
   
   // 更新暗色模式切换按钮文本
   const darkModeText = document.querySelector('#mobile-menu .dark\\:hidden');
@@ -457,7 +473,11 @@ function updatePageLanguage() {
   updateElementText('#campus-experience h2', 'campus_experience');
   updateElementText('#skills h2', 'skills');
   updateElementText('#certificates h2', 'certificates');
+  updateElementText('#ai-assistant-title', 'ai_assistant');
   updateElementText('#contact h2', 'contact');
+  
+  // 更新AI助手提示文本
+  updateElementText('#ai-assistant-tip', 'ai_assistant_tip');
   
   // 更新关于我部分
   updateElementText('#about .uppercase', 'bio_title');
@@ -747,7 +767,36 @@ window.updatePageLanguage = updatePageLanguage;
 window.initLanguage = initLanguage;
 window.getText = getText;
 
-// 页面加载完成后初始化语言
+// 更新当前语言显示
+function updateCurrentLanguageDisplay() {
+  // 更新桌面端语言显示
+  const currentLanguageElement = document.getElementById('current-language');
+  if (currentLanguageElement) {
+    // 显示目标语言（即点击后将切换到的语言）
+    currentLanguageElement.textContent = currentLanguage === 'zh-CN' ? 'English' : '中文';
+  }
+  
+  // 更新移动端语言显示
+  const mobileCurrentLanguageElement = document.getElementById('mobile-current-language');
+  if (mobileCurrentLanguageElement) {
+    // 显示目标语言（即点击后将切换到的语言）
+    mobileCurrentLanguageElement.textContent = currentLanguage === 'zh-CN' ? 'English' : '中文';
+  }
+  
+  // 更新HTML文档的lang属性
+  const htmlDocument = document.getElementById('html-document');
+  if (htmlDocument) {
+    htmlDocument.lang = currentLanguage === 'zh-CN' ? 'zh-CN' : 'en';
+  }
+}
+
+// 导出updateCurrentLanguageDisplay函数供全局使用
+window.updateCurrentLanguageDisplay = updateCurrentLanguageDisplay;
+
+// 页面加载完成后初始化语言（确保即使在index.html中没有显式调用也能正常工作）
 document.addEventListener('DOMContentLoaded', function() {
+  // 初始化语言设置
   initLanguage();
+  // 初始化后更新语言切换按钮文本
+  updateCurrentLanguageDisplay();
 });
