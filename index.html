@@ -443,21 +443,16 @@
                     <a href="#campus-experience" id="nav-campus" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">校园经历</a>
                     <a href="#skills" id="nav-skills" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">专业技能</a>
                     <a href="#certificates" id="nav-certificates" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">证书与奖项</a>
+                    <a href="#ai-assistant" id="nav-ai-assistant" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">AI 助手</a>
                     <a href="#contact" id="nav-contact" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">联系方式</a>
                     <!-- 语言切换按钮 -->
-                    <div class="relative inline-block text-left">
+                    <div class="inline-block">
                         <button id="language-switcher" class="flex items-center text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">
-                            <span id="current-language">中文</span>
-                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v4m1 12v-1m5.66-9.34a6 6 0 11-7.83 7.82 6 6 0 017.83-7.82z"></path>
                             </svg>
+                            <span id="current-language">English</span>
                         </button>
-                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50">
-                            <div class="py-1" role="menu" aria-orientation="vertical">
-                                <button onclick="switchLanguage('zh-CN')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" role="menuitem">中文</button>
-                                <button onclick="switchLanguage('en')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" role="menuitem">English</button>
-                            </div>
-                        </div>
                     </div>
                     <button onclick="toggleDarkMode()" class="p-2 rounded-full text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -479,13 +474,18 @@
                     <a href="#campus-experience" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">校园经历</a>
                     <a href="#skills" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">专业技能</a>
                     <a href="#certificates" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">证书与奖项</a>
+                    <a href="#ai-assistant" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">AI 助手</a>
                     <a href="#contact" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">联系方式</a>
                     <!-- 移动端语言切换 -->
                     <div class="flex items-center justify-between text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">
                         <span>语言 / Language</span>
-                        <div class="flex space-x-2">
-                            <button onclick="switchLanguage('zh-CN')" class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900">中文</button>
-                            <button onclick="switchLanguage('en')" class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900">EN</button>
+                        <div>
+                            <button id="mobile-language-switcher" class="flex items-center px-3 py-1 rounded bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900">
+                                <svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v4m1 12v-1m5.66-9.34a6 6 0 11-7.83 7.82 6 6 0 017.83-7.82z"></path>
+                                </svg>
+                                <span id="mobile-current-language">English</span>
+                            </button>
                         </div>
                     </div>
                     <button onclick="toggleDarkMode()" class="flex items-center text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">
@@ -892,31 +892,21 @@
 
         <!-- AI 助手 -->
         <section id="ai-assistant" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in">AI 助手</h2>
+            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in" id="ai-assistant-title">AI 助手</h2>
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 fade-in delay-1">
                 <div class="mb-6">
-                    <h3 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-robot text-primary-600 dark:text-primary-400 mr-2"></i>
-                        智能对话助手
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">
-                        这是一个基于 DeepSeek 内核的 AI 对话模型，可以帮助您解答问题、提供建议或进行专业讨论。
-                        所有对话内容都是私密的，不会被记录或分享。
-                    </p>
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
-                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                        <p class="text-sm text-gray-500 dark:text-gray-400" id="ai-assistant-tip">
                             <i class="fas fa-info-circle mr-2"></i>
-                            提示：您可以直接在下方对话框中输入问题，AI 助手会实时为您解答。
+                            提示：1. 这是一个基于现代人工智能技术的对话模型，可以助您在背景、技能、性格等细节问题上了解冷世聪。
+                            2. 您可以直接在下方对话框中输入问题，AI 助手会实时为您解答。
+                            3. 所有对话内容都是私密的，不会被记录。流量高峰期间，AI 助手可能需要30秒才能工作。
                         </p>
                     </div>
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-lg">
-                    <iframe
-                        src="https://udify.app/chatbot/44nOo22lcuL2qL91"
-                        style="width: 100%; height: 700px;"
-                        frameborder="0"
-                        allow="microphone"
-                        class="rounded-lg">
+                    <iframe src="https://udify.app/chatbot/44nOo22lcuL2qL91" style="width: 100%; height: 700px;" frameborder="0"
+                        allow="microphone" class="rounded-lg">
                     </iframe>
                 </div>
             </div>
@@ -1073,179 +1063,30 @@
         </svg>
     </a>
 
-    <!-- 交互脚本 -->
+    <!-- 交互脚本已整合到页面功能初始化脚本中 -->
+
+    <!-- 页面功能初始化脚本 -->
     <script>
-        // 滚动监听和动态导航高亮
+        // 在DOMContentLoaded事件中统一初始化所有页面功能
         document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a');
+            // ===== 1. 移动端导航菜单 =====
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
             
-            function highlightNavigation() {
-                let scrollY = window.pageYOffset;
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
                 
-                sections.forEach(section => {
-                    const sectionHeight = section.offsetHeight;
-                    const sectionTop = section.offsetTop - 100;
-                    const sectionId = section.getAttribute('id');
-                    
-                    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('text-primary-600', 'dark:text-primary-400');
-                            link.classList.add('text-gray-600', 'dark:text-gray-300');
-                            
-                            if (link.getAttribute('href') === '#' + sectionId) {
-                                link.classList.remove('text-gray-600', 'dark:text-gray-300');
-                                link.classList.add('text-primary-600', 'dark:text-primary-400');
-                            }
-                        });
-                    }
+                // 点击导航链接后关闭菜单
+                document.querySelectorAll('#mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
                 });
             }
             
-            window.addEventListener('scroll', highlightNavigation);
-            highlightNavigation(); // 初始化高亮
-        });
-        
-        // 平滑滚动到锚点
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.id !== 'backToTop') { // 跳过回到顶部按钮的处理
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80, // 考虑导航栏高度
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-        
-        // 表单验证和提交处理
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                let isValid = true;
-                
-                // 验证姓名
-                const nameInput = document.getElementById('name');
-                const nameError = document.getElementById('nameError');
-                if (!nameInput.value.trim()) {
-                    e.preventDefault();
-                    nameError.classList.remove('hidden');
-                    isValid = false;
-                } else {
-                    nameError.classList.add('hidden');
-                }
-                
-                // 验证邮箱
-                const emailInput = document.getElementById('email');
-                const emailError = document.getElementById('emailError');
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(emailInput.value)) {
-                    e.preventDefault();
-                    emailError.classList.remove('hidden');
-                    isValid = false;
-                } else {
-                    emailError.classList.add('hidden');
-                }
-                
-                // 验证消息
-                const messageInput = document.getElementById('message');
-                const messageError = document.getElementById('messageError');
-                if (!messageInput.value.trim()) {
-                    e.preventDefault();
-                    messageError.classList.remove('hidden');
-                    isValid = false;
-                } else {
-                    messageError.classList.add('hidden');
-                }
-                
-                if (isValid) {
-                    // 禁用提交按钮防止重复提交
-                    document.getElementById('submitBtn').disabled = true;
-                    
-                    // 阻止默认表单提交行为
-                    e.preventDefault();
-                    
-                    // 显示本地提交中状态
-                    const formSuccess = document.getElementById('formSuccess');
-                    formSuccess.textContent = window.formSubmittingText || "正在提交...";
-                    formSuccess.classList.remove('hidden');
-                    
-                    // 使用AJAX异步提交表单
-                    const formData = new FormData(contactForm);
-                    const formAction = contactForm.getAttribute('action');
-                    
-                    fetch(formAction, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        // 无论成功与否都显示成功消息（FormSubmit总是返回重定向）
-                        formSuccess.textContent = window.formSuccessText || "消息发送成功，感谢您的留言！";
-                        
-                        // 重置表单
-                        contactForm.reset();
-                        
-                        // 3秒后重新启用提交按钮
-                        setTimeout(() => {
-                            document.getElementById('submitBtn').disabled = false;
-                        }, 3000);
-                    })
-                    .catch(error => {
-                        // 发生错误时也给用户反馈
-                        formSuccess.textContent = window.formErrorText || "发生未知错误，有劳手动发送邮件！";
-                        
-                        // 重置表单
-                        // contactForm.reset();
-                        
-                        // 3秒后重新启用提交按钮
-                        setTimeout(() => {
-                            document.getElementById('submitBtn').disabled = false;
-                        }, 3000);
-                    });
-                }
-                else {
-                    // 如果验证失败，阻止表单提交
-                    e.preventDefault();
-                }
-            });
-        }
-    </script>
-
-    <!-- 移动端导航脚本 -->
-    <script>
-        // 移动端导航菜单
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // 点击导航链接后关闭菜单
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        }
-    </script>
-
-    <!-- 图片和回到顶部按钮修复脚本 -->
-    <script>
-        // 在DOMContentLoaded事件中初始化页面功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // 图片路径处理与回退策略
+            // ===== 2. 图片路径处理与回退策略 =====
             function fixImagePaths() {
                 // 尝试使用 .jpg 作为主格式
                 document.querySelectorAll('img').forEach(img => {
@@ -1283,7 +1124,7 @@
             // 立即执行图片修复
             fixImagePaths();
             
-            // 回到顶部按钮
+            // ===== 3. 回到顶部按钮 =====
             const backToTopButton = document.getElementById('backToTop');
             if (backToTopButton) {
                 // 处理初始显示状态
@@ -1312,58 +1153,167 @@
                     });
                 });
             }
-        });
-    </script>
-    
-    <!-- 语言切换脚本 -->
-    <script>
-        // 语言切换下拉菜单
-        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ===== 4. 语言切换功能 =====
             const languageSwitcher = document.getElementById('language-switcher');
-            const languageDropdown = document.getElementById('language-dropdown');
+            const mobileLanguageSwitcher = document.getElementById('mobile-language-switcher');
             
-            if (languageSwitcher && languageDropdown) {
-                // 点击切换按钮显示/隐藏下拉菜单
-                languageSwitcher.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    languageDropdown.classList.toggle('hidden');
-                });
-                
-                // 点击页面其他地方关闭下拉菜单
-                document.addEventListener('click', function() {
-                    languageDropdown.classList.add('hidden');
-                });
-                
-                // 阻止下拉菜单点击事件冒泡
-                languageDropdown.addEventListener('click', function(e) {
-                    e.stopPropagation();
+            // 桌面端语言切换
+            if (languageSwitcher) {
+                languageSwitcher.addEventListener('click', function() {
+                    const newLang = currentLanguage === 'zh-CN' ? 'en' : 'zh-CN';
+                    switchLanguage(newLang);
                 });
             }
             
-            // 初始化语言设置
-            initLanguage();
+            // 移动端语言切换
+            if (mobileLanguageSwitcher) {
+                mobileLanguageSwitcher.addEventListener('click', function() {
+                    const newLang = currentLanguage === 'zh-CN' ? 'en' : 'zh-CN';
+                    switchLanguage(newLang);
+                });
+            }
             
-            // 更新当前语言显示
-            updateCurrentLanguageDisplay();
+            // ===== 5. 表单验证和提交处理 =====
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    let isValid = true;
+                    
+                    // 验证姓名
+                    const nameInput = document.getElementById('name');
+                    const nameError = document.getElementById('nameError');
+                    if (!nameInput.value.trim()) {
+                        e.preventDefault();
+                        nameError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        nameError.classList.add('hidden');
+                    }
+                    
+                    // 验证邮箱
+                    const emailInput = document.getElementById('email');
+                    const emailError = document.getElementById('emailError');
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(emailInput.value)) {
+                        e.preventDefault();
+                        emailError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        emailError.classList.add('hidden');
+                    }
+                    
+                    // 验证消息
+                    const messageInput = document.getElementById('message');
+                    const messageError = document.getElementById('messageError');
+                    if (!messageInput.value.trim()) {
+                        e.preventDefault();
+                        messageError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        messageError.classList.add('hidden');
+                    }
+                    
+                    if (isValid) {
+                        // 禁用提交按钮防止重复提交
+                        document.getElementById('submitBtn').disabled = true;
+                        
+                        // 阻止默认表单提交行为
+                        e.preventDefault();
+                        
+                        // 显示本地提交中状态
+                        const formSuccess = document.getElementById('formSuccess');
+                        formSuccess.textContent = window.formSubmittingText || "正在提交...";
+                        formSuccess.classList.remove('hidden');
+                        
+                        // 使用AJAX异步提交表单
+                        const formData = new FormData(contactForm);
+                        const formAction = contactForm.getAttribute('action');
+                        
+                        fetch(formAction, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            // 无论成功与否都显示成功消息（FormSubmit总是返回重定向）
+                            formSuccess.textContent = window.formSuccessText || "消息发送成功，感谢您的留言！";
+                            
+                            // 重置表单
+                            contactForm.reset();
+                            
+                            // 3秒后重新启用提交按钮
+                            setTimeout(() => {
+                                document.getElementById('submitBtn').disabled = false;
+                            }, 3000);
+                        })
+                        .catch(error => {
+                            // 发生错误时也给用户反馈
+                            formSuccess.textContent = window.formErrorText || "发生未知错误，有劳手动发送邮件！";
+                            
+                            // 3秒后重新启用提交按钮
+                            setTimeout(() => {
+                                document.getElementById('submitBtn').disabled = false;
+                            }, 3000);
+                        });
+                    }
+                    else {
+                        // 如果验证失败，阻止表单提交
+                        e.preventDefault();
+                    }
+                });
+            }
+            
+            // ===== 6. 滚动监听和动态导航高亮 =====
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            function highlightNavigation() {
+                let scrollY = window.pageYOffset;
+                
+                sections.forEach(section => {
+                    const sectionHeight = section.offsetHeight;
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('text-primary-600', 'dark:text-primary-400');
+                            link.classList.add('text-gray-600', 'dark:text-gray-300');
+                            
+                            if (link.getAttribute('href') === '#' + sectionId) {
+                                link.classList.remove('text-gray-600', 'dark:text-gray-300');
+                                link.classList.add('text-primary-600', 'dark:text-primary-400');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightNavigation);
+            highlightNavigation(); // 初始化高亮
+            
+            // ===== 7. 平滑滚动到锚点 =====
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.id !== 'backToTop') { // 跳过回到顶部按钮的处理
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80, // 考虑导航栏高度
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
         });
-        
-        // 更新当前语言显示
-        function updateCurrentLanguageDisplay() {
-            const currentLanguageElement = document.getElementById('current-language');
-            if (currentLanguageElement) {
-                currentLanguageElement.textContent = currentLanguage === 'zh-CN' ? '中文' : 'English';
-            }
-            
-            // 更新HTML文档的lang属性
-            document.getElementById('html-document').lang = currentLanguage === 'zh-CN' ? 'zh-CN' : 'en';
-        }
-        
-        // 重写switchLanguage函数，添加更新当前语言显示的功能
-        const originalSwitchLanguage = switchLanguage;
-        switchLanguage = function(lang) {
-            originalSwitchLanguage(lang);
-            updateCurrentLanguageDisplay();
-        };
     </script>
 </body>
 </html>
