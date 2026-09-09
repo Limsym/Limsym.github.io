@@ -8,8 +8,8 @@ const translations = {
   "zh-CN": {
     // 元数据 - Metadata
     title: "冷世聪 - 个人简历",
-    description: "冷世聪的个人简历网站，展示生物科学和医药业务相关经验与技能",
-    keywords: "冷世聪,简历,生物科学,医药业务,研究助理,浙江中医药大学",
+    description: "冷世聪的个人简历网站，展示生命科学研究、医药业务相关经验与技能",
+    keywords: "冷世聪,简历,生命科学,科研,医药业务,西湖大学,浙江中医药大学",
     
     // 导航 - Navigation
     nav_about: "关于我",
@@ -34,7 +34,7 @@ const translations = {
     // 关于我 - About Me
     about: "关于我",
     bio_title: "生物科学 | 学科交叉",
-    bio_content: "浙江中医药大学生物科学学士，现任杭州安凯生物医药有限公司国际业务员。专注于原料药对外贸易，擅长分子生物学技术和国际贸易数据分析。广泛涉猎生命科学的理论、实验、学术和市场，注重创新与团队协作。",
+    bio_content: "浙江中医药大学生物科学学士，现于西湖大学从事研究工作。具有生命科学实验、科研数据分析与医药国际业务经验，注重跨学科探索、创新与团队协作。具体研究课题因保密要求不公开。",
     email: "邮箱",
     phone: "电话",
     location: "浙江省杭州市西湖区",
@@ -52,9 +52,13 @@ const translations = {
     
     // 工作经历 - Work Experience
     experience: "工作经历",
+    company_westlake: "西湖大学",
+    position_westlake: "研究工作",
+    date_westlake: "2025.12 - 至今",
+    desc_westlake_confidential: "具体研究课题因保密要求不公开",
     company_ankai: "杭州安凯生物医药有限公司",
     position_ankai: "国际业务员 - 亚洲、欧洲",
-    date_ankai: "2024.03 - 至今",
+    date_ankai: "2024.03 - 2025.11",
     desc_ankai_summary: "工作摘要：负责亚欧地区医药国际贸易业务，开发和维护客户关系",
     desc_ankai_market: "市场调研：参加CPHI、API等国内外展会，调研市场，制定销售策略",
     desc_ankai_document: "文件处理：处理国际贸易文件和流程，确保交易顺利进行",
@@ -199,8 +203,8 @@ const translations = {
   en: {
     // 元数据 - Metadata
     title: "Leng Shicong - Resume",
-    description: "Leng Shicong's personal resume website, showcasing experience and skills in biological science and pharmaceutical business",
-    keywords: "Leng Shicong,resume,biological science,pharmaceutical business,research assistant,Zhejiang Chinese Medical University",
+    description: "Leng Shicong's personal resume website, showcasing experience and skills in life science research and pharmaceutical business",
+    keywords: "Leng Shicong,resume,life science,research,pharmaceutical business,Westlake University,Zhejiang Chinese Medical University",
     
     // 导航 - Navigation
     nav_about: "About Me",
@@ -225,7 +229,7 @@ const translations = {
     // 关于我 - About Me
     about: "About Me",
     bio_title: "Biological Science | Interdisciplinary",
-    bio_content: "Bachelor of Biological Science from Zhejiang Chinese Medical University, currently working as International Business Representative at Hangzhou Ankai Pharmaceutical Co., Ltd. Focused on API international trade, skilled in molecular biology techniques and international trade data analysis. Extensively involved in life science theory, experiments, academics, and markets, emphasizing innovation and teamwork.",
+    bio_content: "Bachelor of Biological Science from Zhejiang Chinese Medical University, currently engaged in research at Westlake University. Experienced in life science experiments, research data analysis, and international pharmaceutical business, with an emphasis on interdisciplinary exploration, innovation, and teamwork. Specific research topics are not disclosed due to confidentiality requirements.",
     email: "Email",
     phone: "Phone",
     location: "Xihu District, Hangzhou, Zhejiang",
@@ -243,9 +247,13 @@ const translations = {
     
     // 工作经历 - Work Experience
     experience: "Work Experience",
+    company_westlake: "Westlake University",
+    position_westlake: "Research",
+    date_westlake: "Dec 2025 - Present",
+    desc_westlake_confidential: "Specific research topics are not disclosed due to confidentiality requirements",
     company_ankai: "Hangzhou Ankai Pharmaceutical Co., Ltd.",
     position_ankai: "International Business Representative - Asia, Europe",
-    date_ankai: "Feb 2024 - Present",
+    date_ankai: "Mar 2024 - Nov 2025",
     desc_ankai_summary: "Work Summary: Responsible for pharmaceutical international trade business in Asia and Europe, developing and maintaining customer relationships",
     desc_ankai_market: "Market Research: Participate in domestic and international exhibitions such as CPHI and API, research markets, formulate sales strategies",
     desc_ankai_document: "Document Processing: Handle international trade documents and processes to ensure smooth transactions",
@@ -475,6 +483,11 @@ function updatePageLanguage() {
   updateElementText('#certificates h2', 'certificates');
   updateElementText('#ai-assistant-title', 'ai_assistant');
   updateElementText('#contact h2', 'contact');
+
+  // 更新带有翻译键的简单文本节点
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    updateElementContent(element, element.dataset.i18n);
+  });
   
   // 更新AI助手提示文本
   updateElementText('#ai-assistant-tip', 'ai_assistant_tip');
@@ -507,7 +520,7 @@ function updatePageLanguage() {
   
   // 更新工作经历部分
   // 安凯生物医药
-  const ankaiItems = document.querySelectorAll('#experience .timeline-item:nth-child(1) .list-disc li');
+  const ankaiItems = document.querySelectorAll('#experience-ankai .list-disc li');
   if (ankaiItems.length >= 7) {
     updateElementContent(ankaiItems[0], 'desc_ankai_summary');
     updateElementContent(ankaiItems[1], 'desc_ankai_market');
@@ -519,7 +532,7 @@ function updatePageLanguage() {
   }
   
   // 格缘科技
-  const geyuanItems = document.querySelectorAll('#experience .timeline-item:nth-child(2) .list-disc li');
+  const geyuanItems = document.querySelectorAll('#experience .timeline-item:nth-child(3) .list-disc li');
   if (geyuanItems.length >= 6) {
     updateElementContent(geyuanItems[0], 'desc_geyuan_summary');
     updateElementContent(geyuanItems[1], 'desc_geyuan_sop');
@@ -530,7 +543,7 @@ function updatePageLanguage() {
   }
   
   // 浙江省农业科学院
-  const zaasItems = document.querySelectorAll('#experience .timeline-item:nth-child(3) .list-disc li');
+  const zaasItems = document.querySelectorAll('#experience .timeline-item:nth-child(4) .list-disc li');
   if (zaasItems.length >= 4) {
     updateElementContent(zaasItems[0], 'desc_zaas_patent');
     updateElementContent(zaasItems[1], 'desc_zaas_skills');
