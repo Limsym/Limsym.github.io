@@ -1,1340 +1,189 @@
-<!DOCTYPE html>
-<html id="html-document">
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
-    <!-- 添加页面描述和关键词 -->
-    <meta name="description" content="冷世聪的个人简历网站，展示生命科学研究、医药业务相关经验与技能">
-    <meta name="keywords" content="冷世聪,简历,生命科学,科研,医药业务,西湖大学,浙江中医药大学">
-    <!-- 引入语言文件 -->
-    <script src="language.js" defer></script>          
-    <!-- 添加网站图标 -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👨‍🔬</text></svg>" type="image/svg+xml">
-    
-    <!-- 添加预加载关键资源 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    
-    <!-- PWA支持 -->
-    <meta name="theme-color" content="#0ea5e9">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    
-    <!-- TailwindCSS -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    
-    <!-- 字体图标 - 使用defer延迟加载非关键CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-
-    <!-- Tailwind 配置 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            tailwind.config = {
-                darkMode: 'class',
-                theme: {
-                    extend: {
-                        colors: {
-                            primary: {
-                                50: '#f0f9ff',
-                                100: '#e0f2fe',
-                                200: '#bae6fd',
-                                300: '#7dd3fc',
-                                400: '#38bdf8',
-                                500: '#0ea5e9',
-                                600: '#0284c7',
-                                700: '#0369a1',
-                                800: '#075985',
-                                900: '#0c4a6e',
-                            },
-                        },
-                        fontFamily: {
-                            sans: ['Inter', 'system-ui', 'sans-serif'],
-                        },
-                    }
-                }
-            }
-        });
-    </script>
-    
-    <!-- 预加载WebP格式图片替代大图片 -->
-    <link rel="preload" as="image" href="https://img.picui.cn/free/2025/03/15/67d551257302b.webp" imagesrcset="https://img.picui.cn/free/2025/03/15/67d551257302b.webp">
-    
-    <!-- 使用font-display: swap确保文字在字体加载前可见 -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        /* 可访问性改进 - 焦点状态样式 */
-        *:focus-visible {
-            outline: 2px solid #0ea5e9;
-            outline-offset: 2px;
-        }
-        
-        /* 减少首屏加载闪烁 */
-        html {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        /* 页面加载进度条样式 */
-        #progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: linear-gradient(to right, #4f46e5, #60a5fa);
-            width: 0%;
-            z-index: 1000;
-            transition: width 0.2s ease-out;
-            box-shadow: 0 0 10px rgba(79, 70, 229, 0.7);
-        }
-        
-        /* 回到顶部按钮样式 */
-        #backToTop {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #0ea5e9;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 1;
-            transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            touch-action: none;
-        }
-        
-        #backToTop:hover {
-            background-color: #0284c7;
-            transform: translateY(-4px);
-        }
-        
-        /* 移动端导航菜单样式 */
-        .mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: white;
-            padding: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border-radius: 0 0 0.5rem 0.5rem;
-            z-index: 40;
-            transition: all 0.3s ease;
-        }
-        
-        .dark .mobile-menu {
-            background-color: #1f2937;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* 自定义滚动条 */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 3px;
-        }
-        
-        .dark ::-webkit-scrollbar-thumb {
-            background: #4b5563;
-        }
-        
-        /* 打印样式优化 */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            
-            body {
-                font-size: 12pt;
-                color: #000;
-                background: #fff;
-            }
-            
-            a {
-                text-decoration: none;
-                color: #000;
-            }
-            
-            header, footer, #backToTop, nav {
-                display: none !important;
-            }
-            
-            main {
-                padding-top: 0 !important;
-            }
-            
-            .hover-card:hover {
-                transform: none;
-                box-shadow: none;
-            }
-            
-            .fade-in {
-                opacity: 1;
-                animation: none;
-            }
-            
-            section {
-                page-break-inside: avoid;
-                margin-bottom: 1cm;
-            }
-            
-            h2 {
-                font-size: 18pt;
-                margin-bottom: 0.5cm;
-            }
-            
-            .grid {
-                display: block;
-            }
-            
-            .grid > div {
-                margin-bottom: 1cm;
-            }
-        }
-        
-        /* 平滑滚动 */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* 卡片悬停效果 */
-        .hover-card {
-            transition: all 0.3s ease;
-        }
-        
-        .hover-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        /* 按钮悬停效果 */
-        .hover-effect {
-            transition: all 0.2s ease;
-        }
-        
-        .hover-effect:hover {
-            transform: scale(1.05);
-        }
-        
-        /* 内容淡入动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease forwards;
-            opacity: 0;
-        }
-        
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-        
-        /* 技能标签样式 */
-        .skill-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            margin: 0.25rem;
-            border-radius: 0.5rem;
-            background-color: #e0f2fe;
-            color: #0284c7;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .dark .skill-tag {
-            background-color: #075985;
-            color: #7dd3fc;
-        }
-        
-        .skill-tag:hover {
-            transform: scale(1.1);
-            background-color: #0ea5e9;
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        
-        .dark .skill-tag:hover {
-            background-color: #0284c7;
-        }
-        
-        /* 技能条动画 */
-        @keyframes skillBar {
-            from { width: 0; }
-            to { width: var(--percent); }
-        }
-        
-        .skill-bar {
-            animation: skillBar 1.5s ease forwards;
-            width: 0;
-        }
-        
-        /* 时间线样式 */
-        .timeline-container {
-            position: relative;
-        }
-        
-        .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background-color: #e5e7eb;
-            top: 0;
-            bottom: 0;
-            left: 18px;
-        }
-        
-        .dark .timeline-container::after {
-            background-color: #374151;
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-left: 40px;
-            padding-bottom: 25px;
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: -31px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #0ea5e9;
-            z-index: 1;
-        }
-        
-        .dark .timeline-dot {
-            background-color: #0369a1;
-        }
-        
-        /* 跳过导航链接 - 可访问性改进 */
-        .skip-to-content {
-            position: absolute;
-            left: -9999px;
-            z-index: 999;
-            padding: 1em;
-            background-color: white;
-            color: #0284c7;
-            text-decoration: none;
-        }
-        
-        .skip-to-content:focus {
-            left: 50%;
-            transform: translateX(-50%);
-            top: 0;
-        }
-        
-        /* 减少不必要的动画对减少运动的用户 */
-        @media (prefers-reduced-motion) {
-            .fade-in, .hover-card, .hover-effect, .skill-tag, .skill-bar {
-                animation: none;
-                transition: none;
-                transform: none;
-            }
-            
-            html {
-                scroll-behavior: auto;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>冷世聪｜研究者档案</title>
+  <meta name="description" content="冷世聪的个人研究者档案：生命科学、科研实践、数据分析与跨学科经历。">
+  <meta name="keywords" content="冷世聪,研究者档案,生命科学,科研,数据分析,西湖大学,浙江中医药大学">
+  <meta name="theme-color" content="#f3f0e7">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%231d493d'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-size='26' font-family='serif' fill='%23f3f0e7'%3ELS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="language.js" defer></script>
 </head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip_to_content">跳到主要内容</a>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans">
-    <a href="#main-content" class="skip-to-content">跳到主要内容</a>
-    
-    <!-- 页面加载进度条 -->
-    <div id="progress-bar" class="progress-bar" aria-hidden="true"></div>
-    
-    <!-- 主题切换脚本 -->
-    <script>
-        // 检查系统主题偏好并设置初始主题
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-        
-        // 主题切换函数
-        function toggleDarkMode() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-        }
-        
-        // 监听滚动事件，显示动画
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '0px 0px -50px 0px',
-                threshold: 0.1
-            });
-            
-            document.querySelectorAll('.fade-in').forEach(item => {
-                observer.observe(item);
-            });
-            
-            // 添加阅读进度条功能
-            const progressBar = document.getElementById('progress-bar');
-            window.addEventListener('scroll', function() {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (winScroll / height) * 100;
-                progressBar.style.width = scrolled + '%';
-            });
-        });
-    </script>
-
-    <!-- 导航栏 -->
-    <nav class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-primary-600 dark:text-primary-400">冷世聪</span>
-                </div>
-                
-                <!-- 添加移动端菜单按钮 -->
-                <div class="flex items-center md:hidden">
-                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
-                
-                <!-- 桌面导航 -->
-                <div class="hidden md:flex items-center space-x-4 desktop-nav-items">
-                    <a href="#about" id="nav-about" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">关于我</a>
-                    <a href="#education" id="nav-education" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">教育背景</a>
-                    <a href="#experience" id="nav-experience" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">工作经历</a>
-                    <a href="#campus-experience" id="nav-campus" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">校园经历</a>
-                    <a href="#skills" id="nav-skills" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">专业技能</a>
-                    <a href="#certificates" id="nav-certificates" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">证书与奖项</a>
-                    <a href="#ai-assistant" id="nav-ai-assistant" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">AI 助手</a>
-                    <a href="#contact" id="nav-contact" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">联系方式</a>
-                    <!-- 语言切换按钮 -->
-                    <div class="inline-block">
-                        <button id="language-switcher" class="flex items-center text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">
-                            <svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v4m1 12v-1m5.66-9.34a6 6 0 11-7.83 7.82 6 6 0 017.83-7.82z"></path>
-                            </svg>
-                            <span id="current-language">English</span>
-                        </button>
-                    </div>
-                    <button onclick="toggleDarkMode()" class="p-2 rounded-full text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- 移动端导航菜单 -->
-            <div id="mobile-menu" class="mobile-menu hidden md:hidden">
-                <div class="flex flex-col space-y-2 py-3">
-                    <a href="#about" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">关于我</a>
-                    <a href="#education" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">教育背景</a>
-                    <a href="#experience" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">工作经历</a>
-                    <a href="#campus-experience" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">校园经历</a>
-                    <a href="#skills" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">专业技能</a>
-                    <a href="#certificates" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">证书与奖项</a>
-                    <a href="#ai-assistant" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">AI 助手</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">联系方式</a>
-                    <!-- 移动端语言切换 -->
-                    <div class="flex items-center justify-between text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">
-                        <span>语言 / Language</span>
-                        <div>
-                            <button id="mobile-language-switcher" class="flex items-center px-3 py-1 rounded bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900">
-                                <svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v4m1 12v-1m5.66-9.34a6 6 0 11-7.83 7.82 6 6 0 017.83-7.82z"></path>
-                                </svg>
-                                <span id="mobile-current-language">English</span>
-                            </button>
-                        </div>
-                    </div>
-                    <button onclick="toggleDarkMode()" class="flex items-center text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                        </svg>
-                        <span class="dark:hidden">切换暗色模式</span>
-                        <span class="hidden dark:block">切换亮色模式</span>
-                    </button>
-                </div>
-            </div>
-        </div>
+  <header class="site-header" id="top">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="冷世聪主页">
+        <span class="brand-mark">LS</span>
+        <span class="brand-copy">
+          <strong data-i18n="name">冷世聪</strong>
+          <small data-i18n="brand_role">Researcher profile</small>
+        </span>
+      </a>
+      <nav class="desktop-nav" aria-label="主要导航">
+        <a href="#profile" data-i18n="nav_profile">档案</a>
+        <a href="#experience" data-i18n="nav_experience">经历</a>
+        <a href="#selected-work" data-i18n="nav_work">代表成果</a>
+        <a href="#skills" data-i18n="nav_skills">能力</a>
+        <a href="#contact" data-i18n="nav_contact">联系</a>
+      </nav>
+      <div class="header-actions">
+        <button class="utility-button" id="language-toggle" type="button" aria-label="Switch to English"><span id="language-toggle-text">EN</span></button>
+        <button class="utility-button theme-button" id="theme-toggle" type="button" aria-label="切换深色模式"><span class="theme-icon" aria-hidden="true">◐</span></button>
+        <button class="menu-button" id="menu-toggle" type="button" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span><span class="sr-only" data-i18n="open_menu">打开导航</span></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden>
+      <a href="#profile" data-i18n="nav_profile">档案</a>
+      <a href="#experience" data-i18n="nav_experience">经历</a>
+      <a href="#education" data-i18n="nav_education">教育</a>
+      <a href="#selected-work" data-i18n="nav_work">代表成果</a>
+      <a href="#skills" data-i18n="nav_skills">能力</a>
+      <a href="#ai-assistant" data-i18n="nav_assistant">AI 助手</a>
+      <a href="#contact" data-i18n="nav_contact">联系</a>
     </nav>
+  </header>
 
-    <!-- 头部区域 -->
-    <header class="relative bg-gradient-to-r from-primary-600 to-blue-700 dark:from-primary-900 dark:to-blue-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 fade-in">冷世聪</h1>
-                <p class="text-xl text-white/90 max-w-2xl mx-auto fade-in delay-1">生物科学 | 交叉学科</p>
-                <div class="mt-10 fade-in delay-2">
-                    <a href="#contact" class="hover-effect inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-gray-50 shadow-md">
-                        联系我
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                    </a>
-                    <a href="#" onclick="window.print(); return false;" class="hover-effect inline-flex items-center px-6 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white/10 shadow-md">
-                        下载简历
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+  <main id="main">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-main reveal">
+        <p class="eyebrow" data-i18n="hero_kicker">RESEARCHER PROFILE · HANGZHOU</p>
+        <h1 id="hero-title" data-i18n="name">冷世聪</h1>
+        <p class="hero-statement" data-i18n="hero_statement">从生命科学出发，在实验、数据与真实问题之间工作。</p>
+        <p class="hero-intro" data-i18n="hero_intro">我的经历横跨实验研究、学术编辑与医药国际业务。现在，我把这种跨界经验带回研究现场。</p>
+        <div class="hero-actions">
+          <a class="text-link text-link--strong" href="#experience"><span data-i18n="explore_path">阅读研究路径</span><span aria-hidden="true">↘</span></a>
+          <button class="text-link" type="button" id="print-resume"><span data-i18n="download_resume">打印 / 保存履历</span><span aria-hidden="true">↗</span></button>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent"></div>
-    </header>
+      </div>
+      <aside class="hero-index reveal reveal-delay" aria-label="当前研究身份">
+        <div class="index-topline"><span data-i18n="current_status">CURRENT</span><span class="status-dot"></span></div>
+        <p class="index-number">01</p>
+        <div class="index-block"><span data-i18n="current_institution_label">现工作于</span><strong data-i18n="company_westlake">西湖大学</strong><small data-i18n="date_westlake">2025.12 — 至今</small></div>
+        <div class="index-themes"><span data-i18n="theme_life">生命科学</span><span data-i18n="theme_experiment">实验研究</span><span data-i18n="theme_data">数据与 AI</span><span data-i18n="theme_cross">跨学科实践</span></div>
+        <p class="index-note" data-i18n="confidential_short">具体课题因保密要求不公开</p>
+      </aside>
+    </section>
 
-    <!-- 主要内容区域 -->
-    <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <!-- 关于我 -->
-        <section id="about" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in">关于我</h2>
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden fade-in delay-1">
-                <div class="md:flex">
-                    <div class="md:flex-shrink-0 bg-gradient-to-br from-primary-500 to-blue-600 dark:from-primary-700 dark:to-blue-800 p-10 flex items-center justify-center">
-                        <div class="h-48 w-48 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center">
-                            <i class="fas fa-user-graduate text-primary-500 dark:text-primary-400 text-6xl"></i>
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <div class="uppercase tracking-wide text-sm text-primary-600 dark:text-primary-400 font-semibold">生物科学 | 学科交叉</div>
-                        <h3 class="mt-2 text-2xl font-semibold">冷世聪</h3>
-                        <p class="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                            浙江中医药大学生物科学学士，现于西湖大学从事研究工作。具有生命科学实验、科研数据分析与医药国际业务经验，注重跨学科探索、创新与团队协作。具体研究课题因保密要求不公开。
-                        </p>
-                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-envelope text-primary-500 dark:text-primary-400 mr-2"></i>
-                                <span><a href="mailto:siqiniq@limsym.onmicrosoft.com" class="hover:text-primary-600 dark:hover:text-primary-400">siqiniq@limsym.onmicrosoft.com</a></span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-phone text-primary-500 dark:text-primary-400 mr-2"></i>
-                                <span><a href="tel:+8617816758748" class="hover:text-primary-600 dark:hover:text-primary-400">+86 178-1675-8748</a></span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-map-marker-alt text-primary-500 dark:text-primary-400 mr-2"></i>
-                                <span>浙江省杭州市西湖区</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-graduation-cap text-primary-500 dark:text-primary-400 mr-2"></i>
-                                <span>生物科学学士</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 教育背景 -->
-        <section id="education" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in">教育背景</h2>
-            <div class="timeline-container fade-in delay-1">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover-card">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                            <div class="flex items-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/zh/2/24/Zhejiang_Chinese_Medical_University_logo.jpg" alt="浙江中医药大学校徽" class="w-12 h-12 mr-3 rounded-full object-contain bg-white" loading="lazy">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">浙江中医药大学</h3>
-                            </div>
-                            <span class="text-primary-600 dark:text-primary-400 font-medium">2019 - 2023</span>
-                        </div>
-                        <p class="mt-2 text-gray-600 dark:text-gray-300">生物科学学士</p>
-                        <div class="mt-4 text-gray-600 dark:text-gray-300">
-                            <p>主修课程：分子生物学、细胞生物学、生物化学、遗传学、生物信息学、药理学</p>
-                            <p class="mt-2">GPA: 3.5/4.0</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover-card">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                            <div class="flex items-center">
-                                <img src="https://img.picui.cn/free/2025/04/08/67f50b504117b.png" alt="杭州市西湖高级中学校徽" class="w-12 h-12 mr-3 rounded-full object-contain bg-white" loading="lazy">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">杭州市西湖高级中学</h3>
-                            </div>
-                            <span class="text-primary-600 dark:text-primary-400 font-medium">2016 - 2019</span>
-                        </div>
-                        <p class="mt-2 text-gray-600 dark:text-gray-300">高中</p>
-                        <div class="mt-4 text-gray-600 dark:text-gray-300">
-                            <p>理科实验班，获得多项学科竞赛奖项</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 工作经历 -->
-        <section id="experience" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in">工作经历</h2>
-            <div class="timeline-container fade-in delay-1">
-                <div class="timeline-item" id="experience-westlake">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover-card">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 mr-3 rounded-full flex items-center justify-center bg-blue-50 dark:bg-blue-900/30" aria-hidden="true">
-                                    <i class="fas fa-university text-xl text-blue-700 dark:text-blue-300"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white" data-i18n="company_westlake">西湖大学</h3>
-                            </div>
-                            <span class="text-primary-600 dark:text-primary-400 font-medium" data-i18n="date_westlake">2025.12 - 至今</span>
-                        </div>
-                        <p class="mt-2 text-gray-600 dark:text-gray-300" data-i18n="position_westlake">研究工作</p>
-                        <div class="mt-4 text-gray-600 dark:text-gray-300">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li data-i18n="desc_westlake_confidential">具体研究课题因保密要求不公开</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    <div class="shell page-grid">
+      <aside class="contents" aria-label="页面目录">
+        <p data-i18n="contents_label">CONTENTS</p>
+        <ol>
+          <li><a href="#profile"><span>01</span><span data-i18n="nav_profile">档案</span></a></li>
+          <li><a href="#experience"><span>02</span><span data-i18n="nav_experience">经历</span></a></li>
+          <li><a href="#education"><span>03</span><span data-i18n="nav_education">教育</span></a></li>
+          <li><a href="#selected-work"><span>04</span><span data-i18n="nav_work">代表成果</span></a></li>
+          <li><a href="#skills"><span>05</span><span data-i18n="nav_skills">能力</span></a></li>
+          <li><a href="#ai-assistant"><span>06</span><span data-i18n="nav_assistant">AI 助手</span></a></li>
+          <li><a href="#contact"><span>07</span><span data-i18n="nav_contact">联系</span></a></li>
+        </ol>
+      </aside>
 
-                <div class="timeline-item" id="experience-ankai">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover-card">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                            <div class="flex items-center">
-                                <img src="https://media.licdn.com/dms/image/v2/D4E0BAQE_bvqfIuXT5w/company-logo_100_100/B4EZWEJBAoHUAY-/0/1741678711590/_logo?e=1750291200&v=beta&t=Jc_sNYme4Yxhfh_O8-4z2MpxsFelzuIwwCgY39zswt0" alt="杭州安凯生物医药有限公司logo" class="w-12 h-12 mr-3 rounded-full object-contain bg-white" loading="lazy">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">杭州安凯生物医药有限公司</h3>
-                            </div>
-                            <span class="text-primary-600 dark:text-primary-400 font-medium" data-i18n="date_ankai">2024.03 - 2025.11</span>
-                        </div>
-                        <p class="mt-2 text-gray-600 dark:text-gray-300">国际业务员 - 亚洲、欧洲</p>
-                        <div class="mt-4 text-gray-600 dark:text-gray-300">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>工作摘要：负责亚欧地区医药国际贸易业务，开发和维护客户关系</li>
-                                <li>市场调研：参加CPHI、API等国内外展会，调研市场，制定销售策略</li>
-                                <li>文件处理：处理国际贸易文件和流程，确保交易顺利进行</li>
-                                <li>生产协调：与生产部门协调，确保产品质量和交付时间</li>
-                                <li>效率优化：设计和优化网络工具，推进信息共享，提升团队效率</li>
-                                <li>工作成果：与海正药业、Pharmstd等近百家药企的领导人建立良好关系</li>
-                                <li>工作语言：Business English</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover-card">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                            <div class="flex items-center">
-                                <img src="https://media.licdn.com/dms/image/v2/D560BAQGTUHA5uf_ZqA/company-logo_200_200/company-logo_200_200/0/1703578992687?e=1750291200&v=beta&t=mgMriU_fGowxPmRIC8C-a39qkNa2tXfOVjk3Dqv6s5k" alt="杭州格缘科技服务有限公司logo" class="w-12 h-12 mr-3 rounded-full object-contain bg-white" loading="lazy">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">杭州格缘科技服务有限公司</h3>
-                            </div>
-                            <span class="text-primary-600 dark:text-primary-400 font-medium">2023.04 - 2023.08</span>
-                        </div>
-                        <p class="mt-2 text-gray-600 dark:text-gray-300">学术编辑 - 医学Q4期刊<a href="https://www.biolifesas.org/EN/home" target="_blank" class="text-primary-600 dark:text-primary-400 hover:underline">《Journal of Biological Regulators and Homeostatic Agents》</a></p>
-                        <div class="mt-4 text-gray-600 dark:text-gray-300">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>工作摘要：处理投稿，撰写邮件，组织评审，反馈意见，审阅出版</li>
-                                <li>SOP建立：编撰工作指南，规范文件系统，确定审稿要点</li>
-                                <li>业务优化：领导创建业务记录智能系统，加速 200% 报表，同事欣喜</li>
-                                <li>科技培训：培训10人团队效率软件和AIGC的使用</li>
-                                <li>工作成果：出版论文30篇，优化多项任务</li>
-                                <li>工作语言：Academic English</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover-card">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                            <div class="flex items-center">
-                                <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.eACVqIM3lm6JcVJLkPDOrAAAAA?rs=1&pid=ImgDetMain" alt="浙江省农业科学院logo" class="w-12 h-12 mr-3 rounded-full object-contain bg-white" loading="lazy">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">浙江省农业科学院 植物保护与微生物研究所</h3>
-                            </div>
-                            <span class="text-primary-600 dark:text-primary-400 font-medium">2022.01 - 2023.04</span>
-                        </div>
-                        <p class="mt-2 text-gray-600 dark:text-gray-300">科研实习生 - <a href="https://www.zaas.ac.cn/home/page/homeWeb/snky/pc/person/alone/cont-person_w.html?rid=2841" target="_blank" class="text-primary-600 dark:text-primary-400 hover:underline" title="林院长的介绍-浙江省农业科学院">林福呈教授</a>团队</p>
-                        <div class="mt-4 text-gray-600 dark:text-gray-300">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>在浙中医大、浙农科院和浙大指导下，以第一发明人成功申请1项<a href="http://www.cab.zju.edu.cn/swjs/2017/0914/c7264a639117/page.htm" target="_blank" class="text-primary-600 dark:text-primary-400 hover:underline" title="科研成果(#141)-浙江大学">微生物方向的国家发明专利</a>，展现了抗压、科创和问题解决的能力</li>
-                                <li>熟练掌握分子生物学实验技能，包括PCR、ELISA、真核表达、CoIP等技术</li>
-                                <li>精通蛋白质表达与纯化技术，包括质粒构建、色谱分离、电泳分析等方法</li>
-                                <li>参与团队科研项目，协助撰写研究报告和专利申请材料</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 校园经历 -->
-        <section id="campus-experience" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in">校园经历</h2>
-            <div class="timeline-container fade-in delay-1">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover-card">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                            <div class="flex items-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/zh/2/24/Zhejiang_Chinese_Medical_University_logo.jpg" alt="浙江省农业科学院logo" class="w-12 h-12 mr-3 rounded-full object-contain bg-white" loading="lazy">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">浙江中医药大学 分子医学研究所</h3>
-                            </div>
-                            <span class="text-primary-600 dark:text-primary-400 font-medium">2020.09 - 2023.06</span>
-                        </div>
-                        <p class="mt-2 text-gray-600 dark:text-gray-300">研究方向（毕业论文）</p>
-                        <div class="mt-4 text-gray-600 dark:text-gray-300">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>通过虚拟筛选发现多种金葡菌呼吸蛋白(NdhC)的天然抑制剂，并鉴定出一种新型的反竞争性抑制剂(隐丹参酮)</li>
-                                <li>通过前沿AI(AlphaFold2)和决策科学(MCDM)，设计、构建、表达NdhC突变体，发现了一处关键功能位点</li>
-                                <li>每周参与实验室学术讨论，协助撰写研究报告和科研论文</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover-card">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                            <div class="flex items-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/zh/2/24/Zhejiang_Chinese_Medical_University_logo.jpg" alt="浙江省农业科学院logo" class="w-12 h-12 mr-3 rounded-full object-contain bg-white" loading="lazy">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">浙江中医药大学 分子生物学和遗传学实验室</h3>
-                            </div>
-                            <span class="text-primary-600 dark:text-primary-400 font-medium">2020.09 - 2022.08</span>
-                        </div>
-                        <p class="mt-2 text-gray-600 dark:text-gray-300">教学助理（勤工助学）</p>
-                        <div class="mt-4 text-gray-600 dark:text-gray-300">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>负责实验室卫生维护，提供教学支持、技术指导</li>
-                                <li>协助实验室药剂仪器管理，确保充分、安全供应</li>
-                                <li>确保仪器安全和完整，编制、监控使用登记</li>
-                                <li>指导本科生进行基础实验操作，解答实验相关问题</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 专业技能 -->
-        <section id="skills" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in">专业技能</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- 实验技能 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-1 hover-card">
-                    <h3 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-flask text-primary-600 dark:text-primary-400 mr-2"></i>
-                        实验技能
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">蛋白质纯化</span>
-                        <span class="skill-tag">突变蛋白筛选</span>
-                        <span class="skill-tag">分子克隆</span>
-                        <span class="skill-tag">Western Blot</span>
-                        <span class="skill-tag">PCR技术</span>
-                        <span class="skill-tag">细胞培养</span>
-                        <span class="skill-tag">免疫组化</span>
-                    </div>
-                </div>
-                
-                <!-- 计算机技能 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-2 hover-card">
-                    <h3 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-laptop-code text-primary-600 dark:text-primary-400 mr-2"></i>
-                        计算机技能
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">人工智能工具</span>
-                        <span class="skill-tag">AlphaFold 2</span>
-                        <span class="skill-tag">生物信息学工具</span>
-                        <span class="skill-tag">微软开发者项目</span>    
-                        <span class="skill-tag">MATLAB</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">数据库开发</span>
-                    </div>
-                </div>
-                
-                <!-- 语言能力 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-3 hover-card">
-                    <h3 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-language text-primary-600 dark:text-primary-400 mr-2"></i>
-                        语言能力
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">中文</span>
-                        <span class="skill-tag">英语（六级）</span>
-                        <span class="skill-tag">商务英语</span>
-                        <span class="skill-tag">学术写作</span>
-                    </div>
-                </div>
-                
-                <!-- 软技能 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-4 hover-card">
-                    <h3 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-users text-primary-600 dark:text-primary-400 mr-2"></i>
-                        软技能
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">团队协作</span>
-                        <span class="skill-tag">问题解决</span>
-                        <span class="skill-tag">商务谈判</span>
-                        <span class="skill-tag">项目管理</span>
-                        <span class="skill-tag">创新思维</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-                
-        <!-- 证书与奖项 -->
-        <section id="certificates" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in">证书与奖项</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- 2023年奖项 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-1 hover-card">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-4">
-                            <i class="fas fa-award text-blue-600 dark:text-blue-400"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold"><a href="http://www.cab.zju.edu.cn/swjs/2017/0914/c7264a639117/page.htm" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors" target="_blank">国家发明专利</a></h3>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">国家知识产权局 | 2023</p>
-                    <div class="mt-2 text-gray-600 dark:text-gray-300 space-y-2">
-                        <p>一种真菌在水稻增产上的应用，第一发明人，由浙中医大、浙农科院和浙江大学联合指导</p>
-                        <p>冷世聪，梁世伟，林福呈，苏珍珠，朱加楠，一种利用内生真菌P-B313提高水稻种苗素质和谷粒产量的方法，国家发明专利ZL2022101341351</p>
-                    </div>
-                </div>
-                
-                <!-- 互联网+创新创业大赛 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-2 hover-card">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mr-4">
-                            <i class="fas fa-trophy text-green-600 dark:text-green-400"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold">创新创业大赛奖项</h3>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">2022-2023</p>
-                    <div class="mt-2 text-gray-600 dark:text-gray-300 space-y-2">
-                        <p>· 第八届中国国际"互联网+"大学生创新创业大赛铜奖 | 2023.11</p>
-                        <p>· 第八届浙江省国际"互联网+"大学生创新创业大赛银奖 | 2022.09</p>
-                    </div>
-                </div>
-                
-                <!-- 数学建模竞赛 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-3 hover-card">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-4">
-                            <i class="fas fa-calculator text-purple-600 dark:text-purple-400"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold">数学建模竞赛</h3>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">2021-2022</p>
-                    <div class="mt-2 text-gray-600 dark:text-gray-300 space-y-2">
-                        <p>· 第三十七届美国大学生数学建模竞赛(MCM/ICM) S奖 | 2022.02</p>
-                        <p>· 第三十二届全国大学生数学建模竞赛(浙江赛区)二等奖 | 2021.09</p>
-                        <p>· 第一届长三角高校大学生数学建模竞赛三等奖 | 2021.05</p>
-                    </div>
-                </div>
-                
-                <!-- 专业学科竞赛 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-1 hover-card">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center mr-4">
-                            <i class="fas fa-microscope text-red-600 dark:text-red-400"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold">生命科学竞赛</h3>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">2020-2023</p>
-                    <div class="mt-2 text-gray-600 dark:text-gray-300 space-y-2">
-                        <p>· 浙中医大生命科学知识竞赛 | 2023.10</p>
-                        <p>· 第五届浙江省大学生环境生态科技创新大赛二等奖 | 2022.11</p>
-                        <p>· 浙江省大学生生命科学竞赛三等奖 | 2020.11</p>
-                    </div>
-                </div>
-            
-                
-                <!-- 其他校园活动 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 fade-in delay-3 hover-card">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900 flex items-center justify-center mr-4">
-                            <i class="fas fa-comments text-amber-600 dark:text-amber-400"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold">校园活动</h3>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">浙江中医药大学 | 2019</p>
-                    <div class="mt-2 text-gray-600 dark:text-gray-300">
-                        <p>· 优秀社团干部 | 2021.05</p>
-                        <p>· 军训标兵 | 2020.09</p>
-                        <p>· 启航杯辩论赛 | 2019.09</p>
-                    </div>
-                </div>
-            </div>
+      <div class="document">
+        <section class="profile section-block reveal" id="profile" aria-labelledby="profile-title">
+          <header class="section-heading"><div><span>01</span><span data-i18n="section_profile_en">PROFILE</span></div><h2 id="profile-title" data-i18n="section_profile">研究者档案</h2></header>
+          <div class="profile-grid">
+            <div><p class="lead" data-i18n="profile_lead">我关注的不只是技术是否成立，也关心一个问题如何被定义、证据如何组织，以及研究如何与更广阔的现实发生联系。</p><p data-i18n="profile_body">浙江中医药大学生物科学学士，现于西湖大学从事研究工作。具有生命科学实验、科研数据分析、学术出版与医药国际业务经验，注重跨学科探索、创新与团队协作。</p></div>
+            <dl class="fact-list">
+              <div><dt data-i18n="fact_base">所在地</dt><dd data-i18n="location">中国 · 杭州</dd></div>
+              <div><dt data-i18n="fact_degree">学术背景</dt><dd data-i18n="degree">生物科学学士</dd></div>
+              <div><dt data-i18n="fact_mode">工作方式</dt><dd data-i18n="mode">实验 · 数据 · 协作</dd></div>
+              <div><dt data-i18n="fact_languages">工作语言</dt><dd data-i18n="languages">中文 · 英语</dd></div>
+            </dl>
+          </div>
+          <blockquote class="margin-thesis"><span data-i18n="positioning_label">POSITIONING</span><p data-i18n="positioning_text">以研究者的严谨理解问题，也以跨界实践者的视角理解问题为何重要。</p></blockquote>
         </section>
 
-        <!-- AI 助手 -->
-        <section id="ai-assistant" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in" id="ai-assistant-title">AI 助手</h2>
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 fade-in delay-1">
-                <div class="mb-6">
-                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
-                        <p class="text-sm text-gray-500 dark:text-gray-400" id="ai-assistant-tip">
-                            <i class="fas fa-info-circle mr-2"></i>
-                            提示：1. 这是一个基于现代人工智能技术的对话模型，可以助您在背景、技能、性格等细节问题上了解冷世聪。
-                            2. 您可以直接在下方对话框中输入问题，AI 助手会实时为您解答。
-                            3. 所有对话内容都是私密的，不会被记录。流量高峰期间，AI 助手可能需要30秒才能工作。
-                        </p>
-                    </div>
-                </div>
-                <div class="rounded-lg overflow-hidden shadow-lg">
-                    <iframe src="https://udify.app/chatbot/44nOo22lcuL2qL91" style="width: 100%; height: 700px;" frameborder="0"
-                        allow="microphone" class="rounded-lg">
-                    </iframe>
-                </div>
+        <section class="section-block reveal" id="experience" aria-labelledby="experience-title">
+          <header class="section-heading"><div><span>02</span><span data-i18n="section_experience_en">RESEARCH & EXPERIENCE</span></div><h2 id="experience-title" data-i18n="section_experience">研究与经历</h2><p data-i18n="experience_intro">一条从实验室走向产业，再回到研究现场的路径。不同阶段训练的是同一种能力：把复杂问题拆开，并让证据支持判断。</p></header>
+          <div class="timeline">
+            <article class="timeline-entry timeline-entry--current">
+              <div class="timeline-date"><time data-i18n="date_westlake">2025.12 — 至今</time><span data-i18n="track_research">RESEARCH</span></div>
+              <div class="timeline-body"><div class="entry-heading"><div><p data-i18n="current_role">CURRENT APPOINTMENT</p><h3 data-i18n="company_westlake">西湖大学</h3></div><span class="current-badge" data-i18n="current_badge">当前</span></div><p class="role" data-i18n="position_westlake">研究工作</p><p class="confidential-note"><span aria-hidden="true">—</span><span data-i18n="desc_westlake_confidential">具体研究课题因保密要求不公开；公开履历仅保留机构与工作性质。</span></p></div>
+            </article>
+            <article class="timeline-entry">
+              <div class="timeline-date"><time data-i18n="date_ankai">2024.03 — 2025.11</time><span data-i18n="track_industry">INDUSTRY</span></div>
+              <div class="timeline-body"><div class="entry-heading"><div><p data-i18n="industry_practice">INDUSTRY PRACTICE</p><h3 data-i18n="company_ankai">杭州安凯生物医药有限公司</h3></div></div><p class="role" data-i18n="position_ankai">国际业务员 · 亚洲、欧洲</p><ul class="evidence-list"><li data-i18n="desc_ankai_summary">负责亚欧地区医药国际贸易业务，开发和维护客户关系。</li><li data-i18n="desc_ankai_market">参加 CPHI、API 等国内外展会，开展市场调研并参与销售策略制定。</li><li data-i18n="desc_ankai_operations">处理国际贸易文件与流程，协调生产、质量和交付。</li><li data-i18n="desc_ankai_efficiency">设计和优化网络工具，推进信息共享与团队效率。</li><li data-i18n="desc_ankai_achievement">与海正药业、Pharmstd 等近百家药企建立业务联系；工作语言为商务英语。</li></ul></div>
+            </article>
+            <article class="timeline-entry">
+              <div class="timeline-date"><time data-i18n="date_geyuan">2023.04 — 2023.08</time><span data-i18n="track_publishing">PUBLISHING</span></div>
+              <div class="timeline-body"><div class="entry-heading"><div><p data-i18n="academic_publishing">ACADEMIC PUBLISHING</p><h3 data-i18n="company_geyuan">杭州格缘科技服务有限公司</h3></div></div><p class="role"><span data-i18n="position_geyuan">学术编辑 · 医学期刊</span> <a href="https://www.biolifesas.org/EN/home" target="_blank" rel="noopener">JBRHA ↗</a></p><ul class="evidence-list"><li data-i18n="desc_geyuan_summary">处理投稿、组织评审、反馈意见并审阅出版。</li><li data-i18n="desc_geyuan_sop">编撰工作指南，规范文件系统与审稿要点。</li><li data-i18n="desc_geyuan_optimization">牵头创建业务记录智能系统，将报表效率提升约 200%。</li><li data-i18n="desc_geyuan_training">为 10 人团队培训效率软件与 AIGC 使用；参与出版论文 30 篇。</li></ul></div>
+            </article>
+            <article class="timeline-entry">
+              <div class="timeline-date"><time data-i18n="date_zaas">2022.01 — 2023.04</time><span data-i18n="track_training">TRAINING</span></div>
+              <div class="timeline-body"><div class="entry-heading"><div><p data-i18n="research_training">RESEARCH TRAINING</p><h3 data-i18n="company_zaas">浙江省农业科学院 · 植物保护与微生物研究所</h3></div></div><p class="role"><span data-i18n="position_zaas">科研实习生</span> · <a href="https://www.zaas.ac.cn/home/page/homeWeb/snky/pc/person/alone/cont-person_w.html?rid=2841" target="_blank" rel="noopener" data-i18n="lin_team">林福呈教授团队 ↗</a></p><ul class="evidence-list"><li data-i18n="desc_zaas_patent">在浙中医大、浙农科院和浙江大学指导下，以第一发明人申请并获授权一项微生物方向国家发明专利。</li><li data-i18n="desc_zaas_skills">开展 PCR、ELISA、真核表达与 CoIP 等分子生物学实验。</li><li data-i18n="desc_zaas_protein">积累质粒构建、色谱分离、电泳分析及蛋白质表达与纯化经验。</li><li data-i18n="desc_zaas_team">参与团队科研项目，协助撰写研究报告和专利申请材料。</li></ul></div>
+            </article>
+          </div>
+          <div class="foundation" aria-labelledby="foundation-title">
+            <div class="foundation-heading"><span data-i18n="foundation_label">RESEARCH FOUNDATION</span><h3 id="foundation-title" data-i18n="foundation_title">早期研究与教学实践</h3></div>
+            <div class="foundation-grid">
+              <article><time data-i18n="project_date_molecular">2020.09 — 2023.06</time><h4 data-i18n="project_title_molecular">浙江中医药大学 · 分子医学研究所</h4><p class="role" data-i18n="project_position_molecular">本科毕业研究</p><ul class="evidence-list compact"><li data-i18n="project_desc_molecular_1">通过虚拟筛选发现多种金黄色葡萄球菌呼吸蛋白 NdhC 的天然抑制剂，并鉴定一种反竞争性抑制剂。</li><li data-i18n="project_desc_molecular_2">结合 AlphaFold2 与多准则决策方法设计、构建和表达 NdhC 突变体，识别关键功能位点。</li><li data-i18n="project_desc_molecular_3">参与实验室学术讨论，协助撰写研究报告与科研论文。</li></ul></article>
+              <article><time data-i18n="project_date_lab">2020.09 — 2022.08</time><h4 data-i18n="project_title_lab">浙江中医药大学 · 分子生物学和遗传学实验室</h4><p class="role" data-i18n="project_position_lab">教学助理（勤工助学）</p><ul class="evidence-list compact"><li data-i18n="project_desc_lab_1">提供实验教学支持与基础技术指导。</li><li data-i18n="project_desc_lab_2">协助管理试剂、仪器和使用记录，关注实验室安全与供应。</li><li data-i18n="project_desc_lab_3">指导本科生基础实验操作并解答相关问题。</li></ul></article>
             </div>
+          </div>
         </section>
 
-        <!-- 联系方式 -->
-        <section id="contact" class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 pb-2 border-b border-gray-200 dark:border-gray-700 fade-in">联系方式</h2>
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 fade-in delay-1">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-semibold mb-6">联系信息</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
-                                    <i class="fas fa-envelope text-primary-600 dark:text-primary-400"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">邮箱</p>
-                                    <p class="text-gray-800 dark:text-gray-200"><a href="mailto:siqiniq@limsym.onmicrosoft.com" class="hover:text-primary-600 dark:hover:text-primary-400">siqiniq@limsym.onmicrosoft.com</a></p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
-                                    <i class="fas fa-phone text-primary-600 dark:text-primary-400"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">电话</p>
-                                    <p class="text-gray-800 dark:text-gray-200"><a href="tel:+8617816758748" class="hover:text-primary-600 dark:hover:text-primary-400">+86-178-1675-8748</a></p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4">
-                                    <i class="fas fa-map-marker-alt text-primary-600 dark:text-primary-400"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">地址</p>
-                                    <p class="text-gray-800 dark:text-gray-200">浙江省杭州市西湖区</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 联系方式部分的微信链接 -->
-                        <div class="mt-8">
-                            <h4 class="text-lg font-medium mb-4">社交媒体</h4>
-                            <div class="flex space-x-6 mb-6 md:mb-0">
-                                <a href="https://img.picui.cn/free/2025/03/15/67d551257302b.webp" target="_blank" class="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 relative group">
-                                    <span class="sr-only">微信</span>
-                                    <i class="fab fa-weixin text-2xl"></i>
-                                    <img src="https://img.picui.cn/free/2025/03/15/67d551257302b.webp" alt="微信二维码" class="absolute hidden group-hover:block bottom-full left-1/2 transform -translate-x-1/2 mb-2 rounded-md shadow-lg z-10 border-2 border-primary-500 max-w-none w-[300px] h-[400px]" loading="lazy" decoding="async" fetchpriority="low">
-                                </a>
-                                <a href="https://www.linkedin.com/in/leng-shicong" target="_blank" class="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400">
-                                    <span class="sr-only">LinkedIn</span>
-                                    <i class="fab fa-linkedin text-2xl"></i>
-                                </a>
-                                <a href="https://github.com/Limsym" target="_blank" class="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400">
-                                    <span class="sr-only">GitHub</span>
-                                    <i class="fab fa-github text-2xl"></i>
-                                </a>
-                                <a href="https://www.researchgate.net/" target="_blank" class="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400">
-                                    <span class="sr-only">ResearchGate</span>
-                                    <i class="fab fa-researchgate text-2xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-semibold mb-6">发送消息</h3>
-                        <form id="contactForm" class="space-y-4" aria-labelledby="contact-form-heading" action="https://formsubmit.co/siqiniq@limsym.onmicrosoft.com" method="POST">
-                            <p id="contact-form-heading" class="sr-only">联系表单</p>
-                            <!-- FormSubmit配置 - 请将your.email@example.com替换为您的实际邮箱 -->
-                            <input type="hidden" name="_subject" value="简历网页的新消息">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="">
-                            <input type="hidden" name="_template" value="table">
-                            <input type="hidden" name="_ajax" value="true">
-                            <input type="hidden" name="_autoresponse" value="感谢您的留言，我会尽快回复您。">
-                            
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">姓名<span class="text-red-500" aria-hidden="true">*</span></label>
-                                <input type="text" id="name" name="name" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white">
-                                <p id="nameError" class="text-red-500 text-xs mt-1 hidden" aria-live="assertive">请输入您的姓名</p>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">邮箱<span class="text-red-500" aria-hidden="true">*</span></label>
-                                <input type="email" id="email" name="email" required aria-required="true" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white">
-                                <p id="emailError" class="text-red-500 text-xs mt-1 hidden" aria-live="assertive">请输入有效的邮箱地址</p>
-                            </div>
-                            <div>
-                                <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">主题</label>
-                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">消息<span class="text-red-500">*</span></label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white"></textarea>
-                                <p id="messageError" class="text-red-500 text-xs mt-1 hidden">请输入您的消息内容</p>
-                            </div>
-                            <div>
-                                <button type="submit" id="submitBtn" class="hover-effect w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors">
-                                    发送消息
-                                </button>
-                                <div id="formSuccess" class="hidden mt-4 p-3 bg-green-100 text-green-700 rounded-md">
-                                    感谢您的留言！我会尽快回复。
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <section class="section-block reveal" id="education" aria-labelledby="education-title">
+          <header class="section-heading"><div><span>03</span><span data-i18n="section_education_en">EDUCATION</span></div><h2 id="education-title" data-i18n="section_education">教育背景</h2></header>
+          <div class="education-list">
+            <article><time>2019 — 2023</time><div><p class="institution-type" data-i18n="undergraduate">UNDERGRADUATE</p><h3 data-i18n="university">浙江中医药大学</h3><p class="role" data-i18n="university_degree">生物科学学士</p><p data-i18n="university_courses">主修：分子生物学、细胞生物学、生物化学、遗传学、生物信息学与药理学。</p><small>GPA 3.5 / 4.0</small></div></article>
+            <article><time>2016 — 2019</time><div><p class="institution-type" data-i18n="secondary">SECONDARY</p><h3 data-i18n="high_school">杭州市西湖高级中学</h3><p class="role" data-i18n="high_school_type">理科实验班</p><p data-i18n="high_school_desc">完成高中阶段学习，并参与多项学科竞赛。</p></div></article>
+          </div>
         </section>
-    </main>
 
-    <!-- 页脚 -->
-    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex flex-col items-center md:items-start mb-6 md:mb-0">
-                    <span class="text-xl font-bold text-primary-600 dark:text-primary-400">冷世聪</span>
-                    <p class="mt-2 text-gray-600 dark:text-gray-400">生物科学 | 交叉学科</p>
-                </div>
-                <div class="flex space-x-6 mb-6 md:mb-0">
-                    <a href="https://img.picui.cn/free/2025/03/15/67d551257302b.webp" target="_blank" class="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 relative group">
-                        <span class="sr-only">微信</span>
-                        <i class="fab fa-weixin text-2xl"></i>
-                        <img src="https://img.picui.cn/free/2025/03/15/67d551257302b.webp" alt="微信二维码" class="absolute hidden group-hover:block bottom-full left-1/2 transform -translate-x-1/2 mb-2 rounded-md shadow-lg z-10 border-2 border-primary-500 max-w-none w-[300px] h-[400px]" loading="lazy" decoding="async" fetchpriority="low">
-                    </a>
-                    <a href="https://www.linkedin.com/in/leng-shicong" target="_blank" class="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400">
-                        <span class="sr-only">LinkedIn</span>
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="https://github.com/Limsym" target="_blank" class="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400">
-                        <span class="sr-only">GitHub</span>
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                    <a href="https://www.researchgate.net/" target="_blank" class="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400">
-                        <span class="sr-only">ResearchGate</span>
-                        <i class="fab fa-researchgate text-2xl"></i>
-                    </a>
-                </div>
-                                        
-                    <p class="text-center md:text-right text-gray-500 dark:text-gray-400">
-                        &copy; 2025 冷世聪. 保留所有权利.
-                    </p>
-                </div>
+        <section class="section-block reveal" id="selected-work" aria-labelledby="work-title">
+          <header class="section-heading"><div><span>04</span><span data-i18n="section_work_en">SELECTED WORK</span></div><h2 id="work-title" data-i18n="section_work">代表成果</h2><p data-i18n="work_intro">选择能够说明研究能力与问题解决方式的成果，而不是罗列全部记录。</p></header>
+          <article class="featured-work"><div class="work-index"><span>01</span><small data-i18n="patent_label">PATENT</small></div><div class="work-copy"><p class="institution-type" data-i18n="patent_org">国家知识产权局 · 2023</p><h3><a href="http://www.cab.zju.edu.cn/swjs/2017/0914/c7264a639117/page.htm" target="_blank" rel="noopener" data-i18n="patent_title">一种利用内生真菌 P-B313 提高水稻种苗素质和谷粒产量的方法 ↗</a></h3><p data-i18n="patent_summary">第一发明人。由浙江中医药大学、浙江省农业科学院和浙江大学联合指导，国家发明专利 ZL2022101341351。</p><p class="citation" data-i18n="patent_citation">冷世聪，梁世伟，林福呈，苏珍珠，朱加楠。</p></div></article>
+          <div class="award-ledger">
+            <article><header><span>02</span><h3 data-i18n="award_innovation">创新创业</h3><time>2022 — 2023</time></header><ul><li data-i18n="award_innovation_1">中国国际“互联网+”大学生创新创业大赛铜奖</li><li data-i18n="award_innovation_2">浙江省国际“互联网+”大学生创新创业大赛银奖</li></ul></article>
+            <article><header><span>03</span><h3 data-i18n="award_math">数学建模</h3><time>2021 — 2022</time></header><ul><li data-i18n="award_math_1">美国大学生数学建模竞赛 MCM/ICM · S 奖</li><li data-i18n="award_math_2">全国大学生数学建模竞赛浙江赛区 · 二等奖</li><li data-i18n="award_math_3">长三角高校大学生数学建模竞赛 · 三等奖</li></ul></article>
+            <article><header><span>04</span><h3 data-i18n="award_life">生命科学</h3><time>2020 — 2023</time></header><ul><li data-i18n="award_life_1">浙江省大学生环境生态科技创新大赛 · 二等奖</li><li data-i18n="award_life_2">浙江省大学生生命科学竞赛 · 三等奖</li><li data-i18n="award_life_3">浙江中医药大学生命科学知识竞赛</li></ul></article>
+          </div>
+        </section>
+
+        <section class="section-block reveal" id="skills" aria-labelledby="skills-title">
+          <header class="section-heading"><div><span>05</span><span data-i18n="section_skills_en">METHODS & PRACTICE</span></div><h2 id="skills-title" data-i18n="section_skills">方法与实践</h2><p data-i18n="skills_intro">能力不是装饰性的标签，而是把问题推进到下一步的方法集合。</p></header>
+          <div class="skills-ledger">
+            <article><span class="skill-number">01</span><h3 data-i18n="skill_lab_title">实验研究</h3><p data-i18n="skill_lab">蛋白质表达与纯化、分子克隆、突变蛋白筛选、Western Blot、PCR、细胞培养、免疫组化</p></article>
+            <article><span class="skill-number">02</span><h3 data-i18n="skill_data_title">计算与数据</h3><p data-i18n="skill_data">Python、MATLAB、生物信息学工具、AlphaFold2、数据库开发、AI 辅助研究工作流</p></article>
+            <article><span class="skill-number">03</span><h3 data-i18n="skill_communication_title">科学沟通</h3><p data-i18n="skill_communication">学术写作、研究报告、同行评审流程、中文、英语（CET-6）、商务与学术英语</p></article>
+            <article><span class="skill-number">04</span><h3 data-i18n="skill_practice_title">跨界实践</h3><p data-i18n="skill_practice">问题拆解、团队协作、项目管理、国际业务沟通、流程与信息工具优化</p></article>
+          </div>
+        </section>
+
+        <section class="section-block reveal" id="ai-assistant" aria-labelledby="assistant-title">
+          <header class="section-heading"><div><span>06</span><span data-i18n="section_assistant_en">DIALOGUE</span></div><h2 id="assistant-title" data-i18n="section_assistant">与档案对话</h2><p data-i18n="assistant_intro">如果你想从履历之外了解我的背景、技能与经历，可以向这个 AI 助手提问。</p></header>
+          <div class="assistant-frame"><div class="assistant-note"><span class="status-dot"></span><p data-i18n="assistant_note">对话由外部 AI 服务提供。高峰期响应可能较慢，请避免发送敏感个人信息。</p></div><iframe src="https://udify.app/chatbot/44nOo22lcuL2qL91" title="冷世聪个人档案 AI 助手" allow="microphone"></iframe></div>
+        </section>
+
+        <section class="section-block contact-section reveal" id="contact" aria-labelledby="contact-title">
+          <header class="section-heading"><div><span>07</span><span data-i18n="section_contact_en">CONTACT</span></div><h2 id="contact-title" data-i18n="section_contact">建立联系</h2><p data-i18n="contact_intro">欢迎围绕研究、跨学科协作或其他有意义的问题与我交流。</p></header>
+          <div class="contact-grid">
+            <div class="contact-details">
+              <a href="mailto:siqiniq@limsym.onmicrosoft.com"><span data-i18n="email_label">EMAIL</span><strong>siqiniq@limsym.onmicrosoft.com</strong></a>
+              <a href="tel:+8617816758748"><span data-i18n="phone_label">PHONE</span><strong>+86 178 1675 8748</strong></a>
+              <div><span data-i18n="location_label">LOCATION</span><strong data-i18n="location_full">浙江 · 杭州 · 西湖区</strong></div>
+              <div class="social-links"><a href="https://www.linkedin.com/in/leng-shicong" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/Limsym" target="_blank" rel="noopener">GitHub ↗</a><a href="https://img.picui.cn/free/2025/03/15/67d551257302b.webp" target="_blank" rel="noopener" data-i18n="wechat_link">微信 ↗</a></div>
             </div>
-        </div>
-    </footer>
+            <form id="contact-form" action="https://formsubmit.co/siqiniq@limsym.onmicrosoft.com" method="post">
+              <input type="hidden" name="_subject" value="个人主页的新消息" data-i18n-value="form_mail_subject"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="_autoresponse" value="感谢您的留言，我会尽快回复。" data-i18n-value="form_autoresponse">
+              <div class="form-row"><label><span data-i18n="form_name">姓名</span><input type="text" name="name" required autocomplete="name"></label><label><span data-i18n="form_email">邮箱</span><input type="email" name="email" required autocomplete="email"></label></div>
+              <label><span data-i18n="form_subject">主题</span><input type="text" name="subject"></label><label><span data-i18n="form_message">消息</span><textarea name="message" rows="5" required></textarea></label>
+              <div class="form-footer"><button type="submit"><span data-i18n="form_submit">发送消息</span><span aria-hidden="true">↗</span></button><p id="form-status" role="status" aria-live="polite"></p></div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
 
-    <!-- 在导航栏下方添加回到顶部按钮 -->
-    <a href="#" id="backToTop" class="fixed right-6 bottom-6 p-3 rounded-full bg-primary-600 text-white shadow-lg hover:bg-primary-700 focus:outline-none z-50 opacity-0 transition-all duration-300" aria-label="回到顶部">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-        </svg>
-    </a>
-
-    <!-- 交互脚本已整合到页面功能初始化脚本中 -->
-
-    <!-- 页面功能初始化脚本 -->
-    <script>
-        // 在DOMContentLoaded事件中统一初始化所有页面功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // ===== 1. 移动端导航菜单 =====
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                
-                // 点击导航链接后关闭菜单
-                document.querySelectorAll('#mobile-menu a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
-                    });
-                });
-            }
-            
-            // ===== 2. 图片路径处理与回退策略 =====
-            function fixImagePaths() {
-                // 尝试使用 .jpg 作为主格式
-                document.querySelectorAll('img').forEach(img => {
-                    // 为每个图片添加加载失败处理
-                    img.onerror = function() {
-                        console.error('图片加载失败，尝试其他格式:', this.src);
-                        
-                        // 如果jpg失败尝试webp
-                        if (this.src.includes('.jpg')) {
-                            this.src = this.src.replace('.jpg', '.webp');
-                        } 
-                        // 如果webp失败尝试png
-                        else if (this.src.includes('.webp')) {
-                            this.src = this.src.replace('.webp', '.png');
-                        }
-                        
-                        // 最后尝试使用一个通用的占位图
-                        this.onerror = function() {
-                            this.src = 'https://via.placeholder.com/150?text=图片加载失败';
-                            this.onerror = null;
-                        };
-                    };
-                });
-                
-                // 更新微信二维码链接确保使用JPG格式
-                document.querySelectorAll('a[href*="67d551257302b"]').forEach(link => {
-                    link.href = "https://img.picui.cn/free/2025/03/15/67d551257302b.jpg";
-                    const img = link.querySelector('img');
-                    if (img) {
-                        img.src = "https://img.picui.cn/free/2025/03/15/67d551257302b.jpg";
-                    }
-                });
-            }
-            
-            // 立即执行图片修复
-            fixImagePaths();
-            
-            // ===== 3. 回到顶部按钮 =====
-            const backToTopButton = document.getElementById('backToTop');
-            if (backToTopButton) {
-                // 处理初始显示状态
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.remove('opacity-0');
-                    backToTopButton.classList.add('opacity-100');
-                }
-                
-                // 滚动事件处理
-                window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
-                        backToTopButton.classList.remove('opacity-0');
-                        backToTopButton.classList.add('opacity-100');
-                    } else {
-                        backToTopButton.classList.remove('opacity-100');
-                        backToTopButton.classList.add('opacity-0');
-                    }
-                });
-                
-                // 点击事件处理
-                backToTopButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-            
-            // ===== 4. 语言切换功能 =====
-            const languageSwitcher = document.getElementById('language-switcher');
-            const mobileLanguageSwitcher = document.getElementById('mobile-language-switcher');
-            
-            // 桌面端语言切换
-            if (languageSwitcher) {
-                languageSwitcher.addEventListener('click', function() {
-                    const newLang = currentLanguage === 'zh-CN' ? 'en' : 'zh-CN';
-                    switchLanguage(newLang);
-                });
-            }
-            
-            // 移动端语言切换
-            if (mobileLanguageSwitcher) {
-                mobileLanguageSwitcher.addEventListener('click', function() {
-                    const newLang = currentLanguage === 'zh-CN' ? 'en' : 'zh-CN';
-                    switchLanguage(newLang);
-                });
-            }
-            
-            // ===== 5. 表单验证和提交处理 =====
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    let isValid = true;
-                    
-                    // 验证姓名
-                    const nameInput = document.getElementById('name');
-                    const nameError = document.getElementById('nameError');
-                    if (!nameInput.value.trim()) {
-                        e.preventDefault();
-                        nameError.classList.remove('hidden');
-                        isValid = false;
-                    } else {
-                        nameError.classList.add('hidden');
-                    }
-                    
-                    // 验证邮箱
-                    const emailInput = document.getElementById('email');
-                    const emailError = document.getElementById('emailError');
-                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailPattern.test(emailInput.value)) {
-                        e.preventDefault();
-                        emailError.classList.remove('hidden');
-                        isValid = false;
-                    } else {
-                        emailError.classList.add('hidden');
-                    }
-                    
-                    // 验证消息
-                    const messageInput = document.getElementById('message');
-                    const messageError = document.getElementById('messageError');
-                    if (!messageInput.value.trim()) {
-                        e.preventDefault();
-                        messageError.classList.remove('hidden');
-                        isValid = false;
-                    } else {
-                        messageError.classList.add('hidden');
-                    }
-                    
-                    if (isValid) {
-                        // 禁用提交按钮防止重复提交
-                        document.getElementById('submitBtn').disabled = true;
-                        
-                        // 阻止默认表单提交行为
-                        e.preventDefault();
-                        
-                        // 显示本地提交中状态
-                        const formSuccess = document.getElementById('formSuccess');
-                        formSuccess.textContent = window.formSubmittingText || "正在提交...";
-                        formSuccess.classList.remove('hidden');
-                        
-                        // 使用AJAX异步提交表单
-                        const formData = new FormData(contactForm);
-                        const formAction = contactForm.getAttribute('action');
-                        
-                        fetch(formAction, {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                'Accept': 'application/json'
-                            }
-                        })
-                        .then(response => {
-                            // 无论成功与否都显示成功消息（FormSubmit总是返回重定向）
-                            formSuccess.textContent = window.formSuccessText || "消息发送成功，感谢您的留言！";
-                            
-                            // 重置表单
-                            contactForm.reset();
-                            
-                            // 3秒后重新启用提交按钮
-                            setTimeout(() => {
-                                document.getElementById('submitBtn').disabled = false;
-                            }, 3000);
-                        })
-                        .catch(error => {
-                            // 发生错误时也给用户反馈
-                            formSuccess.textContent = window.formErrorText || "发生未知错误，有劳手动发送邮件！";
-                            
-                            // 3秒后重新启用提交按钮
-                            setTimeout(() => {
-                                document.getElementById('submitBtn').disabled = false;
-                            }, 3000);
-                        });
-                    }
-                    else {
-                        // 如果验证失败，阻止表单提交
-                        e.preventDefault();
-                    }
-                });
-            }
-            
-            // ===== 6. 滚动监听和动态导航高亮 =====
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a');
-            
-            function highlightNavigation() {
-                let scrollY = window.pageYOffset;
-                
-                sections.forEach(section => {
-                    const sectionHeight = section.offsetHeight;
-                    const sectionTop = section.offsetTop - 100;
-                    const sectionId = section.getAttribute('id');
-                    
-                    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('text-primary-600', 'dark:text-primary-400');
-                            link.classList.add('text-gray-600', 'dark:text-gray-300');
-                            
-                            if (link.getAttribute('href') === '#' + sectionId) {
-                                link.classList.remove('text-gray-600', 'dark:text-gray-300');
-                                link.classList.add('text-primary-600', 'dark:text-primary-400');
-                            }
-                        });
-                    }
-                });
-            }
-            
-            window.addEventListener('scroll', highlightNavigation);
-            highlightNavigation(); // 初始化高亮
-            
-            // ===== 7. 平滑滚动到锚点 =====
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    if (this.id !== 'backToTop') { // 跳过回到顶部按钮的处理
-                        e.preventDefault();
-                        
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        
-                        if (targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 80, // 考虑导航栏高度
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
-            });
-        });
-    </script>
+  <footer class="site-footer"><div class="shell footer-inner"><div><span class="brand-mark">LS</span><p><strong data-i18n="name">冷世聪</strong><small data-i18n="footer_tagline">生命科学 · 数据 · 跨学科实践</small></p></div><p data-i18n="copyright">© 2026 冷世聪。保留所有权利。</p><a href="#top"><span data-i18n="back_to_top">回到顶部</span> ↑</a></div></footer>
 </body>
 </html>
